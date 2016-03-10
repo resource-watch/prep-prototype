@@ -1,0 +1,96 @@
+$navbar-height: 100px;
+$navbar-default-bg: transparent;
+$navbar-default-border: 0;
+
+/* Now we load calcite variables as overrides*/
+@import 'calcite-bootstrap';
+/* set the output folder for fonts */
+$icon-font-path: './fonts/';
+@import 'bootstrap';
+
+/*utils*/
+.pad-20 {
+  padding: 20px;
+}
+.pad-top-50 {
+  padding-top: 50px;
+}
+.pad-bottom-50 {
+  padding-bottom: 50px;
+}
+/*utils*/
+
+/*header*/
+.navbar {
+  background: url('/img/header/earth-asia-large-bg-with-title.jpg');
+  background-size: cover;
+  background-position-y: -200px;
+  height: 700px;
+  -webkit-box-shadow: 0px 1px 5px 0px #323232;
+  -moz-box-shadow: 0px 1px 5px 0px #323232;
+  box-shadow: 0px 1px 5px 0px #323232;
+}
+.navbar-brand {
+  padding: 20px 50px;
+}
+.navbar-right {
+  margin-right: 25px;
+}
+.header-separator {
+  color: #cccccc;
+  width: 50px;
+  margin-right: -45px;
+  margin-bottom: 0;
+  opacity: 0.25;
+
+  -webkit-transform: translate(0) rotate(45deg);
+  -webkit-transform-origin: 0 0;
+
+  transform: translate(0) rotate(90deg);
+  transform-origin: 0 0;
+}
+/*header*/
+
+/*home page*/
+.topic-divider {
+  width: 100px;
+  border: 2px solid #ffd160;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.floating-section {
+  position: absolute;
+  right: 50px;
+  width: 450px;
+  bottom: 80px;
+  background: white;
+
+  -webkit-box-shadow: 0px 1px 5px 0px #ffffff;
+  -moz-box-shadow: 0px 1px 5px 0px #ffffff;
+  box-shadow: 0px 1px 5px 0px #ffffff;
+}
+
+.kid-home {
+  background: url('/img/home/kid-scaled.jpg') no-repeat;
+  background-position-x: -60px;
+  height: 350px;
+}
+.kid-title-section {
+  padding: 20px 20px 0 20px;
+}
+
+.kid-text-section {
+  padding: 0 20px 20px 20px;
+}
+
+.iceberg-section {
+  background: url('/img/home/iceberg.jpg') no-repeat;
+  background-origin: 0;
+  background-size: cover;
+  height: 400px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+/*home page*/
