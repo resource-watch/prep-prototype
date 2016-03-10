@@ -22,7 +22,7 @@ $icon-font-path: './fonts/';
 
 /*header*/
 .navbar {
-  background: url('/img/header/earth-asia-large-bg-with-title.jpg');
+  background: url('https://s3.amazonaws.com/project-climate/header/earth-asia-large-bg-with-title.jpg');
   background-size: cover;
   background-position-y: -200px;
   height: 700px;
@@ -72,7 +72,7 @@ $icon-font-path: './fonts/';
 }
 
 .kid-home {
-  background: url('/img/home/kid-scaled.jpg') no-repeat;
+  background: url('https://s3.amazonaws.com/project-climate/home/kid-scaled.jpg') no-repeat;
   background-position-x: -60px;
   height: 350px;
 }
@@ -85,7 +85,7 @@ $icon-font-path: './fonts/';
 }
 
 .iceberg-section {
-  background: url('/img/home/iceberg.jpg') no-repeat;
+  background: url('https://s3.amazonaws.com/project-climate/home/iceberg.jpg') no-repeat;
   background-origin: 0;
   background-size: cover;
   height: 400px;
