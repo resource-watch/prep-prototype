@@ -1,5 +1,5 @@
 export default function() {
-  this.urlPrefix = 'http://localhost:4300';
+  // this.urlPrefix = 'http://localhost:4300';
   this.get('/dashboards/:dashboard_id', function(db, request) {
     return {
       data: {
