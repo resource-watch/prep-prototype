@@ -13,13 +13,19 @@ module.exports = function(environment) {
       }
     },
 
+    intl: {
+      disablePolyfill: true,
+      locales: ['cs','da','de','en-us','es','et','el','fi','fr','it','ja','ko','lt','lv','nb','nl','pl','pt-br','pt-pt','ro','ru','sv','th','tr','vi','zh-hans','zh-hant','zh'],
+      baseLocale: 'en-us'
+    },
+
     contentSecurityPolicy: {
       'default-src': "'none' blob:",
-      'script-src': "'self' http://*.arcgis.com/ https://*.arcgis.com/ https://*.esri.com",
+      'script-src': "'self' http://arcgis-sdgs-385255865.us-east-1.elb.amazonaws.com/ 'unsafe-eval' 'unsafe-inline' http://*.arcgis.com/ https://*.arcgis.com/ https://apf-koop-sample-app.herokuapp.com https://*.esri.com",
       'font-src': "'self' data: *.fonts.net *.arcgis.com/",
-      'connect-src': "'self' http://*.arcgis.com/ http://*.arcgisonline.com/  https://*.esri.com",
-      'img-src': "'self' blob: https://*.arcgis.com/ http://*.arcgis.com/ http://*.arcgisonline.com/ https://*.esri.com",
-      'style-src': "'self'  https://fast.fonts.net http://*.arcgis.com https://*.arcgis.com",
+      'connect-src': "'self' http://arcgis-sdgs-385255865.us-east-1.elb.amazonaws.com/ http://*.arcgis.com/ http://services.arcgisonline.com/ https://sdg-api.herokuapp.com/ http://localhost:3000 https://*.esri.com",
+      'img-src': "'self' blob: https://s3.amazonaws.com http://arcgis-sdgs-385255865.us-east-1.elb.amazonaws.com/ https://*.arcgis.com/ http://*.arcgis.com/ http://*.arcgisonline.com/ https://*.esri.com",
+      'style-src': "'self' 'unsafe-inline' https://fast.fonts.net http://*.arcgis.com https://*.arcgis.com",
       'media-src': "'self'"
     },
 
@@ -35,6 +41,10 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    
+    // ENV['ember-cli-mirage'] = {
+    //   enabled: true
+    // }
   }
 
   if (environment === 'test') {

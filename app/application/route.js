@@ -1,4 +1,23 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
+  
+  intl: Ember.inject.service(),
+
+  beforeModel(transition) {
+    
+    // ref for setting locale in opendata-ui:
+    // https://github.com/ArcGIS/opendata-ui/blob/master/app/application/route.js
+    const intl = this.get('intl');
+    let defaultLocale = 'en-us';
+    intl.setLocale(defaultLocale);
+
+    let svc = this.get('session');
+    const target = transition.targetName;
+    if (target === 'home') {
+      svc.set('headerStyle', 'header-home');
+    } else {
+      svc.set('headerStyle', 'header-short');
+    }
+  }
 });

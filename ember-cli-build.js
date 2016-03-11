@@ -11,7 +11,17 @@ module.exports = function(defaults) {
         'node_modules/bootstrap-sass/assets/stylesheets',
         'node_modules/calcite-bootstrap/dist/sass'
       ]
+    },
+
+    amd :{
+      loader: 'https://js.arcgis.com/3.16/',
+      configPath: 'config/dojo-config.js',
+      packages: [
+        'esri','dojo','dojox','dijit',
+        'put-selector','xstyle','dbind','dgrid'
+      ]
     }
+    
   });
 
   // Use `app.import` to add additional libraries to the generated

@@ -1,16 +1,41 @@
+/*branding colors - style 1 */
+/*Main Color (dark blue) :: #215075 */
+/*Data (green) :: #7bc763 */
+/*Dashboards (yellow) :: #ffd160 */
+/*Insights (light blue) :: #25c1d7 */
+
 $navbar-height: 100px;
 $navbar-default-bg: transparent;
 $navbar-default-border: 0;
+$navbar-default-link-color: #fff;
+$breadcrumb-bg: transparent;
+$breadcrumb-separator: "|";
+$nav-pills-active-link-hover-bg: #215075;
+$nav-pills-active-link-hover-color: white;
 
 /* Now we load calcite variables as overrides*/
 @import 'calcite-bootstrap';
+
 /* set the output folder for fonts */
 $icon-font-path: './fonts/';
 @import 'bootstrap';
 
+/*not sure how to override the font family from calcite-bootstrap so i'm doing this*/
+body, 
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Open Sans",Arial, sans-serif;
+}
+
+.card {
+  width: 100%;
+}
+
 /*utils*/
 .pad-20 {
   padding: 20px;
+}
+.pad-top-20 {
+  padding-top: 20px;
 }
 .pad-top-50 {
   padding-top: 50px;
@@ -21,11 +46,10 @@ $icon-font-path: './fonts/';
 /*utils*/
 
 /*header*/
-.navbar {
+.header-base {
   background: url('https://s3.amazonaws.com/project-climate/header/earth-asia-large-bg-with-title.jpg');
   background-size: cover;
   background-position-y: -200px;
-  height: 700px;
   -webkit-box-shadow: 0px 1px 5px 0px #323232;
   -moz-box-shadow: 0px 1px 5px 0px #323232;
   box-shadow: 0px 1px 5px 0px #323232;
@@ -37,7 +61,7 @@ $icon-font-path: './fonts/';
   margin-right: 25px;
 }
 .header-separator {
-  color: #cccccc;
+  color: #fff;
   width: 50px;
   margin-right: -45px;
   margin-bottom: 0;
@@ -48,6 +72,44 @@ $icon-font-path: './fonts/';
 
   transform: translate(0) rotate(90deg);
   transform-origin: 0 0;
+}
+
+.card,
+.dropdown-menu li {
+  cursor: pointer;
+}
+
+.header-home {
+  height: 700px;
+}
+
+.header-data {
+  background: url('https://s3.amazonaws.com/project-climate/header/earth-asia-large-bg.jpg');
+  height: 350px;
+  background-size: cover;
+  background-position-y: -200px;
+  -webkit-box-shadow: 0px 1px 5px 0px #323232;
+  -moz-box-shadow: 0px 1px 5px 0px #323232;
+  box-shadow: 0px 1px 5px 0px #323232;
+}
+.header-dashboards {
+  background: url('https://s3.amazonaws.com/project-climate/header/earth-asia-large-bg.jpg');
+  height: 350px;
+  background-size: cover;
+  background-position-y: -200px;
+  -webkit-box-shadow: 0px 1px 5px 0px #323232;
+  -moz-box-shadow: 0px 1px 5px 0px #323232;
+  box-shadow: 0px 1px 5px 0px #323232;
+}
+
+.sub-header-section {
+  position: absolute;
+  bottom: 15px;
+  left: 40px;
+}
+.sub-header-title {
+  color: white;
+  font-size: 48px;
 }
 /*header*/
 
@@ -94,3 +156,30 @@ $icon-font-path: './fonts/';
   padding: 0;
 }
 /*home page*/
+
+/*dashboard*/
+.nav-pills li {
+  cursor: pointer;
+  font-size: 30px;
+}
+.dashboard-views-container {
+  margin: 0;
+ /* border-left: 1px solid #a9a9a9;
+  border-bottom: 1px solid #a9a9a9;
+  border-right: 1px solid #a9a9a9;*/
+}
+/*dashboard*/
+
+/*breadcrumb-nav*/
+.dashboardReturnDisplayNone {
+  display: none;
+}
+.dashboardReturnDisplayInline {
+  display: inline;
+}
+.breadcrumb-nav {
+  /*background-color: transparent;*/
+  padding: 0 0 0 10px;
+  margin-bottom: 0;
+}
+/*breadcrumb-nav*/

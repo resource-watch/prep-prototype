@@ -1,20 +1,20 @@
 <ul class='nav navbar-nav navbar-right'>
   <li>
-    {{#link-to 'data'}}DATA{{/link-to}}
+    {{#link-to 'data'}}{{t 'header.navRight.data'}}{{/link-to}}
   </li>
   <li>
-    <a href="http://www.arcgis.com/features/features.html" target="_blank">DASHBOARDS</a>
+    {{#link-to 'dashboards'}}{{t 'header.navRight.dashboards'}}{{/link-to}}
   </li>
   <li>
-    <a href="http://www.arcgis.com/features/features.html" target="_blank">INSIGHTS</a>
+    {{#link-to 'insights'}}{{t 'header.navRight.insights'}}{{/link-to}}
   </li>
   <li>
     <hr class="header-separator">
   </li>
   <li>
-    <a href="http://www.arcgis.com/features/features.html" target="_blank">SEARCH</a>
+    {{#link-to 'search'}}{{t 'header.navRight.search'}}{{/link-to}}
   </li>
-  <li>
-    <a href="http://www.arcgis.com/features/features.html" target="_blank">ENGLISH</a>
-  </li>
+
+  {{header-locale-dropdown}}
+  
 </ul>
