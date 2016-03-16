@@ -1,0 +1,23 @@
+{
+  "header" : {
+    "navRight" : {
+      "data" : "DATA",
+      "dashboards" : "DASHBOARDS",
+      "insights" : "INSIGHTS",
+      "search" : "SEARCH"
+    },
+    "backToDashboards" : "BACK TO DASHBOARDS"
+  },
+  "dashboards" : {
+    "title" : "Dashboards",
+    "findText" : "Find dashoards by Topic, Area, and Date",
+    "featuredText" : "Featured Dashboards"
+  },
+  "dashboard" : {
+    "tabs" : {
+      "indicators" : "INDICATORS",
+      "insights" : "INSIGHTS",
+      "tools" : "TOOLS"
+    }
+  }
+}

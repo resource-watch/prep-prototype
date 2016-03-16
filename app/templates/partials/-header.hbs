@@ -1,0 +1,20 @@
+<nav class="navbar navbar-default header-base {{session.headerSubStyle}}">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      {{#link-to 'home' tagName="a" class="navbar-brand"}}
+        <img alt="brand" src="https://s3.amazonaws.com/project-climate/header/prep-logo-1-white.png">
+      {{/link-to}}
+    </div>
+    {{ partial 'partials/header-nav-right' }}
+  </div>
+  <div class="container sub-header-section">
+    <div class="row">
+      <!-- {{breadcrumb-nav}} -->
+      <!-- {{dashboard-return-link}} -->
+      {{#link-to 'dashboards' class=session.dashboardReturnDisplay }}{{t 'header.backToDashboards'}}{{/link-to}}
+    </div>
+    <div class="row">
+      <span class="sub-header-title">{{session.headerSectionTitle}}</span>
+    </div>
+  </div>
+</nav>
