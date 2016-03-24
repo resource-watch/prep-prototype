@@ -46,18 +46,9 @@ export default Ember.Service.extend({
               x: 0,
               y: 0,
               height: 4,
-              width: 9,
+              width: 7,
               component: {
                 name: 'four-quad-map-card'
-              }
-            },
-            {
-              x: 9,
-              y: 0,
-              height: 4,
-              width: 3,
-              component: {
-                name: 'placeholder-card'
               }
             }
           ]

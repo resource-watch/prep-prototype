@@ -15,22 +15,19 @@ export default Ember.Component.extend({
 
   didInsertElement() {
     
-    // const class_name = this.get('class');
-    // if (class_name) {
-    //   this.classNames.push(class_name);
-    // }
+    const add_title = this.get('addTitle') || false;
 
     // parse properties
     const webmap = this.get('webmap');
     const logo = this.get('logo');
-    const slider = this.get('slider');
     const showAttribution = this.get('showAttribution');
-    const disableNavigation = this.get('disableNavigation') || false;
+    const add_legend = this.get('legend') || false;
+
 
     const options = {
       mapOptions: { 
         logo: logo,
-        slider: slider,
+        // slider: slider,
         showAttribution: showAttribution
       }
     };
@@ -47,15 +44,27 @@ export default Ember.Component.extend({
         this.handlers.push(response.clickEventHandle);
       }
 
-      if (disableNavigation) {
-        // this.map.disablePan();
-        this.map.disableMapNavigation();
+      this.map.disableScrollWheelZoom();
+
+      if (add_legend) {
+        const layerInfos = [
+          {
+            layer: response.itemInfo.itemData.operationalLayers[0].layerObject,
+            title: ' '
+          }
+        ];
+        svc.createLegend(this.element, this.map, layerInfos);
       }
 
-      setTimeout(function(){
-        this.map.resize();
-        this.map.reposition();
-      }.bind(this), 5000);
+      if (add_title) {
+        const title = response.itemInfo.itemData.operationalLayers[0].title;
+        svc.createMapTitle(this.element, title);
+      }
+
+      // setTimeout(function(){
+      //   this.map.resize();
+      //   this.map.reposition();
+      // }.bind(this), 5000);
     });
   },
 
