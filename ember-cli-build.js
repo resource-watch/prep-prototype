@@ -8,8 +8,7 @@ module.exports = function(defaults) {
     // Add options here
     sassOptions: {
       includePaths: [
-        'node_modules/bootstrap-sass/assets/stylesheets',
-        'node_modules/calcite-bootstrap/dist/sass'
+        'node_modules/bootstrap-sass/assets/stylesheets'
       ]
     },
 
