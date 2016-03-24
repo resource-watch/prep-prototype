@@ -1,0 +1,99 @@
+{
+  "padding": {"top": 10, "left": 30, "bottom": 30, "right": 10},
+  "inputs" : [
+    {
+      "name" : "x",
+      "required" : true,
+      "type" : ["numeric"]
+    },
+    {
+      "name" : "y",
+      "required" : true,
+      "type" : ["numeric"]
+    },
+    {
+      "name" : "y2",
+      "required" : true,
+      "type" : ["numeric"]
+    }
+  ],
+  "template" : {
+    "padding" : "strict",
+    "data": [
+      {
+        "name": "table",
+        "format" : {
+          "property" : "features"
+        }
+      }
+    ],
+    "scales": [
+      {
+        "name": "x",
+        "type": "linear",
+        "range": "width",
+        "zero": false,
+        "domain": {"data": "table", "field": "attributes.{x.field}"}
+      },
+      {
+        "name": "y",
+        "type": "linear",
+        "range": "height",
+        "nice": true,
+        "domain": {"data": "table", "field": "attributes.{y.field}"}
+      }
+    ],
+    "axes": [
+      {
+        "type": "x", 
+        "scale": "x", 
+        "properties" : {
+          "axis": {
+            "stroke" : { "value" : "#dbdad9" }
+          },
+          "labels" : {}
+        },
+        "format": "0d"
+      },
+      {
+        "type": "y", 
+        "scale": "y", 
+        "properties": {
+          "axis" : {
+            "stroke" : { "value" : "#dbdad9" }
+          },
+          "labels" : {}
+        }
+      }
+    ],
+    "marks": [
+      {
+        "type": "area",
+        "from": {"data": "table"},
+        "properties": {
+          "enter": {
+            "interpolate": {"value": "monotone"},
+            "x": {"scale": "x", "field": "attributes.{x.field}"},
+            "y": {"scale": "y", "field": "attributes.{y.field}"},
+            "y2": {"scale": "y", "value": 0},
+            "fill": {"value": "lightgray"}
+          }
+        }
+      },
+      {
+        "type" : "line",
+        "from" : { "data" : "table"},
+        "properties" : {
+          "enter" : {
+            "interpolate" : { "value" : "linear" },
+            "x": {"scale": "x", "field": "attributes.{x.field}"},
+            "y2": {"scale": "y", "field": "attributes.{y2.field}"},
+            "y": {"scale": "y", "value": 0},
+            "stroke": {"value": "#215075"},
+            "strokeWidth": {"value": 2}
+          }
+        }
+      }
+    ]
+  }
+}

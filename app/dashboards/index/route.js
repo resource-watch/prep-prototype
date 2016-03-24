@@ -12,5 +12,9 @@ export default Ember.Route.extend({
     svc.set('headerSubStyle', 'header-dashboards');
     svc.set('headerSectionTitle', 'Dashboards');
     svc.set('dashboardReturnDisplay', 'dashboardReturnDisplayNone');
+  },
+
+  model() {
+    return this.store.query('dashboard', {});
   }
 });

@@ -17,9 +17,11 @@
     </div>
   </div>
   <div class="row">
+
+  {{#each model as |row|}}
     <div class="col-xs-6">
       <article class="card" {{action 'goToDashboard' 'chicago' }}>
-        <h1>City of Chicago</h1>
+        <h1>{{row.title}}</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget libero a odio consequat egestas id ac justo. Pellentesque non maximus ipsum, eget condimentum eros. In eget ante eget quam sollicitudin sagittis. Ut sed nisl libero. </p>
         <ul class="card-info">
           <li>January 7, 2016</li>
@@ -27,15 +29,6 @@
         </ul>
       </article>
     </div>
-    <div class="col-xs-6">
-      <article class="card" {{action 'goToDashboard' 'newyork' }}>
-        <h1>City of New York</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget libero a odio consequat egestas id ac justo. Pellentesque non maximus ipsum, eget condimentum eros. In eget ante eget quam sollicitudin sagittis. Ut sed nisl libero. </p>
-        <ul class="card-info">
-          <li>February 5, 2016</li>
-          <li>Author Name</li>
-        </ul>
-      </article>
-    </div>
-  </div>
+    {{/each}}
+  </div> 
 </div>

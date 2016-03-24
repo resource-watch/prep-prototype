@@ -32,7 +32,9 @@ module.exports = function(environment) {
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+
+    prepApiHost : 'http://localhost:3000'
   };
 
   if (environment === 'development') {
@@ -41,10 +43,6 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    
-    ENV['ember-cli-mirage'] = {
-      enabled: true
-    }
   }
 
   if (environment === 'test') {
@@ -60,13 +58,11 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    // ENV.locationType = 'hash';
+    ENV.locationType = 'hash';
     ENV.baseURL = '/prep-prototype/';
 
-    ENV['ember-cli-mirage'] = {
-      enabled: true
-    }
-
+    // add heroku host;
+    ENV.prepApiHost = 'https://prep-api.herokuapp.com/';
   }
 
   return ENV;

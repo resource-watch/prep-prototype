@@ -5,8 +5,10 @@ export default Ember.Route.extend({
     let svc = this.get('session');
     svc.set('headerSubStyle', 'header-dashboards');
     svc.set('headerSectionTitle', 'Dashboards');
-  },
-  model(params, transition) {
-    console.log(params, transition);
   }
+  // ,model(params, transition) {
+  //   console.log(params, transition);
+  //   // const card_id = transition.state.params['dashboards.dashboard'].dashboard_id;
+  //   // return this.store.query('dashboard', { ids: [card_id].join(',') });
+  // }
 });
