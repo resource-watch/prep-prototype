@@ -21,7 +21,6 @@
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
     "broccoli-funnel": "^1.0.1",
-    "calcite-bootstrap": "github:esri/calcite-bootstrap#v0.2.10",
     "ember-cli": "1.13.15",
     "ember-cli-amd": "0.4.7",
     "ember-cli-app-version": "^1.0.0",
