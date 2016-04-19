@@ -46,5 +46,10 @@ module.exports = function(defaults) {
     destDir: '/assets/fonts'
   });
 
+  // bootstrap toggle buttons
+  // https://github.com/minhur/bootstrap-toggle/
+  app.import('./bower_components/bootstrap-toggle/css/bootstrap-toggle.min.css');
+  app.import('./bower_components/bootstrap-toggle/js/bootstrap-toggle.min.js');  
+
   return app.toTree();
 };

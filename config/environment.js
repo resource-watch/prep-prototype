@@ -58,7 +58,7 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    ENV.locationType = 'hash';
+    // ENV.locationType = 'hash';
     ENV.baseURL = '/prep-prototype/';
 
     // add heroku host;

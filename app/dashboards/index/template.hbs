@@ -1,34 +1,173 @@
-<div class="container pad-top-50">
-  <div class="well">
-    <div class="row">
-      <div class="col-xs-5">
-        <h4>{{t 'dashboards.findText'}}</h4>
-      </div>
-      <div class="col-xs-7">
-        <button class="btn btn-default btn-md">Find Dashboards</button>
-      </div>
+<div class="container-fluid dashboards">
+  <div class="text-center title">
+    <p>Dashboards</p>
+    <hr class="separator">
+  </div>
+  <div class="text-center subnav">
+    <div class="items">
+      <span>TOPICS</span>
+      <span>AREAS</span>
+      <span>DATE</span>
     </div>
   </div>
-</div>  
-<div class="container pad-top-20">
-  <div class="row">
-    <div class="col-xs-12">
-      <h4>{{t 'dashboards.featuredText'}}</h4>
-    </div>
-  </div>
-  <div class="row">
+</div>
 
-  {{#each model as |row|}}
+<div class="container-fluid dashboards-cards">
+
+  <div class="row">
     <div class="col-xs-6">
-      <article class="card" {{action 'goToDashboard' 'chicago' }}>
-        <h1>{{row.title}}</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget libero a odio consequat egestas id ac justo. Pellentesque non maximus ipsum, eget condimentum eros. In eget ante eget quam sollicitudin sagittis. Ut sed nisl libero. </p>
-        <ul class="card-info">
-          <li>January 7, 2016</li>
-          <li>Author Name</li>
-        </ul>
-      </article>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Farmer assesses possible impacts of climate change on his crops (grapes)</h2>
+          <p>Farmer X would need to understand how to best prepare for any future changes in climate that may impact his grapes. Based on key thresholds for climate variables of interest (temperature and precipitation), Farmer X evaluate the suitability to grow different types of grapes...</p>
+          <div class="dashboard-summary-logo">
+            <img src="img/dashboards/logos/uw-wash.png">
+          </div>
+        </div>
+      </div>
     </div>
-    {{/each}}
-  </div> 
+    <div class="col-xs-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>City Planner assesses possible impacts of Climate Change on Puget Sound’s built environment</h2>
+          <p>Most climate change effects are likely to increase the potential for damage to infrastructure and service disruptions (unplanned transportation closures, delays, or detours) in the Puget Sound region, although some risks may decrease.</p>
+          <div class="dashboard-summary-logo">
+            <img src="img/dashboards/logos/uw-wash.png">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>City Planner assesses possible impacts of Climate Change on Puget Sound’s built environment</h2>
+          <p>Most climate change effects are likely to increase the potential for damage to infrastructure and service disruptions (unplanned transportation closures, delays, or detours) in the Puget Sound region, although some risks may decrease.</p>
+          <div class="dashboard-summary-logo">
+            <img src="img/dashboards/logos/nasa.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Farmer assesses possible impacts of climate change on his crops (grapes)</h2>
+          <p>Farmer X would need to understand how to best prepare for any future changes in climate that may impact his grapes. Based on key thresholds for climate variables of interest (temperature and precipitation), Farmer X evaluate the suitability to grow different types of grapes...</p>
+          <div class="dashboard-summary-logo">
+            <img src="img/dashboards/logos/wri.png">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Farmer assesses possible impacts of climate change on his crops (grapes)</h2>
+          <p>Farmer X would need to understand how to best prepare for any future changes in climate that may impact his grapes. Based on key thresholds for climate variables of interest (temperature and precipitation), Farmer X evaluate the suitability to grow different types of grapes...</p>
+          <div class="dashboard-summary-logo">
+            <img src="img/dashboards/logos/esri.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>City Planner assesses possible impacts of Climate Change on Puget Sound’s built environment</h2>
+          <p>Most climate change effects are likely to increase the potential for damage to infrastructure and service disruptions (unplanned transportation closures, delays, or detours) in the Puget Sound region, although some risks may decrease.</p>
+          <div class="dashboard-summary-logo">
+            <img src="img/dashboards/logos/nasa.png">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>City Planner assesses possible impacts of Climate Change on Puget Sound’s built environment</h2>
+          <p>Most climate change effects are likely to increase the potential for damage to infrastructure and service disruptions (unplanned transportation closures, delays, or detours) in the Puget Sound region, although some risks may decrease.</p>
+          <div class="dashboard-summary-logo">
+            <img src="img/dashboards/logos/wri.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <h2>Farmer assesses possible impacts of climate change on his crops (grapes)</h2>
+          <p>Farmer X would need to understand how to best prepare for any future changes in climate that may impact his grapes. Based on key thresholds for climate variables of interest (temperature and precipitation), Farmer X evaluate the suitability to grow different types of grapes...</p>
+          <div class="dashboard-summary-logo">
+            <img src="img/dashboards/logos/uw-wash.png">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="container-fluid">
+  <div class="row text-center">
+    <button class="btn btn-default btn-lg btn-show-more">SHOW MORE RESULTS</button>
+  </div>
+</div>
+
+<div class="container-fluid dashboard-prefooter">
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="pre-footer">
+        <div class="row text-center">
+          <p class="header">Data on the map</p>
+        </div>
+        <div class="row text-center">
+          <p class="desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        </div>
+        <div class="row text-center">
+          <p class="explore">EXPLORE THE MAP</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="pre-footer">
+        <div class="row text-center">
+          <p class="header">Insights</p>
+        </div>
+        <div class="row text-center">
+          <p class="desc">Integer id placerat ligula, eget consequat sapien. Duis nec neque scelerisque</p>
+        </div>
+        <div class="row text-center">
+          <p class="explore">EXPLORE THE INSIGHTS</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid create">
+  <div class="row text-center">
+    <div class="col-xs-6">
+      <p>Do you have relevant data about climate?</p>
+    </div>
+    <div class="col-xs-6">
+      <p>Would you like to improve a dashboard?</p>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-xs-6">
+      <button class="btn btn-lg btn-create">CREATE YOUR DASHBOARD</button>
+    </div>
+    <div class="col-xs-6">
+      <button class="btn btn-lg btn-contact">GET IN TOUCH</button>
+    </div>
+  </div>
 </div>

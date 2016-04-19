@@ -20,6 +20,10 @@ Router.map(function() {
   this.route('insights');
   this.route('search');
   this.route('indicators-test');
+  this.route('about');
+  this.route('faqs');
+  this.route('contact');
+  this.route('partners');
 });
 
 export default Router;
