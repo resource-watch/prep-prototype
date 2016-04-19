@@ -15,23 +15,21 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
-            {{#link-to 'data' tagName="li" class="item"}} 
-              <a href="#">DATA</a>
-            {{/link-to}}
+            <li class="item"><a href="#">Data</a></li>
+            <!-- <li class="item"><a href="#">Dashboards</a></li> -->
             {{#link-to 'dashboards.index' tagName="li" class="item"}} 
               <a href="#">DASHBOARDS</a>
             {{/link-to}}
-            {{#link-to 'insights' tagName="li" class="item"}} 
-              <a href="#">INSIGHTS</a>
-            {{/link-to}}
+            <li class="item"><a href="#">Insights</a></li>
             <li class="item separator"></li>
-            {{#link-to 'search' tagName="li" class="item -secondary"}} 
-              <a href="#">Search</a>
-            {{/link-to}}
-            <li class="item -secondary"><a>English</a></li>
+            <li class="item -secondary"><a href="#">Search</a></li>
+            <li class="item -secondary"><a href="#">English</a></li>
           </ul>
         </div>
       </nav>
+      <header class="header">
+        <h1 class="title -main intro">Enabling collective action to manage climate risks</h1>
+      </header>
     </div>
   </div>
 </header>

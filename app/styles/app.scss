@@ -16,6 +16,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 @import 'vizz/main.scss';
+@import 'header';
+@import 'header-data';
+@import 'data';
+@import 'dashboards';
 
 .card {
   width: 100%;

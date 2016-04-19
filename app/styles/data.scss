@@ -1,0 +1,64 @@
+html, body {
+  height: 100%;
+}
+body > .ember-view {
+  height: 100%;
+}
+.data-map-container {
+  margin-top: 0px;
+  height: 100%;
+}
+.data-map {
+  padding: 0;
+  height: 100%;
+}
+.data-sidecar {
+  position: absolute;
+  top: 44px;
+  width: 350px;
+  height: 700px;
+  background-color: white;
+}
+
+.data-sidecar .header {
+  height: 49px;
+  /*opacity: 0.1;*/
+  background-color: #F4F6F7;
+}
+
+.data-sidecar .header .row { 
+  margin-left: 18px;
+  padding-top: 13px;
+}
+
+.data-sidecar .header .row span { 
+  margin-right: 20px;
+  font-family: OpenSans-Bold;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: 0.4px;
+  color: #263e57;
+}
+
+.layer-listing {
+  padding: 10px 30px 10px 30px;
+}
+/*bootstrap toggle overrides*/
+.toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 10px; }
+.toggle.ios .toggle-handle { border-radius: 10px; }
+.toggle.btn-xs {
+  min-width: 17px;
+  min-height: 10px;
+}
+.layer-listing .btn-xs {
+  font-size: 5px;
+}
+
+.layer-item {
+  margin-bottom: 20px;
+}
+
+/*esri overrides*/
+.calcite .esriSimpleSliderTR {
+  top: 55px;
+}

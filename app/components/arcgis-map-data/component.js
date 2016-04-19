@@ -47,22 +47,16 @@ export default Ember.Component.extend({
 
       this.map.disableScrollWheelZoom();
 
-      if (add_legend) {
-        const layerInfos = [
-          {
-            layer: response.itemInfo.itemData.operationalLayers[0].layerObject,
-            title: ' '
-          }
-        ];
-        svc.createLegend(this.element, this.map, layerInfos);
-      }
+      let layerListing = [];
+      response.itemInfo.itemData.operationalLayers.forEach(function(layer) {
+        layerListing.push({
+          labelText: layer.title,
+          visible: layer.visibility,
+          layerObject: layer.layerObject
+        })
+      });
 
-      if (add_title) {
-        const title = response.itemInfo.itemData.operationalLayers[0].title;
-        svc.createMapTitle(this.element, title);
-      }
-
-      
+      this.get('session').set('layerListing', layerListing);
 
     });
   },

@@ -1,3 +1,25 @@
-<div class="container pad-top-50">
-  {{arcgis-map webmap="c86de136bcc24759b4bf916e68d69e17"}}
+{{arcgis-map-data webmap="c86de136bcc24759b4bf916e68d69e17"}}
+<div class="data-sidecar">
+  <!-- header -->
+  <div class="header">
+    <div class="row">
+      <div class="col-xs-4">
+        <span>TOPICS</span>
+      </div>
+      <div class="col-xs-4">
+        <span>AREAS</span>
+      </div>
+      <div class="col-xs-4">
+        <span>DATE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- layer listing -->
+  <div class="layer-listing">
+    {{#each session.layerListing as |layer|}}
+      {{toggle-checkbox layerOptions=layer}}
+    {{/each}}
+  </div>
+
 </div>
