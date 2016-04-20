@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Cookies from 'npm:js-cookie';
 
 export default Ember.Route.extend({
   actions: {
@@ -8,10 +9,11 @@ export default Ember.Route.extend({
   },
 
   beforeModel(transition) {
-    let svc = this.get('session');
-    svc.set('headerSubStyle', 'header-dashboards');
-    svc.set('headerSectionTitle', 'Dashboards');
-    svc.set('dashboardReturnDisplay', 'dashboardReturnDisplayNone');
+    const loggedIn = Cookies.get('prep_logged_in');
+    if (!loggedIn) {
+      this.transitionTo('login');
+      return;  
+    }
   },
 
   model() {

@@ -4,7 +4,7 @@ import Cookies from 'npm:js-cookie';
 export default Ember.Route.extend({
   
   beforeModel() {
-    const is_logged_in = Cookies.set('prep_logged_in');
+    const is_logged_in = Cookies.get('prep_logged_in');
     if (is_logged_in) {
       this.transitionTo('home');
     }
