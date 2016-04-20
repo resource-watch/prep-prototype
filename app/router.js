@@ -24,6 +24,8 @@ Router.map(function() {
   this.route('faqs');
   this.route('contact');
   this.route('partners');
+  this.route('login');
+  this.route('logout');
 });
 
 export default Router;
