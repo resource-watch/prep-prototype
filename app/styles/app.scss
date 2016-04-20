@@ -15,6 +15,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Open Sans",Arial, sans-serif;
 }
 
+@import 'password';
 @import 'vizz/main.scss';
 @import 'header';
 @import 'header-data';
@@ -127,4 +128,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   padding-top: 5px;
   text-align: center;
   font-weight: bold;
+}
+
+.pwd-error {
+  display: none;
 }
