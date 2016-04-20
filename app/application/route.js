@@ -16,7 +16,6 @@ export default Ember.Route.extend({
     const loggedIn = Cookies.get('prep_logged_in');
     if (!loggedIn) {
       this.transitionTo('login');
-      return;  
     }
     
   }

@@ -8,14 +8,6 @@ export default Ember.Route.extend({
     }
   },
 
-  beforeModel(transition) {
-    const loggedIn = Cookies.get('prep_logged_in');
-    if (!loggedIn) {
-      this.transitionTo('login');
-      return;  
-    }
-  },
-
   model() {
     // return this.store.query('dashboard', {});
   }
