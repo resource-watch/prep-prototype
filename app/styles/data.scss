@@ -1,3 +1,11 @@
+.page-marker-data {
+  position: absolute;
+  bottom: -8px;
+  border-bottom: 3px solid #6bbf51;
+  width: 50px;
+  right: 14px;
+}
+
 html, body {
   height: 100%;
 }
@@ -50,6 +58,9 @@ body > .ember-view {
   min-width: 17px;
   min-height: 10px;
 }
+.toggle-group .btn-xs, .btn-group-xs > .btn {
+  border-radius: 1px;
+}
 .layer-listing .btn-xs {
   font-size: 5px;
 }
@@ -62,3 +73,17 @@ body > .ember-view {
 .calcite .esriSimpleSliderTR {
   top: 55px;
 }
+
+#search{
+  position: absolute;
+  top: 55px;
+  left: 365px;
+  display: block;
+}
+#basemaptoggle{
+  position: absolute;
+  top: 55px;
+  right: 65px;
+  display: block;
+}
+

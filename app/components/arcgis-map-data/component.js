@@ -2,10 +2,10 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  // classNames: ['arcgis-map-component'],
   classNames: ['data-map-container '],
 
-  arcgisMap: Ember.inject.service(),
+  arcgisMapData: Ember.inject.service(),
+  legendControl: Ember.inject.service(),
 
   init() {
     this._super(...arguments);
@@ -22,9 +22,7 @@ export default Ember.Component.extend({
     const webmap = this.get('webmap');
     const logo = this.get('logo');
     const showAttribution = this.get('showAttribution');
-    const add_legend = this.get('legend') || false;
-
-
+    
     const options = {
       mapOptions: { 
         logo: logo,
@@ -34,7 +32,7 @@ export default Ember.Component.extend({
     };
     
     // init map
-    const svc = this.get('arcgisMap');
+    const svc = this.get('arcgisMapData');
     if (!webmap) {
       return;
     }
@@ -44,6 +42,8 @@ export default Ember.Component.extend({
       if (response.clickEventHandle) {
         this.handlers.push(response.clickEventHandle);
       }
+
+      svc.createSearchWidget(this.map);
 
       this.map.disableScrollWheelZoom();
 
@@ -57,13 +57,16 @@ export default Ember.Component.extend({
       });
 
       this.get('session').set('layerListing', layerListing);
+      this.get('session').set('legendLayers', response.itemInfo.itemData.operationalLayers);
 
     });
   },
 
   willDestroyElement() {
-    const svc = this.get('arcgisMap');
+    const svc = this.get('arcgisMapData');
     svc.destroyMap(this.map, this.handlers);
     this.itemInfo = null;
+
+    svc.destroyWidgets();
   }
 });

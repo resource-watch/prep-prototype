@@ -14,8 +14,8 @@ export default Ember.Component.extend({
       size: 'mini',
       on: '',
       off: '',
-      height: 15,
-      width: 22
+      height: 10,
+      width: 17
     });
 
     const opts = this.get('layerOptions');
