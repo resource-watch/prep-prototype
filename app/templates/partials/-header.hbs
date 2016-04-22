@@ -20,9 +20,15 @@
             {{/link-to}}
             {{#link-to 'dashboards.index' tagName="li" class="item"}} 
               <a href="#">DASHBOARDS</a>
+              {{#if (eq currentPath 'dashboards.index')}}
+                <div class="page-marker-dashboards"></div>
+              {{/if}}
             {{/link-to}}
             {{#link-to 'insights' tagName="li" class="item"}} 
               <a href="#">INSIGHTS</a>
+              {{#if (eq currentPath 'insights')}}
+                <div class="page-marker-insights"></div>
+              {{/if}}
             {{/link-to}}
             <li class="item separator"></li>
             {{#link-to 'search' tagName="li" class="item -secondary"}} 

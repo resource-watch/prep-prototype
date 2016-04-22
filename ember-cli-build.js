@@ -51,5 +51,5 @@ module.exports = function(defaults) {
   app.import('./bower_components/bootstrap-toggle/css/bootstrap-toggle.min.css');
   app.import('./bower_components/bootstrap-toggle/js/bootstrap-toggle.min.js');  
 
-  return app.toTree();
+  return app.toTree([bootstrap_fonts]);
 };
