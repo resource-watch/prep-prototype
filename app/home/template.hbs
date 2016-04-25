@@ -24,7 +24,9 @@
         </header>
         <p class="content">The Partnership for Resilience and Preparedness (PREP) is a public-private collaboration whose mission is to empower a data-driven approach to building climate resilience.</p><br>
         <p class="content">Our inital product is a platfom to help planners, investors and resource managers assess and incorporate climate risks into their decisions by enhancing access to data and insights on climate variability and change.</p><br>
-        <a class="link" href="/about">About our mission</a>
+        {{#link-to "about" class="link"}}
+          About our mission
+        {{/link-to}}
       </div>
     </div>
   </div>
@@ -43,7 +45,9 @@
       <header class="header">
         <h2 class="title -border2 -smallmargin">Access to Authoratative Information</h2>
       </header>
-      <a href="/insights" class="link -margin">Go to Insights</a>
+      {{#link-to "insights" class="link -margin"}}
+        Go to Insights
+      {{/link-to}}
     </div>
   </div>
   <div class="row">
@@ -88,7 +92,9 @@
       <header class="header">
         <h2 class="title -smallmargin">Develop Customized Dashboards</h2>
       </header>
-      <a href="/dashboards" class="link -margin">Go to Dashboards</a>
+      {{#link-to "dashboards.index" class="link -margin"}}
+        Go to Dashboards
+      {{/link-to}}
     </div>
   </div>
   <div class="row">
@@ -123,7 +129,9 @@
       <header class="header">
         <h2 class="title -border3 -smallmargin">Explore the latest data</h2>
       </header>
-      <a href="/data" class="link -margin">Go to Data</a>
+      {{#link-to "data" class="link -margin"}}
+        Go to Data
+      {{/link-to}}
     </div>
     <div class="col-md-7 wrapper">
       <p class="content">Interact with global, national, regional and local data using a web-based map. Filter by topic, projection models and area of impact to customize the map within seconds. Create unique data visualizations or explore those created by others. When you’re ready, publish or share your findings to raise awareness in your community.</p>
@@ -157,5 +165,3 @@
     </div>
   </div>
 </section>
-
-
