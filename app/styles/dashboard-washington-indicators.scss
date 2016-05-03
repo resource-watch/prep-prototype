@@ -1,0 +1,56 @@
+.page-marker-washington-dash {
+  position: relative;
+  bottom: -8px;
+  border-bottom: 3px solid #263e57;
+  width: 98px;
+  /*right: 59px;*/
+  margin: 0 auto;
+}
+
+.wash-indicators {
+  margin-top: 53px;
+}
+
+.wash-indicators .header {
+  padding-left: 290px;
+  padding-right: 290px;
+}
+
+.wash-indicators .title {
+  font-family: PTSerif-Bold;
+  font-size: 50px;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+  color: #263e57;
+}
+
+.wash-indicators .separator {
+  width: 128px;
+  height: 3px;
+  background-color: #efa600;
+  margin-top: 34px;
+  margin-bottom: 34px;
+}
+
+.wash-indicators .subtitle {
+  font-family: OpenSans;
+  font-size: 17px;
+  line-height: 1.6;
+  letter-spacing: -0.1px;
+  color: #263e57;
+}
+
+.wash-indicators .indicators {
+  margin-top: 30px;
+  padding-left: 110px;
+  padding-right: 110px;
+}
+.wash-indicators .indicators .row {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.wash-indicators .chart-card,
+.wash-indicators .map-card {
+  height: 575px;
+}

@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import on from 'dojo/on';
 import esriRequest from 'esri/request';
+import esriId from 'esri/IdentityManager';
 
 export default Ember.Component.extend({
   classNames: ['legend-item'],
@@ -28,7 +29,14 @@ export default Ember.Component.extend({
     }
 
     const l = layer.layerObject;
+
+    const url = `http://www.arcgis.com/home/webmap/viewer.html?url=${l.url}`;
+    this.set('arcgisWebViewerLink', url);
     
+    if (!l) {
+      return;
+    }
+
     l.on('visibility-change', function() {
       this.set('visible', layer.layerObject.visible);
       if (layer.layerObject.visible && !layer.legendLoaded) {
@@ -107,6 +115,21 @@ export default Ember.Component.extend({
 
   _buildImageServiceLegend(response) {
     console.log(response);
+    const lengendInfo = response.layers[0].legend;
+    let swatchInfo = [];
+    let info = null;
+    for (let i=0;i < lengendInfo.length;i++) {
+      if (i === 6) {
+        break;
+      }
+      info = lengendInfo[i];
+      swatchInfo.push( `<div class='legend-item-swatch rotate-270'> <img src='data:${info.contentType};base64,${info.imageData}'> </div>` );
+    }
+
+    const legendSwatchInfo = new Ember.Handlebars.SafeString(swatchInfo.join(''));
+    this.set('legendSwatchInfo', legendSwatchInfo);
+
+    layer.legendLoaded = true;
   },
 
   _buildKMLLegend(layer) {
