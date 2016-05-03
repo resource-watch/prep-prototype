@@ -3,12 +3,8 @@ import Cookies from 'npm:js-cookie';
 
 export default Ember.Route.extend({
   actions: {
-    goToDashboard(dashboard_id) {
-      this.transitionTo('dashboards.dashboard', dashboard_id);
+    loadDashboard(dashboard_id) {
+      this.transitionTo('dashboards.washington.indicators');
     }
-  },
-
-  model() {
-    // return this.store.query('dashboard', {});
   }
 });

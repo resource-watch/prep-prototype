@@ -10,11 +10,16 @@ Router.map(function() {
   this.route('data');
 
   this.route('dashboards', function () {
-    this.route('dashboard',{ path: '/:dashboard_id' }, function() {
-      this.route('indicators', function() {});
-      this.route('insights', function () {});
-      this.route('tools', function () {});
-    }); 
+    // this.route('dashboard',{ path: '/:dashboard_id' }, function() {
+      // this.route('indicators', function() {});
+      // this.route('insights', function () {});
+      // this.route('tools', function () {});
+    // });
+    this.route('washington', function() {
+      this.route('indicators');
+      this.route('insights');
+      this.route('tools');
+    });
   });
 
   this.route('insights');

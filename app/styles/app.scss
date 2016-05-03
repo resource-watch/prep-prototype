@@ -21,9 +21,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 @import 'header-data';
 @import 'data';
 @import 'dashboards';
+@import 'dashboard-washington';
+@import 'dashboard-washington-indicators';
 @import 'insights';
 
 @import 'components/data-popup';
+@import 'components/dashboard-card';
+@import 'components/chart-card';
+@import 'components/map-card';
 @import 'components/legend-view';
 @import 'components/legend-item';
 
@@ -67,6 +72,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 .marg-right-30 {
   margin-right: 30px;
+}
+.margin-top-95 {
+  margin-top: 95px;
 }
 /*utils*/
 

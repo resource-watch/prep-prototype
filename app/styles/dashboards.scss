@@ -10,6 +10,7 @@
   margin-top: -100px;
   /*need to get bg picture for dashboards page*/
   background: #041527;
+  background: no-repeat center/cover url("https://s3.amazonaws.com/project-climate/bg-images/dashboards-header.png"), #041527;
 }
 
 .dashboards .title {
@@ -50,6 +51,12 @@
   min-height: 450px;
   border-radius: 0;
   border: solid 2px #eeeeee;
+}
+.dashboards-cards .panel:hover {
+  -webkit-box-shadow: 4px 4px 5px 0px #eeeeee;
+  -moz-box-shadow: 4px 4px 5px 0px #eeeeee;
+  box-shadow: 4px 4px 5px 0px #eeeeee;
+  cursor: pointer;
 }
 
 .dashboards-cards .panel-body {

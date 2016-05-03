@@ -20,7 +20,9 @@
             {{/link-to}}
             {{#link-to 'dashboards.index' tagName="li" class="item"}} 
               <a href="#">DASHBOARDS</a>
-              {{#if (eq currentPath 'dashboards.index')}}
+              {{#if (or 
+                      (eq currentPath 'dashboards.index') 
+                      (eq currentPath 'dashboards.washington') ) }}
                 <div class="page-marker-dashboards"></div>
               {{/if}}
             {{/link-to}}

@@ -1,0 +1,46 @@
+<div class="container-fluid dash-w">
+  <div class="text-center title">
+    <p>How Is Puget Sound's Climate Changing</p>
+    <hr class="separator">
+  </div>
+</div>
+
+<div class="container dash-w-summary">
+  <div class="row">
+    <div class="pull-left">
+      <span class="glyphicon glyphicon glyphicon-menu-left dash-w-summary-icon"></span>
+      <span class="dashboards-summary-header">DASHBOARDS</span>
+    </div>
+    <div class="pull-right">
+      <span class="glyphicon glyphicon glyphicon-download-alt dash-w-summary-icon"></span>
+      <span class="dashboards-summary-header header-download">DOWNLOAD</span>
+      <span class="glyphicon glyphicon glyphicon-share-alt dash-w-summary-icon"></span>
+      <span class="dashboards-summary-header">SHARE</span>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <hr>
+  <div class="row">
+    <p class="dash-w-summary-text">This dashboard provides a <strong>summary of the mechanisms</strong> by which climate could affect change in Washington State. We also provide access to recent and ongoing efforts by communities, agencies, tribes, and organizations that are working to prepare for the effects of climate change.</p>
+    <p class="dash-w-summary-more">Read more</p>
+  </div>
+</div>
+
+<div class="container-fluid dash-w-subnav">
+  <div class="row text-center">
+    <div class="col-xs-2 col-xs-offset-3">
+      <span>INDICATORS</span>
+      {{#if (eq session.routeName 'dashboards.washington.indicators')}}
+        <div class="page-marker-washington-dash"></div>
+      {{/if}}
+    </div>
+    <div class="col-xs-2">
+      <span>INSIGHTS</span>
+    </div>
+    <div class="col-xs-2">
+      <span>TOOLS</span>
+    </div>
+  </div>
+</div>
+
+{{outlet}}
