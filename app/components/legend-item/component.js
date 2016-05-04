@@ -110,7 +110,9 @@ export default Ember.Component.extend({
     const legendSwatchInfo = new Ember.Handlebars.SafeString(swatchInfo.join(''));
     this.set('legendSwatchInfo', legendSwatchInfo);
 
-    layer.legendLoaded = true;
+    if (layer) {
+      layer.legendLoaded = true;
+    }
   },
 
   _buildImageServiceLegend(response) {
@@ -129,7 +131,10 @@ export default Ember.Component.extend({
     const legendSwatchInfo = new Ember.Handlebars.SafeString(swatchInfo.join(''));
     this.set('legendSwatchInfo', legendSwatchInfo);
 
-    layer.legendLoaded = true;
+    const layer = this.get('layer');
+    if (layer) {
+      layer.legendLoaded = true;
+    }
   },
 
   _buildKMLLegend(layer) {
@@ -150,7 +155,9 @@ export default Ember.Component.extend({
     const legendSwatchInfo = new Ember.Handlebars.SafeString(swatchInfo.join(''));
     this.set('legendSwatchInfo', legendSwatchInfo);
 
-    layer.legendLoaded = true;
+    if (layer) {
+      layer.legendLoaded = true;
+    }
   },
 
   _buildFeatureLayerLegend(layer) {
