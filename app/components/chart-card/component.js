@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ajax from 'ic-ajax';
 
 export default Ember.Component.extend({
   classNames: [''],
@@ -11,20 +12,61 @@ export default Ember.Component.extend({
       return;
     }
 
-    let chart = new Cedar({type: settings.chart_type });
+    this.set('settings', settings);
 
+    let chart = null;
+    if (settings.chart_type === 'time-trendline') {
+      chart = new Cedar({type: 'https://s3.amazonaws.com/project-climate/cedar-types/time-trendline.json'});
+    } else {
+      chart = new Cedar({type: settings.chart_type });
+    }    
+    
     if (settings.tooltip) {
       chart.tooltip = settings.tooltip;
     }
 
-    chart.dataset = settings.dataset;
+    if (settings.dataset.url) {
+      chart.dataset = settings.dataset;
+      this._showChart(chart);
+    } else if (settings.json_url) {
+      chart.dataset = {};
+      chart.dataset.mappings = settings.dataset.mappings;
+      ajax({
+        url: settings.json_url,
+        dataType:'json'
+      })
+        .then(function (data) {
+          if (data) {
+            this._showChart(chart, data);
+          }
+        }.bind(this))
+        .catch(function (error) {
+          console.log('error querying for json data for chart', error);
+        });
+    }
+  },
+
+  _showChart(chart, data) {
+
+    if (data) {
+      chart.dataset.data = data; 
+    }
+
+    const settings = this.get('settings');
+
+
     chart.show({
       elementId: `#${this.elementId}`
     });
 
-    // window.onresize = this.updateChart.bind(this);
+    if (settings && settings.override) {
+      chart.override = settings.override;
+    }
 
+    // window.onresize = this.updateChart.bind(this);
+    
     this.set('chart', chart);
+
   },
 
   updateChart() {

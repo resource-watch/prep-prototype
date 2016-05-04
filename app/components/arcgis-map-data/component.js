@@ -63,6 +63,10 @@ export default Ember.Component.extend({
   },
 
   willDestroyElement() {
+    
+    this.get('session').set('layerListing', []);
+    this.get('session').set('legendLayers', []);
+
     const svc = this.get('arcgisMapData');
     svc.destroyMap(this.map, this.handlers);
     this.itemInfo = null;
