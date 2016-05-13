@@ -7,7 +7,7 @@ export default Ember.Service.extend({
       component_settings: {
         chart_type: 'time-trendline',
         dataset : {
-          url: 'http://services6.arcgis.com/Y3k193RFrcECJ8xA/arcgis/rest/services/Observed_Temperature/FeatureServer/0',
+          url: 'http://services3.arcgis.com/7pxWboj3YvCWYdcm/arcgis/rest/services/Observed_Temperature/FeatureServer/0',
           mappings:{
             time: {'field':'year', 'label': 'Year'},
             value: {'field':'annual', 'label': 'Annual Air Temperature'},
@@ -72,7 +72,7 @@ export default Ember.Service.extend({
       component_settings: {
         chart_type: 'time-trendline',
         dataset : {
-          url:'http://services6.arcgis.com/Y3k193RFrcECJ8xA/arcgis/rest/services/Observed_Precipitation/FeatureServer/0',
+          url:'http://services3.arcgis.com/7pxWboj3YvCWYdcm/arcgis/rest/services/Observed_Precipitation/FeatureServer/0',
           mappings:{
             time: {'field':'year', 'label': 'Year'},
             value: {'field':'annual', 'label': 'Total Precipitation'},
@@ -106,7 +106,8 @@ export default Ember.Service.extend({
             {
               "name" : "y",
               "zero" : false,
-              "nice" : true
+              "nice" : true,
+              "domainMin" : 20
             }
           ],
           marks: [
@@ -135,7 +136,7 @@ export default Ember.Service.extend({
     washington_map_one : {
       type: 'map-card',
       component_settings: {
-        webmap: '2423b80d4438445484b1341c93ee8516'
+        webmap: '1c9c6da70d744e7e9631cde431bbd8ce'
       },
       panel_title: 'Temperature in the Puget Sound Lowlands',
       panel_subtitle: 'Map'
@@ -144,18 +145,47 @@ export default Ember.Service.extend({
     washington_chart_three : {
       type: 'chart-card',
       component_settings: {
-        chart_type: 'time',
+        chart_type: 'time-hist-high-low',
         dataset : {
-          url:'http://services.arcgis.com/bkrWlSKcjUDFDtgw/arcgis/rest/services/It\'s_a_Tornado_Map/FeatureServer/0',
+          url:'http://services3.arcgis.com/7pxWboj3YvCWYdcm/arcgis/rest/services/Temperature_Difference/FeatureServer/0',
           mappings:{
-            time: {'field':'Date', 'label': 'Date'},
-            value: {'field':'Injuries', 'label': 'Injuries'},
-            sort:'Date'
+            time: {'field':'year', 'label': 'year'},
+            historical: {'field':'AVG_HIST', 'label': 'Historical'},
+            low: {'field':'AVG_RCP45', 'label': 'Low'},
+            high: {'field':'AVG_RCP85', 'label': 'High'},
+            sort:'year'
           }
         },
-        tooltip : {
-          title: '{Year}',
-          content: '{Injuries} injuries {Fatalities} fatalities'
+        override: {
+          axes: [
+            {
+              "type" : "x",
+              "scale" : "x",
+              "values" : [1950,1975,2000,2025,2050,2075,2099]
+            },
+            {
+              "type" : "y",
+              "scale" : "y",
+              "grid" : true,
+              "format": "0d",
+              "values" : [30,32,34,36,38,40,42]
+            }
+          ],
+          scales: [
+            {
+              "name": "x",
+              "type": "ordinal",
+              "range": "width",
+              "nice": "year",
+              "zero": false
+            },
+            {
+              "name" : "y",
+              "zero" : false,
+              "nice" : true,
+              "domainMin" : 30
+            }
+          ]
         }
       },
       panel_title: 'Temperature Difference',

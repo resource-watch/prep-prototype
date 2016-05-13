@@ -17,6 +17,9 @@ export default Ember.Component.extend({
     let chart = null;
     if (settings.chart_type === 'time-trendline') {
       chart = new Cedar({type: 'https://s3.amazonaws.com/project-climate/cedar-types/time-trendline.json'});
+    } else if (settings.chart_type === 'time-hist-high-low') {
+      // chart = new Cedar({type: 'https://s3.amazonaws.com/project-climate/cedar-types/time-hist-high-low.json'});
+      chart = new Cedar({type: 'http://localhost:4200/time-hist-high-low.json'});
     } else {
       chart = new Cedar({type: settings.chart_type });
     }    
