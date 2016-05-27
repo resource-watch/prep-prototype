@@ -17,3 +17,8 @@
 npm-debug.log
 testem.log
 .env*
+
+# emacs
+*~
+*#
+.#*
