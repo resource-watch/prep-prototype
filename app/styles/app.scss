@@ -151,7 +151,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     filter: grayscale(0);
     -moz-filter: grayscale(0);
     -webkit-filter: grayscale(0);
-    transition: filter .3s, -webkit-filter .3s, opacity .3s, -moz-filter .3s;
+    transition: filter .3s, -webkit-filter .3s, opacity .3s;
 }
 .coming-soon:hover {
     filter: grayscale(1);
@@ -159,3 +159,4 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     -webkit-filter: grayscale(1);
     opacity: .5;
 }
+
