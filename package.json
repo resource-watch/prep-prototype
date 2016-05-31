@@ -18,6 +18,9 @@
   },
   "author": "",
   "license": "MIT",
+  "dependencies": {
+        "bootstrap-sass": "3.3.6"
+  },
   "devDependencies": {
     "broccoli-asset-rev": "^2.2.0",
     "broccoli-funnel": "^1.0.1",
