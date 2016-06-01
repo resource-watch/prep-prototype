@@ -2,17 +2,19 @@
   <div class="slides">
     {{yield}}
   </div>
-  <div class="reveal-controls -horizontal">
-    <a href="#" class="navigate-left">Left</a>
-    <a href="#" class="navigate-right">Right</a>
+  <div class="reveal-controls -horizontal -left">
+    <a href="#" class="navigate-left"></a>
+  </div>
+  <div class="reveal-controls -horizontal -right">
+    <a href="#" class="navigate-right"></a>
   </div>
   <div class="reveal-controls -vertical">
-    <a href="#" class="navigate-down">Down</a>
-    <a href="#" class="navigate-up">Up</a>
+    <a href="#" class="navigate-up"></a>
+    <a href="#" class="navigate-down"></a>
   </div>
   <div class="reveal-actions">
     <div class="index">
-      <a href="#" {{action 'openModal' 'tableContent' }}>TITLE OF THE SLIDE</a>
+      <a id="sliderTitles" href="#" {{action 'openModal' 'tableContent' }}>Table of contents</a>
     </div>
     <div class="toolbar">
       <a href="#" {{action 'openModal' 'download' }}>DOWNLOAD</a>

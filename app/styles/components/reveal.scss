@@ -1,12 +1,14 @@
-$navigation-btn-color: #ffc94e;
+$navigation-btn-bg: #ffc94e;
+$navigation-btn-bg-disable: #fff;
+$navigation-btn-color: #000;
 
-.reveal-container{
+.reveal-container {
   height: calc(100% - 102px);
 }
-.reveal{
+.reveal {
   position: relative;
 
-  .reveal-actions{
+  .reveal-actions {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -18,30 +20,77 @@ $navigation-btn-color: #ffc94e;
     justify-content: space-between;
 
     z-index: 1;
+    a {
+      text-transform: uppercase;
+    }
   }
 
-  .reveal-controls{
+  .reveal-controls {
+    z-index: 2;
     &.-horizontal {
-      display: none;
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      display: block;
+      &.-left{
+        left: 1rem;
+      }
+      &.-right{
+        right: 1rem;
+      }
     }
     &.-vertical {
-      display: block;
       position: absolute;
+      left: 0;
+      right: 0;
       bottom: 1rem;
-      width: 100%;
 
-      z-index: 2;
-      text-align: center;
-      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      width: 100px;
+      margin-left: auto;
+      margin-right: auto;
+
     }
     > a {
+      position: relative;
       display: inline-block;
       width: 40px;
       height: 40px;
       line-height: 40px;
-      background-color: $navigation-btn-color;
+      background-color: $navigation-btn-bg;
       border-radius: 50%;
-      pointer-events: all;
+      &:not(.enabled) {
+        cursor: default;
+        background-color: $navigation-btn-bg-disable;
+        &:after{
+          border-color: rgba($navigation-btn-color, 0.5);
+        }
+      }
+      &:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        @include arrow(12px, $navigation-btn-color , 2px, 45deg)
+      }
+      &.navigate-up:after{
+        top: 16px;
+      }
+      &.navigate-down:after{
+        top: 12px;
+        transform: rotate(225deg);
+      }
+      &.navigate-left:after{
+        left: 16px;
+        transform: rotate(-45deg);
+      }
+      &.navigate-right:after{
+        left: 12px;
+        transform: rotate(135deg);
+      }
     }
   }
   .slide-number {
