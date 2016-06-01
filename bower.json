@@ -20,7 +20,8 @@
     "Faker": "~3.0.0",
     "vega": "^2.0.6",
     "cedar": "https://github.com/Esri/cedar.git#v0.3",
-    "bootstrap-toggle": "^2.2.2"
+    "bootstrap-toggle": "^2.2.2",
+    "reveal.js": "^3.3.0"
   },
   "resolutions": {
     "ember": "2.4.2",
