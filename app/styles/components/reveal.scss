@@ -1,4 +1,6 @@
 $reveal-actions-bg: #f5f6f6;
+$reveal-actions-font-color: #1a3e62;
+$reveal-actions-font-size: 12px;
 
 $navigation-btn-bg: #ffc94e;
 $navigation-btn-bg-disable: #fff;
@@ -28,6 +30,14 @@ $navigation-btn-color: #000;
     }
   }
 
+  .container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: left;
+  }
+
   .reveal-actions {
     position: absolute;
     bottom: 0;
@@ -35,7 +45,7 @@ $navigation-btn-color: #000;
     right: 0;
 
     height: 40px;
-    padding: 0 2rem 0 6rem;
+    padding: 0 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -43,7 +53,39 @@ $navigation-btn-color: #000;
     background-color: $reveal-actions-bg;
     z-index: 1;
     a {
+      color:$reveal-actions-font-color;
+      font-size: $reveal-actions-font-size;
       text-transform: uppercase;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .index{
+      padding-left: 6rem;
+      position: relative;
+      cursor: pointer;
+    }
+    .menu-icon{
+      position: absolute;
+      left: 10px;
+      top: 2px;
+      > span {
+        position: relative;
+        display: block;
+        height: 2px;
+        width: 10px;
+        margin-top: 2px;
+        background-color: $navigation-btn-bg;
+
+        &:after{
+          content: '';
+          position: absolute;
+          top:0;
+          left: -4px;
+          width: 2px;
+          height: 2px;
+          background-color: $navigation-btn-bg;
+        }
+      }
     }
   }
 
@@ -118,8 +160,23 @@ $navigation-btn-color: #000;
   }
   .slide-number {
     position: absolute;
-    bottom: 1rem;
-    left: 2rem;
-    width: 3rem;
+    bottom: 0;
+    left: 5rem;
+    right: auto;
+    width: auto;
+
+    padding: 0;
+    height: 40px;
+    display: flex!important;
+    align-items: center;
+    background: none;
+
+    > span{
+      margin-top: 1px;
+      color:$reveal-actions-font-color;
+      font-size: $reveal-actions-font-size;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
   }
 }

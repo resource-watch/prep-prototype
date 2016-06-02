@@ -3,22 +3,14 @@ $slider-title-bg: #1A3E62;
 $slider-title-size: 30px;
 
 .sonoma-slide {
-  .container {
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    text-align: left;
+  .title {
+    display: inline-block;
+    padding: 1rem 2rem;
 
-    >.title {
-      display: inline-block;
-      padding: 1rem 2rem;
+    color: $slider-title-color;
+    font-size: $slider-title-size;
 
-      color: $slider-title-color;
-      font-size: $slider-title-size;
-
-      background-color: $slider-title-bg;
-      box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.15);
-    }
+    background-color: $slider-title-bg;
+    box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.15);
   }
 }
