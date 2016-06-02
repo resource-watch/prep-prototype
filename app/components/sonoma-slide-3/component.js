@@ -2,9 +2,9 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'section',
-  classNames: ['slide-3'],
+  classNames: ['sonoma-slide','slide-3'],
   attributeBindings:["data-title"],
-  "data-title" : 'Slide 3,',
+  "data-title": 'Slide 3',
 
   vegaSpec: {
     "padding": {"top": 25,"left": 45,"bottom": 30,"right": 20},
@@ -172,9 +172,7 @@ export default Ember.Component.extend({
     ]
   },
 
-
   didRender: function() {
-    console.log('Sonoma slide 3');
     Reveal.addEventListener('slidechanged', function( event ) {
       if (event.currentSlide.classList.contains('slide-3')) {
         this._iniChart();
