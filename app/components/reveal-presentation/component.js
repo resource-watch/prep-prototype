@@ -8,10 +8,10 @@ export default Ember.Component.extend({
     }
   },
   didInsertElement: function() {
-    this.initReveal();
+    this.initializeReveal();
     this.titleEl = this.$('#sliderTitles');
   },
-  initReveal: function() {
+  initializeReveal: function() {
     Reveal.initialize({
       controls: false,
       progress: false,
@@ -32,6 +32,9 @@ export default Ember.Component.extend({
     //    "c":  flattened slide number
     //  "c/t":  flattened slide number / total slides
     Reveal.configure({ slideNumber: 'c/t' });
+    Reveal.addEventListener( 'ready', function( event ) {
+      this.updateTitle(event.currentSlide.dataset.title);
+    }.bind(this));
     Reveal.addEventListener( 'slidechanged', function( event ) {
       this.updateTitle(event.currentSlide.dataset.title);
     }.bind(this));
