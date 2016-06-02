@@ -21,7 +21,8 @@
     "vega": "^2.0.6",
     "cedar": "https://github.com/Esri/cedar.git#v0.3",
     "bootstrap-toggle": "^2.2.2",
-    "reveal.js": "^3.3.0"
+    "reveal.js": "^3.3.0",
+    "leaflet": "^0.7.7"
   },
   "resolutions": {
     "ember": "2.4.2",

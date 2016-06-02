@@ -7,7 +7,7 @@ export default Ember.Component.extend({
       console.log(`TODO: open ${modal} modal`);
     }
   },
-  didInsertElement: function() {
+  didRender: function() {
     this.initializeReveal();
     this.titleEl = this.$('#sliderTitles');
   },

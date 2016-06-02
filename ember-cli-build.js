@@ -39,6 +39,8 @@ module.exports = function(defaults) {
   app.import('./bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js');
   app.import('./bower_components/reveal.js/js/reveal.js');
   app.import('./bower_components/reveal.js/css/reveal.css');
+  app.import('./bower_components/leaflet/dist/leaflet.js');
+  app.import('./bower_components/leaflet/dist/leaflet.css');
 
   //although app.import can't pull from node_modules, Funnel can
   var bootstrap_fonts = new Funnel('./node_modules/bootstrap-sass/assets/fonts/bootstrap', {
