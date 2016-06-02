@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   tagName: 'section',
+  classNames: ['slide-3'],
   attributeBindings:["data-title"],
   "data-title" : 'Slide 3,',
 
@@ -174,6 +175,12 @@ export default Ember.Component.extend({
 
   didRender: function() {
     console.log('Sonoma slide 3');
+    Reveal.addEventListener('slidechanged', function( event ) {
+      if (event.currentSlide.classList.contains('slide-3')) {
+        this._iniChart();
+      }
+    }.bind(this));
+
     this.el = this.$('#chart3-1');
 
     this._iniChart();
@@ -181,7 +188,7 @@ export default Ember.Component.extend({
 
   _iniChart: function() {
     vg.parse.spec(this.vegaSpec, function(chart) {
-      var view = chart({el:"#chart3-1"})  //here is where we populate the empty spec data holder with our calculated data
+      chart({el:"#chart3-1"})
         .update();
     });
   }
