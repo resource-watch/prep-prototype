@@ -182,10 +182,55 @@ export default Ember.Component.extend({
     this.el = this.$('#chart3-1');
 
     this._iniChart();
+    this.setListeners();
+  },
+
+  setListeners: function() {
+    this.refreshEvent = _.debounce(_.bind(this.update, this), 300);
+    $(window).on('resize', _.bind(this.update, this));
+  },
+
+  /**
+   * Method to redraw chart
+   */
+  update: function() {
+    if (this.chart) {
+      this.chart.destroy();
+      this.chart = null;
+      this._iniChart();
+    }
+  },
+
+  /**
+   * Method to override and parese vega JSON parameterization
+   * @return {Object}
+   */
+  getVegaSpec: function() {
+    var size = this.getSize();
+    this.vegaSpec.width = size.width;
+    this.vegaSpec.height = size.height;
+    return this.vegaSpec;
+  },
+
+  /**
+   * Calculate width and height
+   * @return {Object}
+   */
+  getSize: function() {
+    var vegaSpec = this.vegaSpec;
+    var widthSpace = vegaSpec.padding ?
+      vegaSpec.padding.left + vegaSpec.padding.right : 0;
+    var heightSpace = vegaSpec.padding ?
+      vegaSpec.padding.top + vegaSpec.padding.bottom : 0;
+    return {
+      width: this.el.clientWidth - widthSpace,
+      height: this.el.clientHeight - heightSpace
+    };
   },
 
   _iniChart: function() {
-    vg.parse.spec(this.vegaSpec, function(chart) {
+    var vegaSpec = this.getVegaSpec();
+    vg.parse.spec(vegaSpec, function(chart) {
       chart({el:"#chart3-1"})
         .update();
     });
