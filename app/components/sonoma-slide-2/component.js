@@ -1,15 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  classNames: ['sonoma-slide', 'slide-map-1'],
+  classNames: ['sonoma-slide', '-no-center'],
   tagName: 'section',
   attributeBindings:["data-title"],
   "data-title": 'Slide 2',
-  "data-state": "somestate",
 
   didRender(){
     Reveal.addEventListener('slidechanged', function( event ) {
-      if (event.currentSlide.classList.contains('slide-map-1')) {
+      if (event.currentSlide.classList.contains('slide-map-2-1')) {
         this.initMap();
       } else if (this.slideMap) {
         this.removeMap();
@@ -36,7 +35,7 @@ export default Ember.Component.extend({
     };
 
     if (!this.slideMap){
-      this.slideMap = L.map('map', mapOptions);
+      this.slideMap = L.map('map2-1', mapOptions);
       L.tileLayer(mapOptions.basemapSpec.url, mapOptions.basemapSpec.options).addTo(this.slideMap);
     }
   },
