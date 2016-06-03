@@ -21,7 +21,7 @@ export default Ember.Component.extend({
       }
     }
   },
-  didInsertElement: function() {
+  didRender: function() {
     this.initializeReveal();
     this.titleEl = this.$('#sliderTitles');
   },
