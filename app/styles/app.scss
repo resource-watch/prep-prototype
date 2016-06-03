@@ -8,6 +8,7 @@
 /* set the output folder for fonts */
 $icon-font-path: './fonts/';
 @import 'bootstrap';
+@import "ember-modal-dialog/ember-modal-structure";
 
 /*not sure how to override the font family from calcite-bootstrap so i'm doing this*/
 body,
