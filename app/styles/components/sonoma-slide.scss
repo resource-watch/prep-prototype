@@ -1,0 +1,16 @@
+$slider-title-color: #fff;
+$slider-title-bg: #1A3E62;
+$slider-title-size: 30px;
+
+.sonoma-slide {
+  .title {
+    display: inline-block;
+    padding: 1rem 2rem;
+
+    color: $slider-title-color;
+    font-size: $slider-title-size;
+
+    background-color: $slider-title-bg;
+    box-shadow: 0 7px 15px 0 rgba(0, 0, 0, 0.15);
+  }
+}

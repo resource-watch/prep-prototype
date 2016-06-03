@@ -1,10 +1,24 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  isShowingContentModal: false,
+  isShowingDownloadModal: false,
   classNames: 'reveal-container',
   actions: {
-    openModal: function(modal){
-      console.log(`TODO: open ${modal} modal`);
+    goToSlide: function(index){
+      this.toggleProperty('isShowingContentModal');
+      Reveal.slide( index );
+    },
+    toggleModal: function(modal){
+      switch (modal) {
+        case 'content':
+          this.toggleProperty('isShowingContentModal');
+          break;
+        case 'download':
+          this.toggleProperty('isShowingDownloadModal');
+          break;
+        default:
+      }
     }
   },
   didInsertElement: function() {

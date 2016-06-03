@@ -1,12 +1,42 @@
+$reveal-actions-bg: #f5f6f6;
+$reveal-actions-font-color: #1a3e62;
+$reveal-actions-font-size: 12px;
+
 $navigation-btn-bg: #ffc94e;
 $navigation-btn-bg-disable: #fff;
+$navigation-btn-bg-border: #f6f7f7;
 $navigation-btn-color: #000;
 
 .reveal-container {
-  height: calc(100% - 102px);
+  height: 800px;
 }
+
 .reveal {
   position: relative;
+
+  > .slides {
+    height: 100%!important;
+    width: 100%!important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    right: 0 !important;
+    transform: translate(0, 0) scale(1) !important;
+    > section {
+      height: 100%!important;
+      width: 100%!important;
+      padding: 2rem;
+    }
+  }
+
+  .container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: left;
+  }
 
   .reveal-actions {
     position: absolute;
@@ -14,14 +44,48 @@ $navigation-btn-color: #000;
     left: 0;
     right: 0;
 
-    padding: 2rem 2rem 2rem 6rem;
+    height: 40px;
+    padding: 0 2rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
 
+    background-color: $reveal-actions-bg;
     z-index: 1;
     a {
+      color:$reveal-actions-font-color;
+      font-size: $reveal-actions-font-size;
       text-transform: uppercase;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .index{
+      padding-left: 6rem;
+      position: relative;
+      cursor: pointer;
+    }
+    .menu-icon{
+      position: absolute;
+      left: 10px;
+      top: 2px;
+      > span {
+        position: relative;
+        display: block;
+        height: 2px;
+        width: 10px;
+        margin-top: 2px;
+        background-color: $navigation-btn-bg;
+
+        &:after{
+          content: '';
+          position: absolute;
+          top:0;
+          left: -4px;
+          width: 2px;
+          height: 2px;
+          background-color: $navigation-btn-bg;
+        }
+      }
     }
   }
 
@@ -43,7 +107,7 @@ $navigation-btn-color: #000;
       position: absolute;
       left: 0;
       right: 0;
-      bottom: 1rem;
+      bottom: 20px;
 
       display: flex;
       align-items: center;
@@ -61,6 +125,7 @@ $navigation-btn-color: #000;
       line-height: 40px;
       background-color: $navigation-btn-bg;
       border-radius: 50%;
+      border: 1px solid $navigation-btn-bg-border;
       &:not(.enabled) {
         cursor: default;
         background-color: $navigation-btn-bg-disable;
@@ -95,8 +160,23 @@ $navigation-btn-color: #000;
   }
   .slide-number {
     position: absolute;
-    bottom: 2rem;
-    left: 2rem;
-    width: 3rem;
+    bottom: 0;
+    left: 5rem;
+    right: auto;
+    width: auto;
+
+    padding: 0;
+    height: 40px;
+    display: flex!important;
+    align-items: center;
+    background: none;
+
+    > span{
+      margin-top: 1px;
+      color:$reveal-actions-font-color;
+      font-size: $reveal-actions-font-size;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
   }
 }
