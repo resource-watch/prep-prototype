@@ -14,6 +14,9 @@ export default Ember.Component.extend({
       switch (modal) {
         case 'content':
           this.toggleProperty('isShowingContentModal');
+          if(this.isShowingContentModal){
+            this.updateActiveIndex();
+          }
           break;
         case 'download':
           this.toggleProperty('isShowingDownloadModal');
@@ -27,6 +30,22 @@ export default Ember.Component.extend({
     this.setSlidesTitles();
     this.initializeReveal();
   },
+
+  updateActiveIndex: function() {
+    if (this.currentSlideActive) {
+      let {indexh,indexv} = this.currentSlideActive;
+      this.slidesTitles[indexh][indexv].active = false;
+    }
+
+    this.currentSlideActive = this.getCurrentSlideIndex();
+    let {indexh,indexv} = this.currentSlideActive;
+    this.slidesTitles[indexh][indexv].active = true;
+  },
+  getCurrentSlideIndex: function() {
+    let index = Reveal.getIndices(Reveal.getCurrentSlide());
+    index.v = index.v ? index.v:0;
+    return {indexh:index.h,indexv:index.v};
+  },
   setSlidesTitles: function() {
     this.$('.slides > section').each(function(index,section){
       var sections = $(section).find('section');
@@ -34,10 +53,10 @@ export default Ember.Component.extend({
       this.slidesTitles[index]= [];
       if (sectionsLenght) {
         sections.each(function(index2,slide){
-          this.slidesTitles[index].push(slide.dataset.title);
+          this.slidesTitles[index].push({title:slide.dataset.title,active:false});
         }.bind(this));
       } else {
-        this.slidesTitles[index].push(section.dataset.title);
+        this.slidesTitles[index].push({title:section.dataset.title,active:false});
       }
     }.bind(this));
   },
@@ -70,6 +89,6 @@ export default Ember.Component.extend({
     }.bind(this));
   },
   updateTitle: function(indexh,indexv){
-    this.slidesTitlesEl.html(this.slidesTitles[indexh][indexv]);
+    this.slidesTitlesEl.html(this.slidesTitles[indexh][indexv].title);
   }
 });
