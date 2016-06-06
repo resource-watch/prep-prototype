@@ -30,21 +30,27 @@
 {{#if isShowingContentModal}}
   {{#modal-dialog targetAttachment="center"}}
     <span class="close" {{action 'toggleModal' 'content' }}></span>
-    <h1 class="title">Table of contents</h1>
+    <h1 class="title -has-action" {{action 'goToSlide' 0 0 }}>Table of contents</h1>
     <ul class="index">
       {{#each slidesTitles as |slides indexh|}}
-        {{#each slides as |slide indexv|}}
-          {{#unless indexv}}
-            <li class="first" {{action 'goToSlide' indexh indexv }}>{{slide}}</li>
-          {{/unless}}
-        {{/each}}
-        <ul>
+        {{#if indexh}}
           {{#each slides as |slide indexv|}}
-            {{#if indexv}}
-              <li class="second" {{action 'goToSlide' indexh indexv }}>{{slide}}</li>
-            {{/if}}
+            {{#unless indexv}}
+              <li class="{{if slide.active '-active'}}">
+                <a href="#" {{action 'goToSlide' indexh indexv }}>{{slide.title}}</a>
+              </li>
+            {{/unless}}
           {{/each}}
-        </ul>
+          <ul>
+            {{#each slides as |slide indexv|}}
+              {{#if indexv}}
+                <li class="{{if slide.active '-active'}}">
+                  <a href="#" {{action 'goToSlide' indexh indexv }}>{{slide.title}}</a>
+                </li>
+              {{/if}}
+            {{/each}}
+          </ul>
+        {{/if}}
       {{/each}}
     </ul>
   {{/modal-dialog}}
