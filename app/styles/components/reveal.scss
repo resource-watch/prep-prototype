@@ -102,18 +102,16 @@ body {
 
   .reveal-controls {
     z-index: 2;
+
     &.-horizontal {
       position: absolute;
       top: 50%;
       transform: translate(0, -50%);
       display: block;
-      &.-left{
-        left: 1rem;
-      }
-      &.-right{
-        right: 1rem;
-      }
+      &.-left  {  left: 1rem; }
+      &.-right { right: 1rem; }
     }
+
     &.-vertical {
       position: absolute;
       left: 0;
@@ -126,49 +124,33 @@ body {
       width: 100px;
       margin-left: auto;
       margin-right: auto;
-
     }
+
     > a {
       position: relative;
       display: inline-block;
       width: 40px;
       height: 40px;
       line-height: 40px;
-      background-color: $navigation-btn-bg;
       border-radius: 50%;
       border: 1px solid $navigation-btn-bg-border;
-      &:not(.enabled) {
-        cursor: default;
-        background-color: $navigation-btn-bg-disable;
-        &:after{
-          border-color: rgba($navigation-btn-color, 0.5);
-        }
-      }
-      &:after {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 14px;
-        left: 14px;
-        @include arrow(12px, $navigation-btn-color , 2px, 45deg)
-      }
-      &.navigate-up:after{
-        top: 16px;
-      }
-      &.navigate-down:after{
-        top: 12px;
-        transform: rotate(225deg);
-      }
-      &.navigate-left:after{
-        left: 16px;
-        transform: rotate(-45deg);
-      }
-      &.navigate-right:after{
-        left: 12px;
-        transform: rotate(135deg);
+      background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDEwIDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkNvbWJpbmVkIFNoYXBlPC90aXRsZT48cGF0aCBkPSJNNCA1LjEyMVYwaDJ2NS4wMmwyLjQ4NS0yLjQ4NEw5LjkgMy45NSA1LjY1NyA4LjE5MiA0Ljk1IDguOSAwIDMuOTVsMS40MTQtMS40MTNMNCA1LjEyeiIgZmlsbD0iIzFBM0U2MiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+') no-repeat center center;
+      background-color: $navigation-btn-bg-disable;
+
+      /* Instead of having separated icons, we rotate the button */
+      &.navigate-up { transform: rotate(180deg); }
+      &.navigate-left { transform: rotate(90deg); }
+      &.navigate-right { transform: rotate(-90deg); }
+
+      &:after { border-color: rgba($navigation-btn-color, 0.5); }
+
+      &.enabled {
+        cursor: pointer;
+        background-color: $navigation-btn-bg;
       }
     }
   }
+
   .slide-number {
     position: absolute;
     bottom: 0;
