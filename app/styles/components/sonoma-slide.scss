@@ -39,13 +39,19 @@ $slider-highlight-color: #ffc94e;
     max-width: 860px;
     margin: 2.5rem auto;
   }
+
   .author {
   	font-size: 15px;
   	line-height: 1.3;
   	color: #ffffff;
     margin: 2.5rem auto;
+    font-weight: 700;
+
     .highlight{
       display: block;
+      margin-top: 3px;
+      font-size: 12px;
+      font-weight: 400;
       color: $slider-highlight-color;
     }
   }
