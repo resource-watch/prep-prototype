@@ -25,6 +25,7 @@ export default Ember.Component.extend({
       }
     }
   },
+
   didInsertElement: function() {
     this.slidesTitlesEl = this.$('#sliderTitles');
     this.setSlidesTitles();
@@ -80,6 +81,7 @@ export default Ember.Component.extend({
     //  "h/v":  horizontal / vertical slide number
     //    "c":  flattened slide number
     //  "c/t":  flattened slide number / total slides
+    Reveal.slide(0, 0);
     Reveal.configure({ slideNumber: 'c/t' });
     Reveal.addEventListener( 'ready', function( event ) {
       this.updateTitle(event.indexh,event.indexv);
