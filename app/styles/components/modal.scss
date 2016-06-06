@@ -4,6 +4,9 @@ $modal-close-color: #000;
 $modal-title-font-family: PTSerif-Bold;
 $modal-title-font-size: 50px;
 $modal-title-color: #263e57;
+$modal-text-font-family: OpenSans-Bold;
+$modal-text-font-size: 16px;
+$modal-text-color: #263e57;
 
 .ember-modal-overlay{
   background-color: $modal-bg-color;
@@ -32,6 +35,9 @@ $modal-title-color: #263e57;
       height: 3px;
       background-color: #ffc94e;
     }
+    &.-has-action{
+      cursor: pointer;
+    }
   }
 
   >.index{
@@ -49,6 +55,27 @@ $modal-title-color: #263e57;
         width: 7px;
         height: 7px;
         background-color: $modal-title-color;
+      }
+      > a {
+        position: relative;
+        font-family: $modal-text-font-family;
+        color: $modal-text-color;
+        text-decoration: none;
+      }
+      &.-active{
+        margin-bottom: 15px;
+        >a{
+          &:before{
+            content: "";
+            display: block;
+            position: absolute;
+            right: 0;
+            bottom: -7.5px;
+            width: 200%;
+            height: 3px;
+            background-color: #ffc94e;
+          }
+        }
       }
     }
     >ul {
