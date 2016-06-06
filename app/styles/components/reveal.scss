@@ -30,19 +30,23 @@ body {
     bottom: 0 !important;
     right: 0 !important;
     transform: translate(0, 0) scale(1) !important;
-    > section {
+    section {
       height: 100%!important;
       width: 100%!important;
-      padding: 2rem;
+      padding: 0!important;
+      display: flex!important;
+      align-items: center;
+      &.-no-center{
+        align-items: flex-start!important;
+      }
     }
   }
 
   .container {
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
     text-align: left;
+    &.-center{
+      text-align: center;
+    }
   }
 
   .reveal-actions {
