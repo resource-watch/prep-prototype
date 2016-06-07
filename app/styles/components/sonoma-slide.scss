@@ -54,6 +54,9 @@ $slider-highlight-color: #ffc94e;
 
   .overlapping-cards {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
     position: relative;
     left: 10px;
 
@@ -67,6 +70,14 @@ $slider-highlight-color: #ffc94e;
       &:first-of-type {
         background-color: #25b5cd;
         color: #fff;
+
+        > h1 {
+          font-family: "PT Serif", serif;
+          font-size: 30px;
+          letter-spacing: -.4px;
+          font-weight: 700;
+          margin-bottom: 20px;
+        }
 
         > ul {
           margin: 0;
@@ -93,9 +104,15 @@ $slider-highlight-color: #ffc94e;
         position: relative;
         top: 50px;
         left: -20px;
+        min-height: 480px;
 
         &.slide-1-3 {
           background: url('../img/sonoma/slide-1-3@2x.png') no-repeat center center;
+          background-size: cover;
+        }
+
+        &.slide-2-2 {
+          background: url('../img/sonoma/slide-2-2@2x.png') no-repeat center center;
           background-size: cover;
         }
       }
