@@ -50,6 +50,11 @@ $slider-highlight-color: #ffc94e;
       font-weight: 700;
       cursor: pointer;
     }
+
+    &.-light {
+      background-color: #fff;
+      border: 2px solid #eeeeee;
+    }
   }
 
   .overlapping-cards {
