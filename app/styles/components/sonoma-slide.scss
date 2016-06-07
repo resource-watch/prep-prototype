@@ -5,6 +5,53 @@ $slider-title-size: 30px;
 $slider-highlight-color: #ffc94e;
 
 .sonoma-slide {
+  .wrapper > .content {
+    max-width: 430px;
+    margin-bottom: 20px;
+  }
+
+  /* Needed in order to have Vega render the charts */
+  .chart {
+    height: 360px;
+  }
+
+  /* The yellow card with the chart inside */
+  .chart-card {
+    position: relative;
+    box-shadow: none;
+    background-color: $slider-highlight-color;
+    border: 0;
+    padding: 25px;
+    &:hover { box-shadow: none; }
+
+    > h2 {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 22px;
+      color: #263e57;
+      margin-top: 0;
+      margin-bottom: 25px;
+    }
+
+    > .info-button {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      width: 22px;
+      height: 22px;
+      border: 2px solid rgba(0, 0, 0, .1);
+      border-radius: 100%;
+      line-height: 20px;
+      text-align: center;
+      color: #263e57;
+      font-family: Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+
   .float-title {
     display: inline-block;
     padding: 1rem 2rem;
