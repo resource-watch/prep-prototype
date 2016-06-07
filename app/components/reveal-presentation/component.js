@@ -103,8 +103,10 @@ export default Ember.Component.extend({
     return {indexh:index.h,indexv:index.v};
   },
 
-  updateTitle: function(indexh,indexv){
-    this.slidesTitlesEl.html(this.slidesTitles[indexh][indexv].title);
+  updateTitle: function(indexh, indexv) {
+    let title = this.slidesTitles[indexh][indexv].title;
+    if(title.length > 50) title = title.slice(0, 50) + '…';
+    this.slidesTitlesEl.html(title);
   },
 
   setTooltipVisibles: function(){
