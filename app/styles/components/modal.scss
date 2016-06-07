@@ -19,6 +19,12 @@ $modal-text-color: #263e57;
   width: 100%;
   height: 100%;
 
+  &.-center{
+    display: flex;
+    align-items: center;
+    padding-bottom: 6rem;
+  }
+
   >.title {
     font-family: $modal-title-font-family;
     font-weight: 700;
