@@ -120,6 +120,13 @@ $slider-highlight-color: #ffc94e;
           background: url('../img/sonoma/slide-2-2@2x.png') no-repeat center center;
           background-size: cover;
         }
+
+        &.slide-3-2 {
+          padding: 30px 40px 30px 40px;
+          background-color: #25b5cd;
+          color: #fff;
+          min-height: auto;
+        }
       }
     }
   }
