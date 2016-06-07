@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   tagName: 'section',
   attributeBindings:["data-title","data-background-image","data-background-size"],
   "data-title": 'Start',
-  "data-background-image": "/img/sonoma/dashboard-sonoma-header.png",
+  "data-background-image": "img/sonoma/dashboard-sonoma-header.png",
   "data-background-size": "cover",
 
   didRender(){
