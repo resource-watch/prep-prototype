@@ -81,8 +81,75 @@
 {{/if}}
 
 {{#if isShowingDownloadModal}}
-  {{#modal-dialog targetAttachment="center"}}
+  {{#modal-dialog targetAttachment="center" container-class="-center"}}
     <span class="close" {{action 'toggleModal' 'download' }}></span>
-    <h1>Downloads</h1>
+    <div class="container content-section">
+      <div class="row modal-header-wrapper">
+        <div class="col-md-9 wrapper">
+          <header class="header">
+            <h2 class="title">Datasets used</h2>
+          </header>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-transparent" type="button" name="button" {{action 'downloadDashboard'}}>Download dashboard</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 resources">
+          <div class="resource">
+            <p class="title"> Aqueduct: Water stress projections </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">WRI</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Environmental democracy index </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">IUCN and UNEP</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Epidemic </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">IUCN and UNEP</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Intact forest landscapes </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">USGS</a> </div>
+          </div>
+        </div>
+        <div class="col-md-4 resources">
+          <div class="resource">
+            <p class="title"> Aqueduct: Water stress projections </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">WRI</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Environmental democracy index </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">IUCN and UNEP</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Epidemic </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">IUCN and UNEP</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Intact forest landscapes </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">USGS</a> </div>
+          </div>
+        </div>
+        <div class="col-md-4 resources">
+          <div class="resource">
+            <p class="title"> Aqueduct: Water stress projections </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">WRI</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Environmental democracy index </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">IUCN and UNEP</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Epidemic </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">IUCN and UNEP</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Intact forest landscapes </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">USGS</a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
   {{/modal-dialog}}
 {{/if}}

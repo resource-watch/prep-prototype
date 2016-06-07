@@ -29,6 +29,9 @@ export default Ember.Component.extend({
         default:
       }
     },
+    downloadDashboard: function() {
+      console.log('Download dashboard');
+    },
   },
 
   didInsertElement: function() {
