@@ -218,24 +218,6 @@ $slider-highlight-color: #ffc94e;
     }
   }
 }
-
-.sonoma-tooltip {
-  padding: 8px 35px;
-  background: #ffde90;
-  border-radius: 100px;
-  font-family: "Open Sans", sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 18px;
-  letter-spacing: .3px;
-  color:#263e57;
-  text-transform: uppercase;
-  max-width: none !important;
-
-  &.tooltip-target-attached-left:after  { right: 2px; }
-  &.tooltip-target-attached-right:after { left:  2px; }
-}
-
 .modal-header-wrapper{
   display: flex;
   align-items: center;
@@ -248,7 +230,7 @@ $slider-highlight-color: #ffc94e;
   padding-top: 2rem;
   padding-bottom: 2rem;
   >.resource {
-    padding: 1rem 0;
+    padding: 12px 0 14px;
     >.title{
       margin: 0;
     	font-family: "Open Sans", sans-serif;
@@ -258,11 +240,12 @@ $slider-highlight-color: #ffc94e;
     	color: #294554;
     }
     >.links{
+      margin-top: 5px;
       > a{
         color: rgba(#263e57,0.5);
         height: 20px;
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-left: 6px;
+        padding-right: 6px;
 	      font-family: "Open Sans", sans-serif;
         font-weight: 700;
         font-size: 13px;
