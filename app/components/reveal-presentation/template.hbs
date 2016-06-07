@@ -3,14 +3,38 @@
     {{yield}}
   </div>
   <div class="reveal-controls -horizontal -left">
-    <a href="#" class="navigate-left"></a>
+    <a href="#" class="navigate-left">
+      {{#if tooltips.left}}
+        {{#tooltip-on-element side='right' updateFor=tooltips.left}}
+          {{tooltips.left}}
+        {{/tooltip-on-element}}
+      {{/if}}
+    </a>
   </div>
   <div class="reveal-controls -horizontal -right">
-    <a href="#" class="navigate-right"></a>
+    <a href="#" class="navigate-right">
+      {{#if tooltips.right}}
+        {{#tooltip-on-element side='left' updateFor=tooltips.right}}
+          {{tooltips.right}}
+        {{/tooltip-on-element}}
+      {{/if}}
+    </a>
   </div>
   <div class="reveal-controls -vertical">
-    <a href="#" class="navigate-up"></a>
-    <a href="#" class="navigate-down"></a>
+    <a href="#" class="navigate-up">
+      {{#if tooltips.up}}
+        {{#tooltip-on-element updateFor=tooltips.up}}
+          {{tooltips.up}}
+        {{/tooltip-on-element}}
+      {{/if}}
+    </a>
+    <a href="#" class="navigate-down">
+      {{#if tooltips.down}}
+        {{#tooltip-on-element updateFor=tooltips.down}}
+          {{tooltips.down}}
+        {{/tooltip-on-element}}
+      {{/if}}
+    </a>
   </div>
   <div class="reveal-actions">
     <div class="index" {{action 'toggleModal' 'content' }}>

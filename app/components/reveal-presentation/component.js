@@ -3,7 +3,15 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   isShowingContentModal: false,
   isShowingDownloadModal: false,
-  slidesTitles:[],
+  tooltips: {
+    up:false,
+    down:false,
+    left:false,
+    right:false
+  },
+  slidesTitles:Em.A(),
+  nextSlideTitle: 'Next slide',
+  showTooltip: false,
   classNames: 'reveal-container',
   actions: {
     goToSlide: function(indexh,indexv) {
@@ -14,16 +22,13 @@ export default Ember.Component.extend({
       switch (modal) {
         case 'content':
           this.toggleProperty('isShowingContentModal');
-          if(this.isShowingContentModal){
-            this.updateActiveIndex();
-          }
           break;
         case 'download':
           this.toggleProperty('isShowingDownloadModal');
           break;
         default:
       }
-    }
+    },
   },
 
   didInsertElement: function() {
@@ -32,21 +37,6 @@ export default Ember.Component.extend({
     this.initializeReveal();
   },
 
-  updateActiveIndex: function() {
-    if (this.currentSlideActive) {
-      let {indexh,indexv} = this.currentSlideActive;
-      this.slidesTitles[indexh][indexv].active = false;
-    }
-
-    this.currentSlideActive = this.getCurrentSlideIndex();
-    let {indexh,indexv} = this.currentSlideActive;
-    this.slidesTitles[indexh][indexv].active = true;
-  },
-  getCurrentSlideIndex: function() {
-    let index = Reveal.getIndices(Reveal.getCurrentSlide());
-    index.v = index.v ? index.v:0;
-    return {indexh:index.h,indexv:index.v};
-  },
   setSlidesTitles: function() {
     this.$('.slides > section').each(function(index,section){
       var sections = $(section).find('section');
@@ -61,6 +51,7 @@ export default Ember.Component.extend({
       }
     }.bind(this));
   },
+
   initializeReveal: function() {
     Reveal.initialize({
       controls: false,
@@ -84,13 +75,77 @@ export default Ember.Component.extend({
     Reveal.slide(0, 0);
     Reveal.configure({ slideNumber: 'c/t' });
     Reveal.addEventListener( 'ready', function( event ) {
-      this.updateTitle(event.indexh,event.indexv);
+      this.updateSlidesInfo(event);
     }.bind(this));
     Reveal.addEventListener( 'slidechanged', function( event ) {
-      this.updateTitle(event.indexh,event.indexv);
+      this.updateSlidesInfo(event);
     }.bind(this));
   },
+
+  updateSlidesInfo: function(event){
+    this.updateActiveIndex();
+    this.updateTitle(event.indexh,event.indexv);
+    this.setTooltipVisibles();
+  },
+
+  updateActiveIndex: function() {
+    var slidesTitles = this.get("slidesTitles");
+    if (this.currentSlideActive) {
+      Em.set(slidesTitles.objectAt(this.currentSlideActive.indexh).objectAt(this.currentSlideActive.indexv),'active',false);
+    }
+    this.currentSlideActive = this.getCurrentSlideIndex();
+    Em.set(slidesTitles.objectAt(this.currentSlideActive.indexh).objectAt(this.currentSlideActive.indexv),'active',true);
+  },
+
+  getCurrentSlideIndex: function() {
+    let index = Reveal.getIndices(Reveal.getCurrentSlide());
+    index.v = index.v ? index.v:0;
+    return {indexh:index.h,indexv:index.v};
+  },
+
   updateTitle: function(indexh,indexv){
     this.slidesTitlesEl.html(this.slidesTitles[indexh][indexv].title);
+  },
+
+  setTooltipVisibles: function(){
+    this.set('tooltips', {
+      up: this.getNextSlideTitle('up'),
+      down: this.getNextSlideTitle('down'),
+      left: this.getNextSlideTitle('left'),
+      right: this.getNextSlideTitle('right')
+    });
+  },
+
+  getNextSlideTitle: function(type) {
+    let {indexh,indexv} = this.currentSlideActive;
+    switch (type) {
+      case 'left':
+        indexv = 0;
+        indexh = indexh-1;
+        break;
+      case 'right':
+        indexv = 0;
+        indexh = indexh+1;
+        break;
+      case 'up':
+        indexv = indexv-1;
+        break;
+      case 'down':
+        indexv = indexv+1;
+        break;
+      default:
+    }
+    if (this._indexInsideArray(indexh,indexv) && this.slidesTitles[indexh][indexv]){
+      return this.slidesTitles[indexh][indexv].title;
+    } else {
+      return false;
+    }
+  },
+  _indexInsideArray: function(indexh,indexv){
+    if (indexh > -1 && indexh < this.slidesTitles.length){
+      return indexv > -1 && indexv < this.slidesTitles[indexh].length;
+    } else {
+      return false;
+    }
   }
 });
