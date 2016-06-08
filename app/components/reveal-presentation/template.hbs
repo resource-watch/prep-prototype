@@ -3,38 +3,46 @@
     {{yield}}
   </div>
   <div class="reveal-controls -horizontal -left">
-    <a href="#" class="navigate-left">
-      {{#if tooltips.left}}
-        {{#tooltip-on-element side='right' updateFor=tooltips.left class='sonoma-tooltip'}}
-          {{tooltips.left}}
-        {{/tooltip-on-element}}
-      {{/if}}
-    </a>
+    <div class="navigate-container {{if animations.left 'blink'}}">
+      <a href="#" class="navigate-left">
+        {{#if tooltips.left}}
+          {{#tooltip-on-element side='right' updateFor=tooltips.left class='sonoma-tooltip'}}
+            {{tooltips.left}}
+          {{/tooltip-on-element}}
+        {{/if}}
+      </a>
+    </div>
   </div>
   <div class="reveal-controls -horizontal -right">
-    <a href="#" class="navigate-right">
-      {{#if tooltips.right}}
-        {{#tooltip-on-element side='left' updateFor=tooltips.right class='sonoma-tooltip'}}
-          {{tooltips.right}}
-        {{/tooltip-on-element}}
-      {{/if}}
-    </a>
+    <div class="navigate-container {{if animations.right 'blink'}}">
+      <a href="#" class="navigate-right">
+        {{#if tooltips.right}}
+          {{#tooltip-on-element side='left' updateFor=tooltips.right class='sonoma-tooltip'}}
+            {{tooltips.right}}
+          {{/tooltip-on-element}}
+        {{/if}}
+      </a>
+    </div>
   </div>
   <div class="reveal-controls -vertical">
-    <a href="#" class="navigate-up">
-      {{#if tooltips.up}}
-        {{#tooltip-on-element updateFor=tooltips.up class='sonoma-tooltip'}}
-          {{tooltips.up}}
-        {{/tooltip-on-element}}
-      {{/if}}
-    </a>
-    <a href="#" class="navigate-down">
-      {{#if tooltips.down}}
-        {{#tooltip-on-element updateFor=tooltips.down class='sonoma-tooltip'}}
-          {{tooltips.down}}
-        {{/tooltip-on-element}}
-      {{/if}}
-    </a>
+    <div class="navigate-container {{if animations.up 'blink'}}">
+      <a href="#" class="navigate-up">
+        {{#if tooltips.up}}
+          {{#tooltip-on-element updateFor=tooltips.up class='sonoma-tooltip'}}
+            {{tooltips.up}}
+          {{/tooltip-on-element}}
+        {{/if}}
+      </a>
+    </div>
+    <div class="navigate-container {{if animations.down 'blink'}}">
+      <a href="#" class="navigate-down">
+        {{#if tooltips.down}}
+          {{#tooltip-on-element updateFor=tooltips.down class='sonoma-tooltip'}}
+            {{tooltips.down}}
+          {{/tooltip-on-element}}
+        {{/if}}
+      </a>
+    </div>
   </div>
   <div class="reveal-actions">
     <div class="index" {{action 'toggleModal' 'content' }}>

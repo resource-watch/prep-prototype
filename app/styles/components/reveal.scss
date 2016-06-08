@@ -15,7 +15,7 @@ body {
 }
 
 .reveal-container {
-  height: 800px;
+  height: calc(100vh - 102px);
 }
 
 .reveal {
@@ -31,6 +31,7 @@ body {
     right: 0 !important;
     transform: translate(0, 0) scale(1) !important;
     section {
+      top:0!important;
       height: 100%!important;
       width: 100%!important;
       padding: 0!important;
@@ -125,30 +126,49 @@ body {
       margin-left: auto;
       margin-right: auto;
     }
+    >.navigate-container{
+      > a {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 50%;
+        border: 1px solid $navigation-btn-bg-border;
+        background-color: $navigation-btn-bg-disable;
 
-    > a {
-      position: relative;
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      line-height: 40px;
-      border-radius: 50%;
-      border: 1px solid $navigation-btn-bg-border;
-      background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDEwIDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkNvbWJpbmVkIFNoYXBlPC90aXRsZT48cGF0aCBkPSJNNCA1LjEyMVYwaDJ2NS4wMmwyLjQ4NS0yLjQ4NEw5LjkgMy45NSA1LjY1NyA4LjE5MiA0Ljk1IDguOSAwIDMuOTVsMS40MTQtMS40MTNMNCA1LjEyeiIgZmlsbD0iIzFBM0U2MiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+') no-repeat center center;
-      background-color: $navigation-btn-bg-disable;
+        &:before{
+          content: "";
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top:0;
+          left:0;
+          background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDEwIDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkNvbWJpbmVkIFNoYXBlPC90aXRsZT48cGF0aCBkPSJNNCA1LjEyMVYwaDJ2NS4wMmwyLjQ4NS0yLjQ4NEw5LjkgMy45NSA1LjY1NyA4LjE5MiA0Ljk1IDguOSAwIDMuOTVsMS40MTQtMS40MTNMNCA1LjEyeiIgZmlsbD0iIzFBM0U2MiIgZmlsbC1ydWxlPSJldmVub2RkIi8+PC9zdmc+') no-repeat center center;
+        }
 
-      /* Instead of having separated icons, we rotate the button */
-      &.navigate-up { transform: rotate(180deg); }
-      &.navigate-left { transform: rotate(90deg); }
-      &.navigate-right { transform: rotate(-90deg); }
+        /* Instead of having separated icons, we rotate the button */
+        &.navigate-up:before { transform: rotate(180deg); }
+        &.navigate-left:before { transform: rotate(90deg); }
+        &.navigate-right:before { transform: rotate(-90deg); }
 
-      &:after { border-color: rgba($navigation-btn-color, 0.5); }
+        &:after { border-color: rgba($navigation-btn-color, 0.5); }
 
-      &.enabled {
-        cursor: pointer;
-        background-color: $navigation-btn-bg;
+        &.enabled {
+          cursor: pointer;
+          background-color: $navigation-btn-bg;
+        }
+      }
+
+      &.blink > a.enabled {
+        animation-name: blink;
+        animation-duration: 2s;
+        animation-timing-function: linear;
+        animation-iteration-count: 2;
+        animation-delay: 0.7s;
       }
     }
+
   }
 
   .slide-number {
@@ -172,4 +192,11 @@ body {
       font-weight: bold;
     }
   }
+}
+
+@keyframes blink {
+    0% {transform:scale(1)}
+    30% {transform:scale(0.9)}
+    70% {transform:scale(1.5)}
+    100% {transform:scale(1)}
 }

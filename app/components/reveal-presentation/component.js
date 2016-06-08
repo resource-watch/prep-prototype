@@ -9,6 +9,12 @@ export default Ember.Component.extend({
     left:false,
     right:false
   },
+  animations: {
+    up:false,
+    down:false,
+    left:false,
+    right:true
+  },
   slidesTitles:Em.A(),
   nextSlideTitle: 'Next slide',
   showTooltip: false,
@@ -89,6 +95,7 @@ export default Ember.Component.extend({
     this.updateActiveIndex();
     this.updateTitle(event.indexh,event.indexv);
     this.setTooltipVisibles();
+    this.setAnimations();
   },
 
   updateActiveIndex: function() {
@@ -110,6 +117,34 @@ export default Ember.Component.extend({
     let title = this.slidesTitles[indexh][indexv].title;
     if(title.length > 50) title = title.slice(0, 50) + '…';
     this.slidesTitlesEl.html(title);
+  },
+
+  setAnimations: function(){
+    this.set('animations', {
+      up: this.getAnimationStatus('up'),
+      down: this.getAnimationStatus('down'),
+      left: this.getAnimationStatus('left'),
+      right: this.getAnimationStatus('right')
+    });
+  },
+
+  getAnimationStatus: function(position){
+    let {indexh,indexv} = this.currentSlideActive;
+    var isLastVerticalSlide = function (){
+      return this.slidesTitles[indexh][indexv+1]? false:true;
+    }.bind(this);
+    switch (position) {
+      case 'left':
+        return isLastVerticalSlide();
+      case 'right':
+        return isLastVerticalSlide();
+      case 'up':
+        return isLastVerticalSlide();
+      case 'down':
+        return indexh>0 && indexv===0;
+      default:
+        return false;
+    }
   },
 
   setTooltipVisibles: function(){
