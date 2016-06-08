@@ -135,13 +135,13 @@ export default Ember.Component.extend({
     }.bind(this);
     switch (position) {
       case 'left':
-        return isLastVerticalSlide();
+        return isLastVerticalSlide() || indexv===0;
       case 'right':
-        return isLastVerticalSlide();
+        return isLastVerticalSlide() || indexv===0;
       case 'up':
         return isLastVerticalSlide();
       case 'down':
-        return indexh>0 && indexv===0;
+        return indexv===0;
       default:
         return false;
     }
