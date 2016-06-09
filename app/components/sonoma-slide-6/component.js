@@ -5,34 +5,11 @@ export default Ember.Component.extend({
   tagName: 'section',
 
   vegaSpec: {
-    "padding": {"top": 30,"left": 25,"bottom": 25,"right": 20},
+    "padding": {"top": 30,"left": 40,"bottom": 25,"right": 20},
     "data": [
       {
         "name": "line-1",
-        "values": [
-          {"x": "1990","y": 5},
-          {"x": "1991","y": 4},
-          {"x": "1992","y": 5},
-          {"x": "1993","y": 7},
-          {"x": "1994","y": 8},
-          {"x": "1995","y": 10},
-          {"x": "1996","y": 11},
-          {"x": "1997","y": 15},
-          {"x": "1998","y": 20},
-          {"x": "1999","y": 22},
-          {"x": "2000","y": 28},
-          {"x": "2001","y": 31},
-          {"x": "2002","y": 28},
-          {"x": "2003","y": 30},
-          {"x": "2004","y": 29},
-          {"x": "2005","y": 27},
-          {"x": "2006","y": 25},
-          {"x": "2007","y": 21},
-          {"x": "2008","y": 29},
-          {"x": "2009","y": 30},
-          {"x": "2010","y": 31},
-          {"x": "2011","y": 32}
-        ],
+        "values": [],
         "format": {"parse": {"x": "date"}}
       },
       {
@@ -180,8 +157,25 @@ export default Ember.Component.extend({
 
   didRender() {
     this.$chart = this.$('#chart6-1');
-    this.initChart();
+    this.fetchData()
+      .done(function(data){
+        this.vegaSpec.data[0].values = this._getParseData(data.rows,'lower');
+        this.vegaSpec.data[1].values = this._getParseData(data.rows,'upper');
+        this.initChart();
+      }.bind(this));
     this.setListeners();
+  },
+
+  fetchData: function() {
+    return $.get('https://prep-admin.cartodb.com/api/v2/sql?q=SELECT to_date(date, \'DD/MM/YY\') as date, pcm_a2_lower_river as lower, pcm_a2_upper_river as upper FROM day_average_flows ORDER BY date ASC');
+  },
+
+  _getParseData: function(data,type) {
+    var parseData = [];
+    data.forEach(function(item){
+      parseData.push({x:item.date,y:item[type]});
+    });
+    return parseData;
   },
 
   setListeners: function() {
