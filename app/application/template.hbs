@@ -1,3 +1,22 @@
-{{ partial 'partials/header' }}
+{{#if (eq currentPath "login")}}
+
+{{else if (eq currentPath "data")}}
+  {{partial 'partials/header-data'}}
+{{else}}
+  {{partial 'partials/header'}}
+{{/if}}
+
 
 {{ outlet }}
+
+<!-- don't show footer if we are in Data route -->
+<!-- maybe change this to a minimal footer later on -->
+{{#if (eq currentPath "login")}}
+
+{{else if (noteq currentPath "data")}}
+  {{partial 'partials/footer'}}
+{{/if}}
+
+<!-- {{#ember-wormhole to="about-modal-destination"}}
+  {{data-popup}}
+{{/ember-wormhole}} -->

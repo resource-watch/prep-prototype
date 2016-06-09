@@ -1,16 +1,17 @@
 import Ember from 'ember';
+import Cookies from 'npm:js-cookie';
 
 export default Ember.Route.extend({
-  actions: {
-    goToDashboard(dashboard_id) {
-      this.transitionTo('dashboards.dashboard', dashboard_id);
-    }
+  activate() {
+    this._super();
+    window.scrollTo(0,0);
   },
-
-  beforeModel(transition) {
-    let svc = this.get('session');
-    svc.set('headerSubStyle', 'header-dashboards');
-    svc.set('headerSectionTitle', 'Dashboards');
-    svc.set('dashboardReturnDisplay', 'dashboardReturnDisplayNone');
+  actions: {
+    loadDashboard(dashboard_id) {
+      this.transitionTo('dashboards.washington.indicators');
+    },
+    loadSonoma() {
+      this.transitionTo('dashboards.sonoma');
+    }
   }
 });

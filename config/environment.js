@@ -22,17 +22,19 @@ module.exports = function(environment) {
     contentSecurityPolicy: {
       'default-src': "'none' blob:",
       'script-src': "'self' http://arcgis-sdgs-385255865.us-east-1.elb.amazonaws.com/ 'unsafe-eval' 'unsafe-inline' http://*.arcgis.com/ https://*.arcgis.com/ https://apf-koop-sample-app.herokuapp.com https://*.esri.com",
-      'font-src': "'self' data: *.fonts.net *.arcgis.com/",
+      'font-src': "'self' data: *.fonts.net *.arcgis.com/ http://fonts.gstatic.com",
       'connect-src': "'self' http://arcgis-sdgs-385255865.us-east-1.elb.amazonaws.com/ http://*.arcgis.com/ http://services.arcgisonline.com/ https://sdg-api.herokuapp.com/ http://localhost:3000 https://*.esri.com",
-      'img-src': "'self' blob: https://s3.amazonaws.com http://arcgis-sdgs-385255865.us-east-1.elb.amazonaws.com/ https://*.arcgis.com/ http://*.arcgis.com/ http://*.arcgisonline.com/ https://*.esri.com",
-      'style-src': "'self' 'unsafe-inline' https://fast.fonts.net http://*.arcgis.com https://*.arcgis.com",
+      'img-src': "'self' blob: data: https://api.tiles.mapbox.com https://s3.amazonaws.com http://arcgis-sdgs-385255865.us-east-1.elb.amazonaws.com/ https://*.arcgis.com/ http://*.arcgis.com/ http://*.arcgisonline.com/ https://*.esri.com",
+      'style-src': "'self' 'unsafe-inline' https://fast.fonts.net http://*.arcgis.com https://*.arcgis.com http://fonts.googleapis.com",
       'media-src': "'self'"
     },
 
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
-    }
+    },
+
+    prepApiHost : 'http://localhost:3000'
   };
 
   if (environment === 'development') {
@@ -41,10 +43,6 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    
-    ENV['ember-cli-mirage'] = {
-      enabled: true
-    }
   }
 
   if (environment === 'test') {
@@ -60,13 +58,11 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    // ENV.locationType = 'hash';
+    ENV.locationType = 'hash';
     ENV.baseURL = '/prep-prototype/';
 
-    ENV['ember-cli-mirage'] = {
-      enabled: true
-    }
-
+    // add heroku host;
+    ENV.prepApiHost = 'https://prep-api.herokuapp.com/';
   }
 
   return ENV;

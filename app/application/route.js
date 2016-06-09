@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import Cookies from 'npm:js-cookie';
 
 export default Ember.Route.extend({
   
@@ -12,12 +13,10 @@ export default Ember.Route.extend({
     let defaultLocale = 'en-us';
     intl.setLocale(defaultLocale);
 
-    let svc = this.get('session');
-    const target = transition.targetName;
-    if (target === 'home') {
-      svc.set('headerStyle', 'header-home');
-    } else {
-      svc.set('headerStyle', 'header-short');
+    const loggedIn = Cookies.get('prep_logged_in');
+    if (!loggedIn) {
+      this.transitionTo('login');
     }
+    
   }
 });

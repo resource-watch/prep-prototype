@@ -1,0 +1,35 @@
+<header class="jumbotron content-section l-header">
+  <div class="container content-section">
+    <div class="wrapper">
+      <nav class="navbar navbar-default">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          {{#link-to 'home'}}
+            <img class="logo" src="img/header/prep-tmp.svg" alt="Preparedness for Resilience" />
+          {{/link-to}}
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="item"><a href="#">Data</a></li>
+            <!-- <li class="item"><a href="#">Dashboards</a></li> -->
+            {{#link-to 'dashboards.index' tagName="li" class="item"}} 
+              <a href="#">DASHBOARDS</a>
+            {{/link-to}}
+            <li class="item"><a href="#">Insights</a></li>
+            <li class="item separator"></li>
+            <li class="item -secondary coming-soon"><a href="#">Search</a></li>
+            <li class="item -secondary coming-soon"><a href="#">English</a></li>
+          </ul>
+        </div>
+      </nav>
+      <header class="header">
+        <h1 class="title -main intro">Enabling collective action to manage climate risks</h1>
+      </header>
+    </div>
+  </div>
+</header>

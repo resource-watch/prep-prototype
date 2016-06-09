@@ -1,0 +1,133 @@
+$modal-bg-color: #f4f6f7;
+$modal-close-color: #263e57;
+
+$modal-title-font-family: "PT Serif", serif;
+$modal-title-font-size: 50px;
+$modal-title-color: #263e57;
+$modal-text-font-family: "Open Sans", sans-serif;
+$modal-text-font-size: 16px;
+$modal-text-color: #263e57;
+
+.ember-modal-overlay{
+  background-color: $modal-bg-color;
+}
+
+.ember-modal-dialog{
+  position: relative;
+
+  padding: 50px 100px;
+  width: 100%;
+  height: 100%;
+
+  &.-center{
+    display: flex;
+    align-items: center;
+    padding-bottom: 6rem;
+  }
+
+  >.title {
+    font-family: $modal-title-font-family;
+    font-weight: 700;
+    color: $modal-title-color;
+    font-size: $modal-title-font-size;
+    position: relative;
+    margin-bottom: 65px;
+    &:after{
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      bottom: -23px;
+      width: 120px;
+      height: 3px;
+      background-color: #ffc94e;
+    }
+    &.-has-action{
+      cursor: pointer;
+    }
+  }
+
+  >.index{
+    list-style-type: none;
+    padding-left: 25px;
+    li {
+      position: relative;
+      padding-left: 21px;
+      margin: 20px 0;
+      &:after{
+        content:"";
+        position: absolute;
+        top: 3px;
+        left: 0;
+        width: 7px;
+        height: 7px;
+        background-color: $modal-title-color;
+      }
+      > a {
+        position: relative;
+        font-family: $modal-text-font-family;
+        font-size: 16px;
+        letter-spacing: .3px;
+        color: $modal-text-color;
+        text-decoration: none;
+      }
+      &.-active{
+        margin-bottom: 15px;
+        >a{
+          font-weight: 700;
+          &:before{
+            content: "";
+            display: block;
+            position: absolute;
+            right: 0;
+            bottom: -7.5px;
+            width: 200%;
+            height: 3px;
+            background-color: #ffc94e;
+          }
+        }
+      }
+    }
+    >ul {
+      list-style-type: none;
+      padding-left: 22px;
+      > li {
+        &:after{
+          border-radius: 50%;
+          opacity:0.3;
+        }
+      }
+    }
+  }
+
+  >.close {
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+  }
+  .close {
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+    &:hover {
+      opacity: 1;
+    }
+    &:before, &:after {
+      position: absolute;
+      left: 7px;
+      content: ' ';
+      height: 14px;
+      width: 2px;
+      background-color: $modal-close-color;
+    }
+    &:before {
+      transform: rotate(45deg);
+    }
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+}

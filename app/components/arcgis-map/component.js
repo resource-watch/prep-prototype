@@ -2,7 +2,8 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
-  classNames: ['arcgis-map-component'],
+  // classNames: ['arcgis-map-component'],
+  classNames: ['data-map-container '],
 
   arcgisMap: Ember.inject.service(),
 
@@ -14,9 +15,23 @@ export default Ember.Component.extend({
   },
 
   didInsertElement() {
+    
+    const add_title = this.get('addTitle') || false;
+
     // parse properties
     const webmap = this.get('webmap');
-    const options = {mapOptions: { logo: false}};
+    const logo = this.get('logo');
+    const showAttribution = this.get('showAttribution');
+    const add_legend = this.get('legend') || false;
+
+
+    const options = {
+      mapOptions: { 
+        logo: logo,
+        sliderPosition: 'top-right',
+        showAttribution: showAttribution
+      }
+    };
     
     // init map
     const svc = this.get('arcgisMap');
@@ -30,9 +45,25 @@ export default Ember.Component.extend({
         this.handlers.push(response.clickEventHandle);
       }
 
-      setTimeout(function(){
-        this.map.resize();
-      }.bind(this), 5000);
+      this.map.disableScrollWheelZoom();
+
+      if (add_legend) {
+        const layerInfos = [
+          {
+            layer: response.itemInfo.itemData.operationalLayers[0].layerObject,
+            title: ' '
+          }
+        ];
+        svc.createLegend(this.element, this.map, layerInfos);
+      }
+
+      if (add_title) {
+        const title = response.itemInfo.itemData.operationalLayers[0].title;
+        svc.createMapTitle(this.element, title);
+      }
+
+      
+
     });
   },
 

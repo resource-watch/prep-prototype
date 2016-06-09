@@ -1,1 +1,153 @@
-{{outlet}}
+<div class="container-fluid dashboards">
+  <div class="text-center title">
+    <p>Insights</p>
+    <hr class="separator -blue" style="background-color:#25b5cd">
+  </div>
+  <div class="text-center subnav">
+    <div class="items coming-soon">
+      <span>TOPICS</span>
+      <span>AREAS</span>
+      <span>DATE</span>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid dashboards-cards">
+
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="panel panel-default coming-soon">
+        <div class="panel-body">
+          <h2>Climate Change and Water</h2>
+          <p>The Bureau of Reclamation has published an updated SECURE Water Act Report to Congress. The report highlights findings from basin-specific collaborative planning studies to provide a West-wide perspective on anticipated impacts to water resources due to climate change and corresponding adaptation strategies.</p>
+          <div class="dashboard-summary-logo">
+            <img src="img/dashboards/logos/esri.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="panel panel-default coming-soon">
+        <div class="panel-body">
+          <h2>Open Data: A New Tool for Building Climate Resilience</h2>
+          <p>As communities across America continue to experience increasing climate impacts in the form of rising seas, heat waves, and extreme weather, local and federal leaders are starting to roll up their sleeves.</p>
+          <div class="dashboard-summary-logo">
+            <img src="img/dashboards/logos/wri.png">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="panel panel-default" {{action 'loadDashboard' 'washington'}}>
+        <div class="panel-body">
+          <h2>Climate change in the Puget Sound</h2>
+          <p>Most climate change effects in the Puget Sound region are likely to increase the potential for damage to infrastructure and service disruptions (unplanned transportation closures, delays, or detours), although some risks may decrease.</p>
+          <div class="dashboard-summary-logo">
+            <img src="img/dashboards/logos/uw-wash.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="panel panel-default coming-soon">
+        <div class="panel-body">
+          <h2>Porto Alegre Desafio Resiliente</h2>
+          <p>Buscando garantir uma visão de futuro que contemple os anseios e desejos da maior parcela possível da sociedade e identificando a importância de que a visão se mantenha atualizada, frente a novos contextos, versões posteriores da Estratégia poderão apresentar ajustes na mesma.</p>
+          <div class="dashboard-summary-logo">
+            <img src="img/dashboards/logos/100rc.png">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6">
+      <div class="panel panel-default coming-soon">
+        <div class="panel-body">
+          <h2>Climate Change and Water</h2>
+          <p>The Bureau of Reclamation has published an updated SECURE Water Act Report to Congress. The report highlights findings from basin-specific collaborative planning studies to provide a West-wide perspective on anticipated impacts to water resources due to climate change and corresponding adaptation strategies.</p>
+          <div class="dashboard-summary-logo">
+            <img src="img/dashboards/logos/esri.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="panel panel-default coming-soon">
+        <div class="panel-body">
+          <h2>National Climate Assessment: Midwest Region</h2>
+          <p>Extreme heat, heavy downpours, and flooding will affect infrastructure, health, agriculture, forestry, transportation, air and water quality, and more. Climate change will also exacerbate a range of risks to the Great Lakes.</p><p>Explore how climate change is affecting the Midwest.</p>
+          <div class="dashboard-summary-logo">
+            <img src="img/partners/usgcrp.jpg" width="180px">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="container-fluid">
+  <div class="row text-center">
+    <button class="btn btn-default btn-lg btn-show-more coming-soon">SHOW MORE RESULTS</button>
+  </div>
+</div>
+
+<div class="container-fluid dashboard-prefooter">
+  <div class="row">
+      <div class="col-xs-6">
+          {{#link-to 'data' class='link'}}
+              <div class="pre-footer">
+                  <div class="row text-center">
+                      <p class="header">Datasets</p>
+                  </div>
+                  <div class="row text-center">
+                      <p class="desc">Explore the entire set of data contributed by our community</p>
+                  </div>
+                  <div class="row text-center">
+
+                      <p class="explore">EXPLORE THE MAP</p>
+
+                  </div>
+              </div>
+          {{/link-to }}
+    </div>
+    <div class="col-xs-6">
+      <div class="pre-footer coming-soon">
+        <div class="row text-center">
+          <p class="header">Dashboards</p>
+        </div>
+        <div class="row text-center">
+          <p class="desc">Explore actionable information on climate</p>
+        </div>
+        <div class="row text-center">
+          <p class="explore">EXPLORE THE DASHBOARDSS</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid create">
+  <div class="row text-center">
+    <div class="col-xs-6">
+      <p>Have a story to tell about resilience?</p>
+    </div>
+    <div class="col-xs-6">
+      <p>Would you like to improve a dashboard?</p>
+    </div>
+  </div>
+  <div class="row text-center">
+    <div class="col-xs-6">
+      <button class="btn btn-lg btn-create coming-soon">WRITE AN INSIGHT</button>
+    </div>
+    <div class="col-xs-6">
+      <button class="btn btn-lg btn-contact coming-soon">GET IN TOUCH</button>
+    </div>
+  </div>
+</div>

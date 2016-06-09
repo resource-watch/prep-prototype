@@ -1,7 +1,7 @@
 # PREP-Prototype
 Prototype project management
 
-[View it Live](http://apfister.github.io/prep-prototype/)
+[View it Live](http://prep-team.github.io/prep-prototype)
 
 ## Purpose
 The purpose of the PREP-Prototype is to demonstrate the value of the collaboration, and to show how public and private sector partners can work together to create exciting and innovative means to communicate data. The prototype should be treated as a communication and testing product. Scalability is not a primary concern, nor is building reusable tools.

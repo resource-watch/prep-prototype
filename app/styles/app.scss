@@ -4,33 +4,49 @@
 /*Dashboards (yellow) :: #ffd160 */
 /*Insights (light blue) :: #25c1d7 */
 
-$navbar-height: 100px;
-$navbar-default-bg: transparent;
-$navbar-default-border: 0;
-$navbar-default-link-color: #fff;
-$breadcrumb-bg: transparent;
-$breadcrumb-separator: "|";
-$nav-pills-active-link-hover-bg: #215075;
-$nav-pills-active-link-hover-color: white;
-
-/* Now we load calcite variables as overrides*/
-@import 'calcite-bootstrap';
 
 /* set the output folder for fonts */
 $icon-font-path: './fonts/';
 @import 'bootstrap';
+@import "ember-modal-dialog/ember-modal-structure";
 
 /*not sure how to override the font family from calcite-bootstrap so i'm doing this*/
-body, 
+body,
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Open Sans",Arial, sans-serif;
 }
+
+@import 'mixins';
+@import 'password';
+@import 'vizz/main.scss';
+@import 'header';
+@import 'header-data';
+@import 'data';
+@import 'dashboards';
+@import 'dashboard-washington';
+@import 'dashboard-washington-indicators';
+@import 'insights';
+
+@import 'vendor/reveal';
+@import 'components/components';
 
 .card {
   width: 100%;
 }
 
 /*utils*/
+.no-padding {
+  padding: 0;
+}
+.pad-5 {
+  padding: 5px;
+}
+.pad-left-5 {
+  padding-left: 5px;
+}
+.pad-right-5 {
+  padding-right: 5px;
+}
 .pad-20 {
   padding: 20px;
 }
@@ -40,122 +56,25 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .pad-top-50 {
   padding-top: 50px;
 }
+.pad-bottom-5 {
+  padding-bottom: 5px;
+}
+.pad-bottom-20 {
+  padding-bottom: 20px;
+}
 .pad-bottom-50 {
   padding-bottom: 50px;
 }
+.marg-right-15 {
+  margin-right: 15px;
+}
+.marg-right-30 {
+  margin-right: 30px;
+}
+.margin-top-95 {
+  margin-top: 95px;
+}
 /*utils*/
-
-/*header*/
-.header-base {
-  background: url('https://s3.amazonaws.com/project-climate/header/earth-asia-large-bg-with-title.jpg');
-  background-size: cover;
-  background-position-y: -200px;
-  -webkit-box-shadow: 0px 1px 5px 0px #323232;
-  -moz-box-shadow: 0px 1px 5px 0px #323232;
-  box-shadow: 0px 1px 5px 0px #323232;
-}
-.navbar-brand {
-  padding: 20px 50px;
-}
-.navbar-right {
-  margin-right: 25px;
-}
-.header-separator {
-  color: #fff;
-  width: 50px;
-  margin-right: -45px;
-  margin-bottom: 0;
-  opacity: 0.25;
-
-  -webkit-transform: translate(0) rotate(45deg);
-  -webkit-transform-origin: 0 0;
-
-  transform: translate(0) rotate(90deg);
-  transform-origin: 0 0;
-}
-
-.card,
-.dropdown-menu li {
-  cursor: pointer;
-}
-
-.header-home {
-  height: 700px;
-}
-
-.header-data {
-  background: url('https://s3.amazonaws.com/project-climate/header/earth-asia-large-bg.jpg');
-  height: 350px;
-  background-size: cover;
-  background-position-y: -200px;
-  -webkit-box-shadow: 0px 1px 5px 0px #323232;
-  -moz-box-shadow: 0px 1px 5px 0px #323232;
-  box-shadow: 0px 1px 5px 0px #323232;
-}
-.header-dashboards {
-  background: url('https://s3.amazonaws.com/project-climate/header/earth-asia-large-bg.jpg');
-  height: 350px;
-  background-size: cover;
-  background-position-y: -200px;
-  -webkit-box-shadow: 0px 1px 5px 0px #323232;
-  -moz-box-shadow: 0px 1px 5px 0px #323232;
-  box-shadow: 0px 1px 5px 0px #323232;
-}
-
-.sub-header-section {
-  position: absolute;
-  bottom: 15px;
-  left: 40px;
-}
-.sub-header-title {
-  color: white;
-  font-size: 48px;
-}
-/*header*/
-
-/*home page*/
-.topic-divider {
-  width: 100px;
-  border: 2px solid #ffd160;
-  margin-top: 10px;
-  margin-bottom: 20px;
-}
-
-.floating-section {
-  position: absolute;
-  right: 50px;
-  width: 450px;
-  bottom: 80px;
-  background: white;
-
-  -webkit-box-shadow: 0px 1px 5px 0px #ffffff;
-  -moz-box-shadow: 0px 1px 5px 0px #ffffff;
-  box-shadow: 0px 1px 5px 0px #ffffff;
-}
-
-.kid-home {
-  background: url('https://s3.amazonaws.com/project-climate/home/kid-scaled.jpg') no-repeat;
-  background-position-x: -60px;
-  height: 350px;
-}
-.kid-title-section {
-  padding: 20px 20px 0 20px;
-}
-
-.kid-text-section {
-  padding: 0 20px 20px 20px;
-}
-
-.iceberg-section {
-  background: url('https://s3.amazonaws.com/project-climate/home/iceberg.jpg') no-repeat;
-  background-origin: 0;
-  background-size: cover;
-  height: 400px;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-/*home page*/
 
 /*dashboard*/
 .nav-pills li {
@@ -183,3 +102,58 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0;
 }
 /*breadcrumb-nav*/
+
+.quad-map-col {
+  width: 270px;
+}
+.quad-map {
+  height: 265px;
+  width: 265px;
+}
+
+.arcgis-map-legend {
+  height: 80px;
+  width: 80px;
+  background-color: rgba(218,218,218,0.80);
+  position: absolute !important;
+  bottom: 5px;
+  right: 0;
+  font-size: 11px;
+  padding-top: 8px;
+}
+
+.calcite .esriSimpleSlider div {
+  height: 22px;
+  width: 22px;
+  font-size: 9px;
+}
+
+.arcgis-map-title {
+  height: 25px;
+  width: 80px;
+  background-color: rgba(218,218,218,0.80);
+  position: absolute !important;
+  top: 5px;
+  right: 0;
+  font-size: 11px;
+  padding-top: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.pwd-error {
+  display: none;
+}
+
+.coming-soon {
+    filter: grayscale(0);
+    -moz-filter: grayscale(0);
+    -webkit-filter: grayscale(0);
+    transition: filter .3s, -webkit-filter .3s, opacity .3s;
+}
+.coming-soon:hover {
+    filter: grayscale(1);
+    -moz-filter: grayscale(1);
+    -webkit-filter: grayscale(1);
+    opacity: .5;
+}

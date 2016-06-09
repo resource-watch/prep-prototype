@@ -1,0 +1,160 @@
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: #555;
+  background-color: transparent;
+}
+
+.l-header-home {
+  height: 775px;
+  background: no-repeat center/cover url("https://s3.amazonaws.com/cprep-assets/bg-splash.jpg"), #041527;
+  padding: 0;
+  /*margin: 0;*/
+  margin-top: -130px;
+
+}
+@media screen and (max-width: 724px) {
+  .l-header-home {
+    height: 610px;
+  }
+}
+.l-header-home > .container {
+  position: relative;
+  height: 100%;
+}
+.l-header-home > .container .navbar {
+  margin-top: 30px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+}
+.l-header-home > .container .navbar:before, .l-header-home > .container .navbar:after {
+  content: none;
+}
+@media screen and (max-width: 992px) {
+  .l-header-home > .container .navbar {
+    display: block;
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 605px) {
+  .l-header-home > .container .navbar {
+    width: calc(100% + 30px);
+    position: relative;
+    left: -15px;
+    margin-top: 0;
+  }
+}
+@media screen and (max-width: 605px) {
+  .l-header-home > .container .navbar .navbar-header {
+    background-color: rgba(4,21,39, .8);
+  }
+}
+.l-header-home > .container .navbar .navbar-header > .navbar-toggle,
+        .l-header-home > .container .navbar .navbar-header > .navbar-toggle:hover,
+        .l-header-home > .container .navbar .navbar-header > .navbar-toggle:focus {
+  border: none;
+  border-radius: 0;
+  background: none;
+}
+.l-header-home > .container .navbar .navbar-header > .navbar-toggle > .icon-bar, .l-header-home > .container .navbar .navbar-header > .navbar-toggle:hover > .icon-bar, .l-header-home > .container .navbar .navbar-header > .navbar-toggle:focus > .icon-bar {
+  background-color: #fff;
+}
+@media screen and (max-width: 992px) {
+  .l-header-home > .container .navbar .navbar-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .l-header-home > .container .navbar .navbar-header:before, .l-header-home > .container .navbar .navbar-header:after {
+    content: none;
+  }
+}
+.l-header-home > .container .navbar .logo {
+  max-width: 263px;
+}
+@media screen and (max-width: 420px) {
+  .l-header-home > .container .navbar .logo {
+    max-width: 90%;
+  }
+}
+.l-header-home > .container .navbar .navbar-brand {
+  height: auto;
+}
+.l-header-home > .container .navbar .navbar-collapse {
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+.l-header-home > .container .navbar .navbar-collapse > .navbar-nav {
+  padding-top: 10px;
+}
+@media screen and (max-width: 992px) {
+  .l-header-home > .container .navbar .navbar-collapse > .navbar-nav {
+    border-top: 1px solid rgba(255,255,255, .3);
+  }
+}
+.l-header-home > .container .navbar .navbar-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (max-width: 605px) {
+  .l-header-home > .container .navbar .navbar-nav {
+    flex-direction: column;
+    margin: 0;
+    padding-bottom: 10px;
+    background-color: rgba(4,21,39, .8);
+  }
+}
+.l-header-home > .container .navbar .navbar-nav .item {
+  padding: 0 17px;
+  float: none;
+}
+@media screen and (max-width: 605px) {
+  .l-header-home > .container .navbar .navbar-nav .item {
+    padding: 10px 17px;
+  }
+}
+.l-header-home > .container .navbar .navbar-nav .item > a,
+          .l-header-home > .container .navbar .navbar-nav .item > a.hover {
+  padding: 0;
+  color: #fff;
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 22px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+}
+.l-header-home > .container .navbar .navbar-nav .item.-secondary > a, .l-header-home > .container .navbar .navbar-nav .item.-secondary > a:hover, .l-header-home > .container .navbar .navbar-nav .item  {
+  font-weight: 400;
+}
+.l-header-home > .container .navbar .navbar-nav .item.separator {
+  padding: 0;
+  display: inline-block;
+  flex-basis: 1px;
+  margin: 0 17px;
+  width: 1px;
+  height: 42px;
+  background-color: rgba(255,255,255, .3);
+}
+.l-header-home > .container .title.intro {
+  position: absolute;
+  bottom: 250px;
+  margin: 0;
+  width: calc(100% - 30px);
+  z-index: 0;
+}
+@media screen and (max-width: 1199px) {
+  .l-header-home > .container .title.intro {
+    top: 50%;
+    bottom: auto;
+    transform: translateY(-50%);
+  }
+}
