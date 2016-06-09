@@ -15,6 +15,7 @@ Router.map(function() {
       // this.route('insights', function () {});
       // this.route('tools', function () {});
     // });
+    this.route('sonoma');
     this.route('washington', function() {
       this.route('indicators');
       this.route('insights');

@@ -8,13 +8,15 @@
 /* set the output folder for fonts */
 $icon-font-path: './fonts/';
 @import 'bootstrap';
+@import "ember-modal-dialog/ember-modal-structure";
 
 /*not sure how to override the font family from calcite-bootstrap so i'm doing this*/
-body, 
+body,
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: "Open Sans",Arial, sans-serif;
 }
 
+@import 'mixins';
 @import 'password';
 @import 'vizz/main.scss';
 @import 'header';
@@ -25,12 +27,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 @import 'dashboard-washington-indicators';
 @import 'insights';
 
-@import 'components/data-popup';
-@import 'components/dashboard-card';
-@import 'components/chart-card';
-@import 'components/map-card';
-@import 'components/legend-view';
-@import 'components/legend-item';
+@import 'vendor/reveal';
+@import 'components/components';
 
 .card {
   width: 100%;
@@ -159,4 +157,3 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     -webkit-filter: grayscale(1);
     opacity: .5;
 }
-

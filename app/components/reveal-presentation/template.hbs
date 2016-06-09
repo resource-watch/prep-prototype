@@ -1,0 +1,164 @@
+<div class="reveal">
+  <div class="slides">
+    {{yield}}
+  </div>
+  <div class="reveal-controls -horizontal -left">
+    <div class="navigate-container {{if animations.left 'blink'}}">
+      <a href="#" class="navigate-left">
+        {{#if tooltips.left}}
+          {{#tooltip-on-element side='right' updateFor=tooltips.left class='sonoma-tooltip'}}
+            {{tooltips.left}}
+          {{/tooltip-on-element}}
+        {{/if}}
+      </a>
+    </div>
+  </div>
+  <div class="reveal-controls -horizontal -right">
+    <div class="navigate-container {{if animations.right 'blink'}}">
+      <a href="#" class="navigate-right">
+        {{#if tooltips.right}}
+          {{#tooltip-on-element side='left' updateFor=tooltips.right class='sonoma-tooltip'}}
+            {{tooltips.right}}
+          {{/tooltip-on-element}}
+        {{/if}}
+      </a>
+    </div>
+  </div>
+  <div class="reveal-controls -vertical">
+    <div class="navigate-container {{if animations.up 'blink'}}">
+      <a href="#" class="navigate-up">
+        {{#if tooltips.up}}
+          {{#tooltip-on-element updateFor=tooltips.up class='sonoma-tooltip'}}
+            {{tooltips.up}}
+          {{/tooltip-on-element}}
+        {{/if}}
+      </a>
+    </div>
+    <div class="navigate-container {{if animations.down 'blink'}}">
+      <a href="#" class="navigate-down">
+        {{#if tooltips.down}}
+          {{#tooltip-on-element updateFor=tooltips.down class='sonoma-tooltip'}}
+            {{tooltips.down}}
+          {{/tooltip-on-element}}
+        {{/if}}
+      </a>
+    </div>
+  </div>
+  <div class="reveal-actions">
+    <div class="index" {{action 'toggleModal' 'content' }}>
+      <div class="menu-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <a id="sliderTitles" href="#">Start</a>
+    </div>
+    <div class="toolbar">
+      <a href="#" {{action 'toggleModal' 'download' }} class="download">Download</a>
+      <a href="#" class="share coming-soon">Share</a>
+    </div>
+  </div>
+</div>
+
+{{#if isShowingContentModal}}
+  {{#modal-dialog targetAttachment="center"}}
+    <span class="close" {{action 'toggleModal' 'content' }}></span>
+    <h1 class="title -has-action" {{action 'goToSlide' 0 0 }}>Table of contents</h1>
+    <ul class="index">
+      {{#each slidesTitles as |slides indexh|}}
+        {{#if indexh}}
+          {{#each slides as |slide indexv|}}
+            {{#unless indexv}}
+              <li class="{{if slide.active '-active'}}">
+                <a href="#" {{action 'goToSlide' indexh indexv }}>{{slide.title}}</a>
+              </li>
+            {{/unless}}
+          {{/each}}
+          <ul>
+            {{#each slides as |slide indexv|}}
+              {{#if indexv}}
+                <li class="{{if slide.active '-active'}}">
+                  <a href="#" {{action 'goToSlide' indexh indexv }}>{{slide.title}}</a>
+                </li>
+              {{/if}}
+            {{/each}}
+          </ul>
+        {{/if}}
+      {{/each}}
+    </ul>
+  {{/modal-dialog}}
+{{/if}}
+
+{{#if isShowingDownloadModal}}
+  {{#modal-dialog targetAttachment="center" container-class="-center"}}
+    <span class="close" {{action 'toggleModal' 'download' }}></span>
+    <div class="container content-section">
+      <div class="row modal-header-wrapper">
+        <div class="col-md-9 wrapper">
+          <header class="header">
+            <h2 class="title">Datasets used</h2>
+          </header>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-transparent" type="button" name="button" {{action 'downloadDashboard'}}>Download dashboard</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 resources">
+          <div class="resource">
+            <p class="title"> Aqueduct: Water stress projections </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">WRI</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Environmental democracy index </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">IUCN and UNEP</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Epidemic </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">IUCN and UNEP</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Intact forest landscapes </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">USGS</a> </div>
+          </div>
+        </div>
+        <div class="col-md-4 resources">
+          <div class="resource">
+            <p class="title"> Aqueduct: Water stress projections </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">WRI</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Environmental democracy index </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">IUCN and UNEP</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Epidemic </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">IUCN and UNEP</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Intact forest landscapes </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">USGS</a> </div>
+          </div>
+        </div>
+        <div class="col-md-4 resources">
+          <div class="resource">
+            <p class="title"> Aqueduct: Water stress projections </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">WRI</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Environmental democracy index </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">IUCN and UNEP</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Epidemic </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">IUCN and UNEP</a> </div>
+          </div>
+          <div class="resource">
+            <p class="title"> Intact forest landscapes </p>
+            <div class="links"> <a href="#" target="_blank">CSV</a><a href="#" target="_blank">USGS</a> </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/modal-dialog}}
+{{/if}}

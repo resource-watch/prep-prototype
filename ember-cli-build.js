@@ -20,7 +20,6 @@ module.exports = function(defaults) {
         'put-selector','xstyle','dbind','dgrid'
       ]
     }
-    
   });
 
   // Use `app.import` to add additional libraries to the generated
@@ -38,6 +37,10 @@ module.exports = function(defaults) {
 
 
   app.import('./bower_components/bootstrap-sass/assets/javascripts/bootstrap.min.js');
+  app.import('./bower_components/reveal.js/js/reveal.js');
+  app.import('./bower_components/leaflet/dist/leaflet.js');
+  app.import('./bower_components/leaflet/dist/leaflet.css');
+  app.import('./bower_components/vega/vega.js');
 
   //although app.import can't pull from node_modules, Funnel can
   var bootstrap_fonts = new Funnel('./node_modules/bootstrap-sass/assets/fonts/bootstrap', {
@@ -49,7 +52,7 @@ module.exports = function(defaults) {
   // bootstrap toggle buttons
   // https://github.com/minhur/bootstrap-toggle/
   app.import('./bower_components/bootstrap-toggle/css/bootstrap-toggle.min.css');
-  app.import('./bower_components/bootstrap-toggle/js/bootstrap-toggle.min.js');  
+  app.import('./bower_components/bootstrap-toggle/js/bootstrap-toggle.min.js');
 
   return app.toTree([bootstrap_fonts]);
 };

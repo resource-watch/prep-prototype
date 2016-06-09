@@ -9,6 +9,9 @@ export default Ember.Route.extend({
   actions: {
     loadDashboard(dashboard_id) {
       this.transitionTo('dashboards.washington.indicators');
+    },
+    loadSonoma() {
+      this.transitionTo('dashboards.sonoma');
     }
   }
 });
