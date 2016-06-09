@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   tagName: 'section',
 
   didRender() {
-    this.initMap();
+    this.slideMapEl = this.$('#map7-2');
     this.setListeners();
   },
 
@@ -20,26 +20,51 @@ export default Ember.Component.extend({
   },
 
   initMap(){
+    this.slideMapEl.addClass('-loading');
     const mapOptions = {
       zoomControl: false,
       scrollWheelZoom:false,
-      center: [38.290957,-122.457728],
-      zoom: 10,
+      center: [38.280957,-122.457728],
+      zoom: 7,
       basemapSpec: {
-        url: 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw',
+        url: 'http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png',
         options: {
-          attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-          id: 'mapbox.streets',
           maxZoom: 18
         }
       }
     };
-
+    var request = {
+      layers: [{
+        "user_name": "prep-admin",
+        "type": "cartodb",
+        "options": {
+          "sql": "SELECT * FROM cwd1981_2010_ave_hst_1415990012",
+          "cartocss": "#cwd1981_2010_ave_hst_1415990012 {raster-opacity:1;}",
+          "cartocss_version": "2.3.0",
+          "geom_column": "the_raster_webmercator",
+          "geom_type": "raster",
+          "raster_band": 1
+        }
+      }]
+    };
     if (!this.slideMap){
       this.slideMap = L.map('map7-2', mapOptions);
       L.tileLayer(mapOptions.basemapSpec.url, mapOptions.basemapSpec.options).addTo(this.slideMap);
+      $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json; charset=UTF-8',
+        url: 'https://prep-admin.cartodb.com/api/v1/map/',
+        data: JSON.stringify(request),
+        success: function(data) {
+          var tileUrl = 'https://prep-admin.cartodb.com/api/v1/map/' + data.layergroupid + '/{z}/{x}/{y}.png';
+          var layer = L.tileLayer(tileUrl);
+          layer.on('load',function(){
+            this.slideMapEl.removeClass('-loading');
+          }.bind(this));
+          layer.addTo(this.slideMap, 1);
+        }.bind(this)
+      });
     }
   },
 
