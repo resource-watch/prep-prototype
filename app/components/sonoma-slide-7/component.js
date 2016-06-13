@@ -68,8 +68,8 @@ export default Ember.Component.extend({
         "user_name": "prep-admin",
         "type": "cartodb",
         "options": {
-          "sql": "SELECT * FROM cwd1981_2010_ave_hst_1415990012",
-          "cartocss": "#cwd1981_2010_ave_hst_1415990012 {raster-opacity:1;}",
+            "sql": "SELECT * FROM cwd1981_2010_ave_hst_1415990012",
+            "cartocss": "#cwd1981_2010_ave_hst_1415990012 {raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1, #c9946b ) stop(60, #c9946b ) stop(120, #85af43 ) stop(240, #497435 )}",
           "cartocss_version": "2.3.0",
           "geom_column": "the_raster_webmercator",
           "geom_type": "raster",
