@@ -8,12 +8,12 @@ export default Ember.Component.extend({
     "padding": {"top": 30,"left": 40,"bottom": 25,"right": 20},
     "data": [
       {
-        "name": "line-1",
+        "name": "bar-1",
         "values": [],
         "format": {"parse": {"x": "date"}}
       },
       {
-        "name": "line-2",
+        "name": "bar-2",
         "values": [],
         "format": {"parse": {"x": "date"}}
       },
@@ -27,13 +27,13 @@ export default Ember.Component.extend({
         "name": "x",
         "type": "time",
         "range": "width",
-        "domain": {"data": "line-1","field": "x"}
+        "domain": {"data": "bar-1","field": "x"}
       },
       {
         "name": "y",
         "type": "linear",
         "range": "height",
-        "domain": {"data": "line-1","field": "y"},
+        "domain": {"data": "bar-1","field": "y"},
         "nice": true
       }
     ],
@@ -91,26 +91,39 @@ export default Ember.Component.extend({
     ],
     "marks": [
       {
-        "type": "line",
-        "from": {"data": "line-1"},
+        "type": "rect",
+        "from": {"data": "bar-1"},
         "properties": {
           "enter": {
-            "x": {"scale": "x", "field": "x"},
+            "x": {
+              "scale": "x",
+              "field": "x",
+              "mult": 0.98
+            },
+            "width": {"value": 4},
             "y": {"scale": "y","field": "y"},
-            "stroke": {"value": "#ffc94e"},
-            "strokeWidth": {"value": 2}
+            "y2": {"field": {"group": "height"}},
+            "fill": {"value": "#ffc94e"},
+            "strokeWidth": {"value": 0}
           }
         }
       },
       {
-        "type": "line",
-        "from": {"data": "line-2"},
+        "type": "rect",
+        "from": {"data": "bar-2"},
         "properties": {
           "enter": {
-            "x": { "scale": "x", "field": "x"},
+            "x": {
+              "scale": "x",
+              "field": "x",
+              "mult": 0.98,
+              "offset": 5
+            },
+            "width": {"value": 4},
             "y": {"scale": "y","field": "y"},
-            "stroke": {"value": "#263e57"},
-            "strokeWidth": {"value": 2}
+            "y2": {"field": {"group": "height"}},
+            "fill": {"value": "#263e57"},
+            "strokeWidth": {"value": 0}
           }
         }
       },
