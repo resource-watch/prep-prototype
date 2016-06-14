@@ -89,13 +89,15 @@ export default Ember.Component.extend({
       data: JSON.stringify(request),
       success: function(data) {
         var tileUrl = 'https://prep-admin.cartodb.com/api/v1/map/' + data.layergroupid + '/{z}/{x}/{y}.png';
-        if (this.layer) {
+        if (this.slideMap && this.layer) {
           this.slideMap.removeLayer(this.layer);
           this.layer = null;
         }
         this.layer = L.tileLayer(tileUrl).addTo(this.slideMap, 1);
         this.layer.on('load',function() {
-          this.slideMapEl.removeClass('-loading');
+          if(this.slideMapEl){
+            this.slideMapEl.removeClass('-loading');
+          }
         }.bind(this));
       }.bind(this)
     });
