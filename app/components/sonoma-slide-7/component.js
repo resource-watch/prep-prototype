@@ -101,29 +101,31 @@ export default Ember.Component.extend({
     });
   },
 
-  initLegend(){
-    var steps = this.$('.range span');
-    steps.on('click', function(ev){
-      var target = ev.currentTarget;
-      var index = $(target).index();
-      steps.each(function(index, item){
-        item.classList.remove('-selected');
-      });
-      target.classList.add('-selected');
-      slider.noUiSlider.set(index);
-      this.updateLayer(index);
-    }.bind(this));
+  initLegend() {
+    if(!this.slider){
+      var steps = this.$('.range span');
+      steps.on('click', function(ev){
+        var target = ev.currentTarget;
+        var index = $(target).index();
+        steps.each(function(index, item){
+          item.classList.remove('-selected');
+        });
+        target.classList.add('-selected');
+        this.slider.noUiSlider.set(index);
+        this.updateLayer(index);
+      }.bind(this));
 
-    var slider = document.getElementById('timelineSlider');
-    noUiSlider.create(slider, {
-      start: [0],
-    	snap: true,
-    	range: {
-    		'min': 0,
-    		'50%': 1,
-    		'max': 2
-    	}
-    });
+      this.slider = document.getElementById('timelineSlider');
+      noUiSlider.create(this.slider, {
+        start: [0],
+        snap: true,
+        range: {
+          'min': 0,
+          '50%': 1,
+          'max': 2
+        }
+      });
+    }
   },
 
   updateLayer(index){
