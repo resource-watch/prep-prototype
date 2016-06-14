@@ -15,6 +15,7 @@ export default Ember.Component.extend({
     Reveal.addEventListener('slidechanged', function( event ) {
       if (event.currentSlide.classList.contains('slide-map-7-2')) {
         this.initMap();
+        this.initLegend();
       } else if (this.slideMap) {
         this.removeMap();
       }
@@ -57,23 +58,25 @@ export default Ember.Component.extend({
   fitBounds: function(){
     this.slideMap.fitBounds(this.bounds,{padding:[15,15]});
   },
+
   setBounds: function(){
     let query  = 'SELECT ST_AsGeoJSON(ST_Envelope(ST_Union(ST_Transform(ST_Envelope(the_raster_webmercator), 4326)))) as bbox FROM '+ this.cartodbtable +' as t';
     return $.get('https://prep-admin.cartodb.com/api/v2/sql/?q='+query);
   },
 
   addRaster(){
+    this.slideMapEl.addClass('-loading');
     var request = {
       layers: [{
-        "user_name": "prep-admin",
-        "type": "cartodb",
-        "options": {
-            "sql": "SELECT * FROM cwd1981_2010_ave_hst_1415990012",
-            "cartocss": "#cwd1981_2010_ave_hst_1415990012 {raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1, #c9946b ) stop(60, #c9946b ) stop(120, #85af43 ) stop(240, #497435 )}",
-          "cartocss_version": "2.3.0",
-          "geom_column": "the_raster_webmercator",
-          "geom_type": "raster",
-          "raster_band": 1
+        'user_name': 'prep-admin',
+        'type': 'cartodb',
+        'options': {
+            'sql': 'SELECT * FROM '+this.cartodbtable,
+            'cartocss': '#'+this.cartodbtable+' {raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1, #c9946b ) stop(50, #c9946b ) stop(100, #85af43 ) stop(200, #497435 )}',
+          'cartocss_version': '2.3.0',
+          'geom_column': 'the_raster_webmercator',
+          'geom_type': 'raster',
+          'raster_band': 1
         }
       }]
     };
@@ -86,13 +89,55 @@ export default Ember.Component.extend({
       data: JSON.stringify(request),
       success: function(data) {
         var tileUrl = 'https://prep-admin.cartodb.com/api/v1/map/' + data.layergroupid + '/{z}/{x}/{y}.png';
-        var layer = L.tileLayer(tileUrl);
-        layer.on('load',function(){
+        if (this.layer) {
+          this.slideMap.removeLayer(this.layer);
+          this.layer = null;
+        }
+        this.layer = L.tileLayer(tileUrl).addTo(this.slideMap, 1);
+        this.layer.on('load',function() {
           this.slideMapEl.removeClass('-loading');
         }.bind(this));
-        layer.addTo(this.slideMap, 1);
       }.bind(this)
     });
+  },
+
+  initLegend(){
+    var steps = this.$('.range span');
+    steps.on('click', function(ev){
+      var target = ev.currentTarget;
+      var index = $(target).index();
+      steps.each(function(index, item){
+        item.classList.remove('-selected');
+      });
+      target.classList.add('-selected');
+      slider.noUiSlider.set(index);
+      this.updateLayer(index);
+    }.bind(this));
+
+    var slider = document.getElementById('timelineSlider');
+    noUiSlider.create(slider, {
+      start: [0],
+    	snap: true,
+    	range: {
+    		'min': 0,
+    		'50%': 1,
+    		'max': 2
+    	}
+    });
+  },
+
+  updateLayer(index){
+    switch (index){
+      case 0:
+        this.cartodbtable = 'cwd1981_2010_ave_hst_1415990012';
+        break;
+      case 1:
+        this.cartodbtable = 'test';
+        break;
+      default:
+        this.cartodbtable = 'cwd1981_2010_ave_hst_1415990012';
+    }
+    this.addRaster();
   },
 
   removeMap(){
