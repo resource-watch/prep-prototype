@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   tagName: 'section',
 
   cartodbtable: 'tmx1951_1980jja_ave_hst',
-  cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1,#00009C) stop(31.875,#0046FF) stop(63.75,#00FFFF) stop(95.625,#0CFFCD) stop(127.5,#68FF8A) stop(159.375,#FEFF00) stop(191.25,#FF8F00) stop(223.125,#FF0000) stop(255,#800000) }',
+  cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(143.152,#00009C) stop(153.226,#0046FF) stop(163.3,#00FFFF) stop(173.375,#0CFFCD) stop(183.449,#68FF8A) stop(193.523,#FEFF00) stop(203.597,#FF8F00) stop(213.672,#FF0000) stop(223.746,#800000)}',
 
   vegaSpec: {
     "padding": {"top": 30,"left": 25,"bottom": 50,"right": 20},
@@ -50,10 +50,6 @@ export default Ember.Component.extend({
       {
         "name": "legend-1",
         "values": [{"name": "> 95°F","color": "#efa600"}]
-      },
-      {
-        "name": "legend-2",
-        "values": [{"name": "> 100°F","color": "#1a3e62"}]
       }
     ],
     "scales": [
@@ -225,50 +221,6 @@ export default Ember.Component.extend({
             "align": {"value": "left"}
           }
         }
-      },
-      {
-        "type": "rect",
-        "from": {"data": "legend-2"},
-        "properties": {
-          "enter": {
-            "x": {
-              "value": 40
-            },
-            "y": {
-              "field": {"group": "height"},
-              "mult": 1,
-              "offset": 45
-            },
-            "width": {"value": 9},
-            "y2": {
-              "field": {"group": "height"},
-              "mult": 1,
-              "offset": 48
-            },
-            "fill": {"field": "color"}
-          }
-        }
-      },
-      {
-        "type": "text",
-        "from": {"data": "legend-2"},
-        "properties": {
-          "enter": {
-            "x": {
-              "value": 40
-            },
-            "y": {"field": {"group": "height"},"mult": 1},
-            "text": {"template": "{{datum.name | upper}}"},
-            "dx": {"value": 16},
-            "dy": {"value": 50},
-            "font": {"value": "\"Montserrat\", sans-serif"},
-            "fontSize": {"value": 10},
-            "fontWeight": {"value": 700},
-            "fill": {"value": "#3b4f63"},
-            "opacity": {"value": 0.7},
-            "align": {"value": "left"}
-          }
-        }
       }
     ]
   },
@@ -363,7 +315,7 @@ export default Ember.Component.extend({
   },
 
   fitBounds: function(){
-    this.slideMap.fitBounds(this.bounds,{padding:[15,15]});
+    this.slideMap.fitBounds(this.bounds);
   },
 
   setBounds: function(){
@@ -413,34 +365,38 @@ export default Ember.Component.extend({
   },
 
   initLegend() {
-    if(!this.slider){
-      var steps = this.$('.range span');
-      steps.on('click', function(ev){
-        var target = ev.currentTarget;
-        this.index = $(target).index();
-        steps.each(function(index, item){
-          item.classList.remove('-selected');
-        });
-        target.classList.add('-selected');
-        this.slider.noUiSlider.set(this.index);
-        this.updateLayer(this.index);
-      }.bind(this));
+    if(this.slider) return this.updateLayer(this.index);
 
-      this.slider = document.getElementById('timelineSlider4-2');
-      noUiSlider.create(this.slider, {
-        start: [0],
-        snap: true,
-        range: {
-          'min': 0,
-          '25%': 1,
-          '50%': 2,
-          '75%': 3,
-          'max': 4
-        }
-      });
-    } else {
-      this.updateLayer(this.index);
-    }
+    const steps = this.$('.years span');
+
+    /* We create the slider instance */
+    this.slider = document.getElementById('timelineSlider4-2');
+    noUiSlider.create(this.slider, {
+      start: [ 0 ],
+      step: 1,
+      range: {
+        'min': [ 0 ],
+        'max': [ steps.length - 1 ]
+      }
+    });
+
+    const switchLayer = index => {
+      /* We update the map */
+      this.index = index;
+      this.updateLayer(index);
+      this.addRaster();
+
+      /* We update the slider */
+      this.slider.noUiSlider.set([ index ]);
+      steps.removeClass('-selected');
+      steps[index].classList.add('-selected');
+    };
+
+    /* Event listener for the click on the labels */
+    steps.on('click', e => switchLayer($(e.currentTarget).index()));
+
+    /* Event listener for when the cursor is dragged */
+    this.slider.noUiSlider.on('change', index => switchLayer(+index));
   },
 
   updateLayer(index){
