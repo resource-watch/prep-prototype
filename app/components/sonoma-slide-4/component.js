@@ -413,34 +413,38 @@ export default Ember.Component.extend({
   },
 
   initLegend() {
-    if(!this.slider){
-      var steps = this.$('.range span');
-      steps.on('click', function(ev){
-        var target = ev.currentTarget;
-        this.index = $(target).index();
-        steps.each(function(index, item){
-          item.classList.remove('-selected');
-        });
-        target.classList.add('-selected');
-        this.slider.noUiSlider.set(this.index);
-        this.updateLayer(this.index);
-      }.bind(this));
+    if(this.slider) return this.updateLayer(this.index);
 
-      this.slider = document.getElementById('timelineSlider4-2');
-      noUiSlider.create(this.slider, {
-        start: [0],
-        snap: true,
-        range: {
-          'min': 0,
-          '25%': 1,
-          '50%': 2,
-          '75%': 3,
-          'max': 4
-        }
-      });
-    } else {
-      this.updateLayer(this.index);
-    }
+    const steps = this.$('.range span');
+
+    /* We create the slider instance */
+    this.slider = document.getElementById('timelineSlider4-2');
+    noUiSlider.create(this.slider, {
+      start: [ 0 ],
+      step: 1,
+      range: {
+        'min': [ 0 ],
+        'max': [ steps.length - 1 ]
+      }
+    });
+
+    const switchLayer = index => {
+      /* We update the map */
+      this.index = index;
+      this.updateLayer(index);
+      this.addRaster();
+
+      /* We update the slider */
+      this.slider.noUiSlider.set([ index ]);
+      steps.removeClass('-selected');
+      steps[index].classList.add('-selected');
+    };
+
+    /* Event listener for the click on the labels */
+    steps.on('click', e => switchLayer($(e.currentTarget).index()));
+
+    /* Event listener for when the cursor is dragged */
+    this.slider.noUiSlider.on('change', index => switchLayer(+index));
   },
 
   updateLayer(index){
