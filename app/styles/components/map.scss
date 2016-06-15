@@ -4,13 +4,17 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: -1;
   min-height: 460px;
 
   &.-up{
     top:-40px;
   }
+
+  &.-big {
+    z-index: -1;
+  }
 }
+
 .map-legend{
   position: absolute;
   background-color: #fff;
