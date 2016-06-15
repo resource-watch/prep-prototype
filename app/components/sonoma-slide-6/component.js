@@ -180,7 +180,9 @@ export default Ember.Component.extend({
   },
 
   fetchData: function() {
-    return $.get('https://prep-admin.cartodb.com/api/v2/sql?q=SELECT to_date(date, \'DD/MM/YY\') as date, pcm_a2_lower_river as lower, pcm_a2_upper_river as upper FROM day_average_flows ORDER BY date ASC');
+    var query = "with low as (SELECT split_part(date, '/', 3)::int%2B2000 as date, count(pcm_a2_lower_river) lower FROM day_average_flows where pcm_a2_lower_river>38902.6 group by split_part(date, '/', 3)::int%2B2000 order by date asc), up as (SELECT split_part(date, '/', 3)::int%2B2000 as date, count(pcm_a2_upper_river) upper FROM day_average_flows where pcm_a2_upper_river>19298.2 group by split_part(date, '/', 3)::int%2B2000 order by date asc) select to_date(up.date::text, 'YYYY') date, lower, upper from low full outer join up on low.date=up.date order by date asc"
+
+    return $.get('https://prep-admin.cartodb.com/api/v2/sql?q='+query);
   },
 
   _getParseData: function(data,type) {

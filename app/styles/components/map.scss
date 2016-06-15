@@ -16,9 +16,12 @@
   background-color: #fff;
   right: 8rem;
   bottom: 8rem;
-  width: 360px;
+  min-width: 360px;
   padding: 15px 20px 20px;
-
+.map-card & {
+  right: 1rem;
+  bottom: 1rem;
+}
   >.title{
     display: block;
     font-family: "Open Sans";
@@ -43,6 +46,10 @@
       color: #1a3e62;
       margin-bottom: 10px;
       cursor: pointer;
+      margin-right: 8px;
+      &:last-child{
+        margin-right: 0;
+      }
       &.-selected{
         opacity:1;
       }
@@ -50,6 +57,6 @@
   }
 
   >.slide{
-    margin: 0 10px;
+    margin: 0 20px;
   }
 }
