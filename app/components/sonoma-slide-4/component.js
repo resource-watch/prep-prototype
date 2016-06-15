@@ -50,10 +50,6 @@ export default Ember.Component.extend({
       {
         "name": "legend-1",
         "values": [{"name": "> 95°F","color": "#efa600"}]
-      },
-      {
-        "name": "legend-2",
-        "values": [{"name": "> 100°F","color": "#1a3e62"}]
       }
     ],
     "scales": [
@@ -216,50 +212,6 @@ export default Ember.Component.extend({
             "y": {"field": {"group": "height"},"mult": 1},
             "text": {"template": "{{datum.name | upper}}"},
             "dx": {"value": -9},
-            "dy": {"value": 50},
-            "font": {"value": "\"Montserrat\", sans-serif"},
-            "fontSize": {"value": 10},
-            "fontWeight": {"value": 700},
-            "fill": {"value": "#3b4f63"},
-            "opacity": {"value": 0.7},
-            "align": {"value": "left"}
-          }
-        }
-      },
-      {
-        "type": "rect",
-        "from": {"data": "legend-2"},
-        "properties": {
-          "enter": {
-            "x": {
-              "value": 40
-            },
-            "y": {
-              "field": {"group": "height"},
-              "mult": 1,
-              "offset": 45
-            },
-            "width": {"value": 9},
-            "y2": {
-              "field": {"group": "height"},
-              "mult": 1,
-              "offset": 48
-            },
-            "fill": {"field": "color"}
-          }
-        }
-      },
-      {
-        "type": "text",
-        "from": {"data": "legend-2"},
-        "properties": {
-          "enter": {
-            "x": {
-              "value": 40
-            },
-            "y": {"field": {"group": "height"},"mult": 1},
-            "text": {"template": "{{datum.name | upper}}"},
-            "dx": {"value": 16},
             "dy": {"value": 50},
             "font": {"value": "\"Montserrat\", sans-serif"},
             "fontSize": {"value": 10},

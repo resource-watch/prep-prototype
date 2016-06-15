@@ -81,7 +81,7 @@ export default Ember.Component.extend({
       {
         "name": "legend-2",
         "values": [
-          {"name": "Precipitation average", "color": "#1a3e62"}
+          {"name": "Precipitation average", "color": "#F0C452"}
         ]
       }
     ],

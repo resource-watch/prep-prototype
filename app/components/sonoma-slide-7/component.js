@@ -58,7 +58,6 @@ export default Ember.Component.extend({
 
   fitBounds: function(){
     this.slideMap.fitBounds(this.bounds);
-    console.log('zoom',this.slideMap.getBoundsZoom(this.bounds));
   },
 
   setBounds: function(){
