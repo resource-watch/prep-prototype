@@ -57,7 +57,7 @@ initMap(){
 },
 
 fitBounds: function(){
-  this.slideMap.fitBounds(this.bounds,{padding:[15,15]});
+  this.slideMap.fitBounds(this.bounds);
 },
 
 setBounds: function(){
@@ -109,7 +109,7 @@ addRaster(){
 initLegend() {
   if(this.slider) return this.updateLayer(this.index);
 
-  const steps = this.$('.range span');
+  const steps = this.$('.years span');
 
   /* We create the slider instance */
   this.slider = document.getElementById('timelineSlider3-1');

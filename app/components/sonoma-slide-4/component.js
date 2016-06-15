@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   tagName: 'section',
 
   cartodbtable: 'tmx1951_1980jja_ave_hst',
-  cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1,#00009C) stop(31.875,#0046FF) stop(63.75,#00FFFF) stop(95.625,#0CFFCD) stop(127.5,#68FF8A) stop(159.375,#FEFF00) stop(191.25,#FF8F00) stop(223.125,#FF0000) stop(255,#800000) }',
+  cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(143.152,#00009C) stop(153.226,#0046FF) stop(163.3,#00FFFF) stop(173.375,#0CFFCD) stop(183.449,#68FF8A) stop(193.523,#FEFF00) stop(203.597,#FF8F00) stop(213.672,#FF0000) stop(223.746,#800000)}',
 
   vegaSpec: {
     "padding": {"top": 30,"left": 25,"bottom": 50,"right": 20},
@@ -363,7 +363,7 @@ export default Ember.Component.extend({
   },
 
   fitBounds: function(){
-    this.slideMap.fitBounds(this.bounds,{padding:[15,15]});
+    this.slideMap.fitBounds(this.bounds);
   },
 
   setBounds: function(){
@@ -415,7 +415,7 @@ export default Ember.Component.extend({
   initLegend() {
     if(this.slider) return this.updateLayer(this.index);
 
-    const steps = this.$('.range span');
+    const steps = this.$('.years span');
 
     /* We create the slider instance */
     this.slider = document.getElementById('timelineSlider4-2');
