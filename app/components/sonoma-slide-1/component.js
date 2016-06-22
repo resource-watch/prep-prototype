@@ -391,6 +391,7 @@ export default Ember.Component.extend({
       L.tileLayer(mapOptions.basemapSpec.url, mapOptions.basemapSpec.options).addTo(this.slideMap);
       L.control.zoom({ position: 'topright' }).addTo(this.slideMap);
       this.addRaster();
+      this.addLabels();
       if (this.bounds){
         this.fitBounds();
       } else {
@@ -407,11 +408,47 @@ export default Ember.Component.extend({
 
   fitBounds: function(){
     this.slideMap.fitBounds(this.bounds);
+    this.slideMap.setMaxBounds(this.bounds);
+    this.slideMap.options.minZoom = this.slideMap.getZoom();
   },
 
   setBounds: function(){
     let query  = 'SELECT ST_AsGeoJSON(ST_Envelope(ST_Union(ST_Transform(ST_Envelope(the_raster_webmercator), 4326)))) as bbox FROM '+ this.cartodbtable +' as t';
     return $.get('https://prep-admin.cartodb.com/api/v2/sql/?q='+query);
+  },
+
+  addLabels(){
+    var request = {
+      layers: [{
+        'user_name': 'prep-admin',
+        'type': 'cartodb',
+        'options': {
+            'sql': 'SELECT the_geom_webmercator, initcap(name) as name FROM \"prep-admin\".ci08au12',
+            'cartocss': '#ci08au12::labels {text-name: [name];text-face-name: \'Lato Regular\';text-size: 10;text-label-position-tolerance: 10;text-fill: #a3a1a0 ;text-halo-fill: #FFF;text-halo-radius: 0.2;text-dy: -10;text-allow-overlap: false;text-placement: point;text-placement-type: simple;}',
+          'cartocss_version': '2.3.0',
+        }
+      }]
+    };
+
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      contentType: 'application/json; charset=UTF-8',
+      url: 'https://prep-admin.cartodb.com/api/v1/map/',
+      data: JSON.stringify(request),
+      success: function(data) {
+        var tileUrl = 'https://prep-admin.cartodb.com/api/v1/map/' + data.layergroupid + '/{z}/{x}/{y}.png';
+        if (this.slideMap) {
+          var labelsLayer = L.tileLayer(tileUrl).setZIndex(3).addTo(this.slideMap, 1);
+
+          labelsLayer.on('load',function() {
+            if(this.slideMapEl){
+              this.slideMapEl.removeClass('-loading');
+            }
+          }.bind(this));
+        }
+      }.bind(this)
+    });
   },
 
   addRaster(){
@@ -475,7 +512,6 @@ export default Ember.Component.extend({
       /* We update the map */
       this.index = index;
       this.updateLayer(index);
-      this.addRaster();
 
       /* We update the slider */
       this.slider.noUiSlider.set([ index ]);
