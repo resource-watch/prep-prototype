@@ -4,7 +4,7 @@ export default Ember.Component.extend({
 
   tagName: 'section',
 
-  cartodbtable: 'tmx1951_1980jja_ave_hst',
+  cartodbtable: 'o_1_tmx1951_1980jja_ave_hst',
   cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1,#00009C) stop(31.875,#0046FF) stop(63.75,#00FFFF) stop(95.625,#0CFFCD) stop(127.5,#68FF8A) stop(159.375,#FEFF00) stop(191.25,#FF8F00) stop(223.125,#FF0000) stop(255,#800000) }',
 
   vegaSpec: {
@@ -389,6 +389,7 @@ export default Ember.Component.extend({
     if (!this.slideMap){
       this.slideMap = L.map('map1-3', mapOptions);
       L.tileLayer(mapOptions.basemapSpec.url, mapOptions.basemapSpec.options).addTo(this.slideMap);
+      L.control.zoom({ position: 'topright' }).addTo(this.slideMap);
       this.addRaster();
       if (this.bounds){
         this.fitBounds();
@@ -420,7 +421,7 @@ export default Ember.Component.extend({
         'user_name': 'prep-admin',
         'type': 'cartodb',
         'options': {
-            'sql': 'SELECT * FROM '+this.cartodbtable,
+            'sql': 'with xr as (SELECT the_geom_webmercator FROM \"prep-admin\".cb_2015_06_tract_500k_copy) select st_clip(the_raster_webmercator, the_geom_webmercator, true) the_raster_webmercator from \"prep-admin\".'+this.cartodbtable+', xr ',
             'cartocss': '#'+this.cartodbtable+this.cartocss,
           'cartocss_version': '2.3.0',
           'geom_column': 'the_raster_webmercator',
@@ -492,19 +493,19 @@ export default Ember.Component.extend({
   updateLayer(index){
     switch (index){
       case 0:
-        this.cartodbtable = 'tmx1981_2010jja_ave_hst';
+        this.cartodbtable = 'o_1_tmx1981_2010jja_ave_hst';
         break;
       case 1:
-        this.cartodbtable = 'tmx2010_2039jja_ave_ccsm4';
+        this.cartodbtable = 'o_1_tmx2010_2039jja_ave_ccsm4';
         break;
       case 2:
-        this.cartodbtable = 'tmx2040_2069jja_ave_ccsm4';
+        this.cartodbtable = 'o_1_tmx2040_2069jja_ave_ccsm4';
         break;
       case 3:
-        this.cartodbtable = 'tmx2070_2099jja_ave_ccsm4';
+        this.cartodbtable = 'o_1_tmx2070_2099jja_ave_ccsm4';
         break;
       default:
-        this.cartodbtable = 'tmx1951_1980jja_ave_hst';
+        this.cartodbtable = 'o_1_tmx1951_1980jja_ave_hst';
     }
     this.addRaster();
   },

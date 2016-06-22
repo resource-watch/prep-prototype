@@ -6,7 +6,7 @@ export default Ember.Component.extend({
   attributeBindings:["data-title"],
   "data-title": 'Slide 2',
 
-  cartodbtable: 'tmx1951_1980jja_ave_hst',
+  cartodbtable: 'o_1_tmx1951_1980jja_ave_hst',
   cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1,#00009C) stop(31.875,#0046FF) stop(63.75,#00FFFF) stop(95.625,#0CFFCD) stop(127.5,#68FF8A) stop(159.375,#FEFF00) stop(191.25,#FF8F00) stop(223.125,#FF0000) stop(255,#800000) }',
 
   didRender(){
@@ -38,6 +38,7 @@ export default Ember.Component.extend({
     if (!this.slideMap){
       this.slideMap = L.map('map2-1', mapOptions);
       L.tileLayer(mapOptions.basemapSpec.url, mapOptions.basemapSpec.options).addTo(this.slideMap);
+      L.control.zoom({ position: 'topright' }).addTo(this.slideMap);
       this.addRaster();
       if (this.bounds){
         this.fitBounds();
@@ -69,7 +70,7 @@ export default Ember.Component.extend({
         'user_name': 'prep-admin',
         'type': 'cartodb',
         'options': {
-            'sql': 'SELECT * FROM '+this.cartodbtable,
+            'sql': 'with xr as (SELECT the_geom_webmercator FROM \"prep-admin\".cb_2015_06_tract_500k_copy) select st_clip(the_raster_webmercator, the_geom_webmercator, true) the_raster_webmercator from \"prep-admin\".'+this.cartodbtable+', xr ',
             'cartocss': '#'+this.cartodbtable+this.cartocss,
           'cartocss_version': '2.3.0',
           'geom_column': 'the_raster_webmercator',
