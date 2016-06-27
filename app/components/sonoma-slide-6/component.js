@@ -5,33 +5,53 @@ export default Ember.Component.extend({
   tagName: 'section',
 
   vegaSpec: {
-    "padding": {"top": 30,"left": 40,"bottom": 25,"right": 20},
+    "padding": {"top": 30,"left": 40,"bottom": 65,"right": 20},
     "data": [
       {
         "name": "bar-1",
         "values": [],
-        "format": {"parse": {"x": "date"}}
+        "format": {"parse": {"x": "date"}},
+        "transform": [
+          {
+            "type": "formula",
+            "field": "x1",
+            "expr": "datum.x - 5000000000"
+          },
+          {
+            "type": "formula",
+            "field": "x2",
+            "expr": "datum.x + 5000000000"
+          }
+        ]
       },
       {
         "name": "bar-2",
         "values": [],
-        "format": {"parse": {"x": "date"}}
+        "format": {"parse": {"x": "date"}},
+        "transform": [
+          {
+            "type": "formula",
+            "field": "x1",
+            "expr": "datum.x - 5000000000 + 12000000000"
+          },
+          {
+            "type": "formula",
+            "field": "x2",
+            "expr": "datum.x + 5000000000 + 12000000000"
+          }
+        ]
       },
       {
         "name": "axis",
-        "values": [{"x": "Year","y": "Watershed"}]
+        "values": [{"x": "Year","y": "Number of events"}]
       },
       {
         "name": "legend-1",
-        "values": [
-          {"name": "Upper flow", "color": "#ffc94e"}
-        ]
+        "values": [{"name": "Upper flow","color": "#ffc94e"}]
       },
       {
         "name": "legend-2",
-        "values": [
-          {"name": "Lower flow", "color": "#1a3e62"}
-        ]
+        "values": [{"name": "Lower flow","color": "#1a3e62"}]
       }
     ],
     "scales": [
@@ -39,13 +59,23 @@ export default Ember.Component.extend({
         "name": "x",
         "type": "time",
         "range": "width",
-        "domain": {"data": "bar-1","field": "x"}
+        "domain": {
+          "fields": [
+            {"data": "bar-1", "field": "x"},
+            {"data": "bar-2", "field": "x"}
+           ]
+        }
       },
       {
         "name": "y",
         "type": "linear",
         "range": "height",
-        "domain": {"data": "bar-1","field": "y"},
+        "domain": {
+          "fields": [
+            {"data": "bar-1", "field": "y"},
+            {"data": "bar-2", "field": "y"}
+           ]
+        },
         "nice": true
       }
     ],
@@ -107,12 +137,8 @@ export default Ember.Component.extend({
         "from": {"data": "bar-1"},
         "properties": {
           "enter": {
-            "x": {
-              "scale": "x",
-              "field": "x",
-              "mult": 0.98
-            },
-            "width": {"value": 4},
+            "x": {"scale": "x","field": "x1"},
+            "x2": {"scale": "x","field": "x2"},
             "y": {"scale": "y","field": "y"},
             "y2": {"field": {"group": "height"}},
             "fill": {"value": "#ffc94e"},
@@ -127,11 +153,12 @@ export default Ember.Component.extend({
           "enter": {
             "x": {
               "scale": "x",
-              "field": "x",
-              "mult": 0.98,
-              "offset": 5
+              "field": "x1"
             },
-            "width": {"value": 4},
+            "x2": {
+              "scale": "x",
+              "field": "x2"
+            },
             "y": {"scale": "y","field": "y"},
             "y2": {"field": {"group": "height"}},
             "fill": {"value": "#263e57"},
@@ -204,10 +231,7 @@ export default Ember.Component.extend({
         "properties": {
           "enter": {
             "x": 0,
-            "y": {
-              "field": {"group": "height"},
-              "mult": 1
-            },
+            "y": {"field": {"group": "height"},"mult": 1},
             "text": {"template": "{{datum.name | upper}}"},
             "dx": {"value": -9},
             "dy": {"value": 50},
@@ -225,11 +249,7 @@ export default Ember.Component.extend({
         "from": {"data": "legend-2"},
         "properties": {
           "enter": {
-            "x": {
-              "field": {"group": "width"},
-              "mult": 0.5,
-              "offset": 0
-            },
+            "x": {"value": 100},
             "y": {
               "field": {"group": "height"},
               "mult": 1,
@@ -250,17 +270,10 @@ export default Ember.Component.extend({
         "from": {"data": "legend-2"},
         "properties": {
           "enter": {
-            "x": {
-              "field": {"group": "width"},
-              "mult": 0.5,
-              "offset": 0
-            },
-            "y": {
-              "field": {"group": "height"},
-              "mult": 1
-            },
+            "x": 0,
+            "y": {"field": {"group": "height"},"mult": 1},
             "text": {"template": "{{datum.name | upper}}"},
-            "dx": {"value": 16},
+            "dx": {"value": 115},
             "dy": {"value": 50},
             "font": {"value": "\"Montserrat\", sans-serif"},
             "fontSize": {"value": 10},
@@ -280,7 +293,6 @@ export default Ember.Component.extend({
       .done(function(data){
         this.vegaSpec.data[0].values = this._getParseData(data.rows,'lower');
         this.vegaSpec.data[1].values = this._getParseData(data.rows,'upper');
-        console.log('vg',JSON.stringify(this.vegaSpec));
         this.initChart();
       }.bind(this));
     this.setListeners();
@@ -288,6 +300,7 @@ export default Ember.Component.extend({
 
   fetchData: function() {
     var query = "with low as (SELECT split_part(date, '/', 3)::int%2B2000 as date, count(pcm_a2_lower_river) lower FROM day_average_flows where pcm_a2_lower_river>38902.6 group by split_part(date, '/', 3)::int%2B2000 order by date asc), up as (SELECT split_part(date, '/', 3)::int%2B2000 as date, count(pcm_a2_upper_river) upper FROM day_average_flows where pcm_a2_upper_river>19298.2 group by split_part(date, '/', 3)::int%2B2000 order by date asc) select to_date(up.date::text, 'YYYY') date, lower, upper from low full outer join up on low.date=up.date order by date asc"
+    // var query = "with low as (SELECT distinct on (cat)  (cat-400) as cat, count(pcm_a2_lower_river) over (partition by cat order by cat asc) lower FROM \"prep-admin\".day_average_flow where pcm_a2_lower_river>38902.6 order by cat asc), up as (SELECT distinct on (cat)  (cat-400) as cat, count(pcm_a2_upper_river) over (partition by cat order by cat asc) upper FROM \"prep-admin\".day_average_flow where pcm_a2_upper_river>19298.2 order by cat asc) select up.cat, lower, upper from low full outer join up on low.cat=up.cat order by cat asc";
 
     return $.get('https://prep-admin.cartodb.com/api/v2/sql?q='+query);
   },

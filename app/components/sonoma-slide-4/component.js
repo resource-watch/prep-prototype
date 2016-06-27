@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   tagName: 'section',
 
   cartodbtable: 'o_1_tmx1951_1980jja_ave_hst',
-  cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(143.152,#00009C) stop(153.226,#0046FF) stop(163.3,#00FFFF) stop(173.375,#0CFFCD) stop(183.449,#68FF8A) stop(193.523,#FEFF00) stop(203.597,#FF8F00) stop(213.672,#FF0000) stop(223.746,#800000)}',
+  cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(250,#800000) }',
 
   vegaSpec: {
     "padding": {"top": 30,"left": 25,"bottom": 50,"right": 20},

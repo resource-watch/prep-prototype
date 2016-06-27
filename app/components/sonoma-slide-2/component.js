@@ -7,7 +7,7 @@ export default Ember.Component.extend({
   "data-title": 'Slide 2',
 
   cartodbtable: 'o_1_tmx1951_1980jja_ave_hst',
-  cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1,#00009C) stop(31.875,#0046FF) stop(63.75,#00FFFF) stop(95.625,#0CFFCD) stop(127.5,#68FF8A) stop(159.375,#FEFF00) stop(191.25,#FF8F00) stop(223.125,#FF0000) stop(255,#800000) }',
+  cartocss: '{raster-opacity:1;}',
 
   didRender(){
     this.slideMapEl = this.$('#map2-1');
@@ -41,17 +41,17 @@ export default Ember.Component.extend({
       L.control.zoom({ position: 'topright' }).addTo(this.slideMap);
       this.addRaster();
       this.addLabels();
-      if (this.bounds){
-        this.fitBounds();
-      } else {
-        this.setBounds().done(function(data){
-          let coordinates = JSON.parse(data.rows[0].bbox).coordinates[0];
-          let southWest = L.latLng(coordinates[0][1],coordinates[0][0]),
-          northEast = L.latLng(coordinates[2][1],coordinates[2][0]);
-          this.bounds = L.latLngBounds(southWest, northEast);
-          this.fitBounds();
-        }.bind(this));
-      }
+      // if (this.bounds){
+      //   this.fitBounds();
+      // } else {
+      //   this.setBounds().done(function(data){
+      //     let coordinates = JSON.parse(data.rows[0].bbox).coordinates[0];
+      //     let southWest = L.latLng(coordinates[0][1],coordinates[0][0]),
+      //     northEast = L.latLng(coordinates[2][1],coordinates[2][0]);
+      //     this.bounds = L.latLngBounds(southWest, northEast);
+      //     this.fitBounds();
+      //   }.bind(this));
+      // }
     }
   },
 

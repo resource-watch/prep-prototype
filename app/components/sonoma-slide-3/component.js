@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   tagName: 'section',
 
 cartodbtable: 'o_1_tmn1951_1980djf_ave_hst',
-cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1,rgba(44,123,182,1) )stop(31.875,rgba(107,170,207,1) )stop(63.75,rgba(171,217,233,1) )stop(95.625,rgba(213,236,212,1) )stop(127.5,rgba(255,255,191,1) )stop(159.375,rgba(254,214,144,1) )stop(191.25,rgba(253,174,97,1) )stop(223.125,rgba(234,99,62,1) )stop(255,rgba(215,25,28,1) )}',
+cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(250,#800000) }',
 
 didRender() {
   this.slideMapEl = this.$('#map3-1');
@@ -44,17 +44,17 @@ initMap(){
     L.control.zoom({ position: 'topright' }).addTo(this.slideMap);
     this.addRaster();
     this.addLabels();
-    if (this.bounds){
-      this.fitBounds();
-    } else {
-      this.setBounds().done(function(data){
-        let coordinates = JSON.parse(data.rows[0].bbox).coordinates[0];
-        let southWest = L.latLng(coordinates[0][1],coordinates[0][0]),
-        northEast = L.latLng(coordinates[2][1],coordinates[2][0]);
-        this.bounds = L.latLngBounds(southWest, northEast);
-        this.fitBounds();
-      }.bind(this));
-    }
+    // if (this.bounds){
+    //   this.fitBounds();
+    // } else {
+    //   this.setBounds().done(function(data){
+    //     let coordinates = JSON.parse(data.rows[0].bbox).coordinates[0];
+    //     let southWest = L.latLng(coordinates[0][1],coordinates[0][0]),
+    //     northEast = L.latLng(coordinates[2][1],coordinates[2][0]);
+    //     this.bounds = L.latLngBounds(southWest, northEast);
+    //     this.fitBounds();
+    //   }.bind(this));
+    // }
   }
 },
 
@@ -183,27 +183,21 @@ updateLayer(index){
   switch (index){
     case 0:
       this.cartodbtable = 'o_1_tmn1951_1980djf_ave_hst';
-      this.cartocss = '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1,rgba(44,123,182,1) )stop(31.875,rgba(107,170,207,1) )stop(63.75,rgba(171,217,233,1) )stop(95.625,rgba(213,236,212,1) )stop(127.5,rgba(255,255,191,1) )stop(159.375,rgba(254,214,144,1) )stop(191.25,rgba(253,174,97,1) )stop(223.125,rgba(234,99,62,1) )stop(255,rgba(215,25,28,1) )}';
       break;
     case 1:
       this.cartodbtable = 'o_1_tmn1981_2010djf_ave_hst';
-      this.cartocss = '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1,rgba(44,123,182,1) )stop(31.875,rgba(107,170,207,1) )stop(63.75,rgba(171,217,233,1) )stop(95.625,rgba(213,236,212,1) )stop(127.5,rgba(255,255,191,1) )stop(159.375,rgba(254,214,144,1) )stop(191.25,rgba(253,174,97,1) )stop(223.125,rgba(234,99,62,1) )stop(255,rgba(215,25,28,1) )}';
       break;
     case 2:
       this.cartodbtable = 'o_1_tmn2010_2039djf_ave_ccsm4';
-      this.cartocss = '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1,rgba(44,123,182,1) )stop(31.875,rgba(107,170,207,1) )stop(63.75,rgba(171,217,233,1) )stop(95.625,rgba(213,236,212,1) )stop(127.5,rgba(255,255,191,1) )stop(159.375,rgba(254,214,144,1) )stop(191.25,rgba(253,174,97,1) )stop(223.125,rgba(234,99,62,1) )stop(255,rgba(215,25,28,1) )}';
       break;
     case 3:
       this.cartodbtable = 'o_1_tmn2040_2069djf_ave_ccsm4';
-      this.cartocss = '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1,rgba(44,123,182,1) )stop(31.875,rgba(107,170,207,1) )stop(63.75,rgba(171,217,233,1) )stop(95.625,rgba(213,236,212,1) )stop(127.5,rgba(255,255,191,1) )stop(159.375,rgba(254,214,144,1) )stop(191.25,rgba(253,174,97,1) )stop(223.125,rgba(234,99,62,1) )stop(255,rgba(215,25,28,1) )}';
       break;
     case 4:
       this.cartodbtable = 'o_1_tmn2070_2099djf_ave_ccsm4';
-      this.cartocss = '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1,rgba(44,123,182,1) )stop(31.875,rgba(107,170,207,1) )stop(63.75,rgba(171,217,233,1) )stop(95.625,rgba(213,236,212,1) )stop(127.5,rgba(255,255,191,1) )stop(159.375,rgba(254,214,144,1) )stop(191.25,rgba(253,174,97,1) )stop(223.125,rgba(234,99,62,1) )stop(255,rgba(215,25,28,1) )}';
       break;
     default:
       this.cartodbtable = 'o_1_tmn1951_1980djf_ave_hst';
-      this.cartocss = '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1,rgba(44,123,182,1) )stop(31.875,rgba(107,170,207,1) )stop(63.75,rgba(171,217,233,1) )stop(95.625,rgba(213,236,212,1) )stop(127.5,rgba(255,255,191,1) )stop(159.375,rgba(254,214,144,1) )stop(191.25,rgba(253,174,97,1) )stop(223.125,rgba(234,99,62,1) )stop(255,rgba(215,25,28,1) )}';
   }
 },
 
