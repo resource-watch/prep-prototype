@@ -21,6 +21,18 @@ export default Ember.Component.extend({
         "name": "axis",
         "values": [{"x": "Year","y": "Watershed"}]
       },
+      {
+        "name": "legend-1",
+        "values": [
+          {"name": "Upper flow", "color": "#ffc94e"}
+        ]
+      },
+      {
+        "name": "legend-2",
+        "values": [
+          {"name": "Lower flow", "color": "#1a3e62"}
+        ]
+      }
     ],
     "scales": [
       {
@@ -164,6 +176,100 @@ export default Ember.Component.extend({
             "align": {"value": "left"}
           }
         }
+      },
+      {
+        "type": "rect",
+        "from": {"data": "legend-1"},
+        "properties": {
+          "enter": {
+            "x": {"value": -25},
+            "y": {
+              "field": {"group": "height"},
+              "mult": 1,
+              "offset": 44
+            },
+            "width": {"value": 9},
+            "y2": {
+              "field": {"group": "height"},
+              "mult": 1,
+              "offset": 47
+            },
+            "fill": {"field": "color"}
+          }
+        }
+      },
+      {
+        "type": "text",
+        "from": {"data": "legend-1"},
+        "properties": {
+          "enter": {
+            "x": 0,
+            "y": {
+              "field": {"group": "height"},
+              "mult": 1
+            },
+            "text": {"template": "{{datum.name | upper}}"},
+            "dx": {"value": -9},
+            "dy": {"value": 50},
+            "font": {"value": "\"Montserrat\", sans-serif"},
+            "fontSize": {"value": 10},
+            "fontWeight": {"value": 700},
+            "fill": {"value": "#3b4f63"},
+            "opacity": {"value": 0.7},
+            "align": {"value": "left"}
+          }
+        }
+      },
+      {
+        "type": "rect",
+        "from": {"data": "legend-2"},
+        "properties": {
+          "enter": {
+            "x": {
+              "field": {"group": "width"},
+              "mult": 0.5,
+              "offset": 0
+            },
+            "y": {
+              "field": {"group": "height"},
+              "mult": 1,
+              "offset": 44
+            },
+            "width": {"value": 9},
+            "y2": {
+              "field": {"group": "height"},
+              "mult": 1,
+              "offset": 47
+            },
+            "fill": {"field": "color"}
+          }
+        }
+      },
+      {
+        "type": "text",
+        "from": {"data": "legend-2"},
+        "properties": {
+          "enter": {
+            "x": {
+              "field": {"group": "width"},
+              "mult": 0.5,
+              "offset": 0
+            },
+            "y": {
+              "field": {"group": "height"},
+              "mult": 1
+            },
+            "text": {"template": "{{datum.name | upper}}"},
+            "dx": {"value": 16},
+            "dy": {"value": 50},
+            "font": {"value": "\"Montserrat\", sans-serif"},
+            "fontSize": {"value": 10},
+            "fontWeight": {"value": 700},
+            "fill": {"value": "#3b4f63"},
+            "opacity": {"value": 0.7},
+            "align": {"value": "left"}
+          }
+        }
       }
     ]
   },
@@ -174,6 +280,7 @@ export default Ember.Component.extend({
       .done(function(data){
         this.vegaSpec.data[0].values = this._getParseData(data.rows,'lower');
         this.vegaSpec.data[1].values = this._getParseData(data.rows,'upper');
+        console.log('vg',JSON.stringify(this.vegaSpec));
         this.initChart();
       }.bind(this));
     this.setListeners();
@@ -188,7 +295,8 @@ export default Ember.Component.extend({
   _getParseData: function(data,type) {
     var parseData = [];
     data.forEach(function(item){
-      parseData.push({x:item.date,y:item[type]});
+      let y = item[type] || 0;
+      parseData.push({x: item.date,y: y});
     });
     return parseData;
   },

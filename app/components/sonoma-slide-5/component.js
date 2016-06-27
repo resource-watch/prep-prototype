@@ -22,19 +22,7 @@ export default Ember.Component.extend({
         "values": [
           {"x": "Year", "y": "Precipitation in mm"}
         ]
-      },
-      // {
-      //   "name": "legend-1",
-      //   "values": [
-      //     {"name": "Variability in precipitation", "color": "#fff"}
-      //   ]
-      // },
-      // {
-      //   "name": "legend-2",
-      //   "values": [
-      //     {"name": "Precipitation average", "color": "#1a3e62"}
-      //   ]
-      // }
+      }
     ],
     "scales": [
       {
@@ -170,100 +158,6 @@ export default Ember.Component.extend({
           }
         }
       },
-      // {
-      //   "type": "rect",
-      //   "from": {"data": "legend-1"},
-      //   "properties": {
-      //     "enter": {
-      //       "x": {"value": -25},
-      //       "y": {
-      //         "field": {"group": "height"},
-      //         "mult": 1,
-      //         "offset": 44
-      //       },
-      //       "width": {"value": 9},
-      //       "y2": {
-      //         "field": {"group": "height"},
-      //         "mult": 1,
-      //         "offset": 47
-      //       },
-      //       "fill": {"field": "color"}
-      //     }
-      //   }
-      // },
-      // {
-      //   "type": "text",
-      //   "from": {"data": "legend-1"},
-      //   "properties": {
-      //     "enter": {
-      //       "x": 0,
-      //       "y": {
-      //         "field": {"group": "height"},
-      //         "mult": 1
-      //       },
-      //       "text": {"template": "{{datum.name | upper}}"},
-      //       "dx": {"value": -9},
-      //       "dy": {"value": 50},
-      //       "font": {"value": "\"Montserrat\", sans-serif"},
-      //       "fontSize": {"value": 10},
-      //       "fontWeight": {"value": 700},
-      //       "fill": {"value": "#3b4f63"},
-      //       "opacity": {"value": 0.7},
-      //       "align": {"value": "left"}
-      //     }
-      //   }
-      // },
-      // {
-      //   "type": "rect",
-      //   "from": {"data": "legend-2"},
-      //   "properties": {
-      //     "enter": {
-      //       "x": {
-      //         "field": {"group": "width"},
-      //         "mult": 0.5,
-      //         "offset": 0
-      //       },
-      //       "y": {
-      //         "field": {"group": "height"},
-      //         "mult": 1,
-      //         "offset": 44
-      //       },
-      //       "width": {"value": 9},
-      //       "y2": {
-      //         "field": {"group": "height"},
-      //         "mult": 1,
-      //         "offset": 47
-      //       },
-      //       "fill": {"field": "color"}
-      //     }
-      //   }
-      // },
-      // {
-      //   "type": "text",
-      //   "from": {"data": "legend-2"},
-      //   "properties": {
-      //     "enter": {
-      //       "x": {
-      //         "field": {"group": "width"},
-      //         "mult": 0.5,
-      //         "offset": 0
-      //       },
-      //       "y": {
-      //         "field": {"group": "height"},
-      //         "mult": 1
-      //       },
-      //       "text": {"template": "{{datum.name | upper}}"},
-      //       "dx": {"value": 16},
-      //       "dy": {"value": 50},
-      //       "font": {"value": "\"Montserrat\", sans-serif"},
-      //       "fontSize": {"value": 10},
-      //       "fontWeight": {"value": 700},
-      //       "fill": {"value": "#3b4f63"},
-      //       "opacity": {"value": 0.7},
-      //       "align": {"value": "left"}
-      //     }
-      //   }
-      // }
     ]
   },
 
@@ -278,7 +172,7 @@ export default Ember.Component.extend({
   },
 
   fetchData: function() {
-    return $.get('https://prep-admin.cartodb.com/api/v2/sql?q=SELECT year AS x, precipitation_mm_yr AS y FROM precipitation_ccsm4_rcp8');
+    return $.get('https://prep-admin.cartodb.com/api/v2/sql?q=SELECT year AS x, precipitation_mm_yr AS y FROM "prep-admin".precipitation_ccsm4_rcp8 union all select year AS x, precipitation_mm_yr AS y FROM precipitation1920_2009 order by x asc');
   },
 
   setListeners: function() {

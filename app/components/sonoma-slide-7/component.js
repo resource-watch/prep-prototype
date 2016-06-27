@@ -110,7 +110,7 @@ export default Ember.Component.extend({
         'user_name': 'prep-admin',
         'type': 'cartodb',
         'options': {
-            'sql': 'with xr as (SELECT the_geom_webmercator FROM \"prep-admin\".cb_2015_06_tract_500k_copy) select st_clip(the_raster_webmercator, the_geom_webmercator, true) the_raster_webmercator from \"prep-admin\".'+this.cartodbtable+', xr ',
+            'sql': 'with xr as (SELECT the_geom_webmercator FROM \"prep-admin\".cb_2015_06_tract_500k_copy) select ST_clip(the_raster_webmercator,1,the_geom_webmercator, 1) the_raster_webmercator from \"prep-admin\".'+this.cartodbtable+', xr  where st_intersects(the_geom_webmercator, the_raster_webmercator)',
             'cartocss': '#'+this.cartodbtable+' '+this.cartocss,
           'cartocss_version': '2.3.0',
           'geom_column': 'the_raster_webmercator',
@@ -181,6 +181,10 @@ export default Ember.Component.extend({
 
   updateLayer(index){
     switch (index){
+      case 0:
+        this.cartodbtable = 'o_1_cwd1951_1980_ave';
+        this.cartocss = '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1,rgba(44,123,182,1) )stop(31.875,rgba(107,170,207,1) )stop(63.75,rgba(171,217,233,1) )stop(95.625,rgba(213,236,212,1) )stop(127.5,rgba(255,255,191,1) )stop(159.375,rgba(254,214,144,1) )stop(191.25,rgba(253,174,97,1) )stop(223.125,rgba(234,99,62,1) )stop(255,rgba(215,25,28,1) )}';
+        break;
       case 1:
         this.cartodbtable = 'o_1_cwd1981_2010_ave_hst';
         this.cartocss = '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(1,rgba(44,123,182,1) )stop(31.875,rgba(107,170,207,1) )stop(63.75,rgba(171,217,233,1) )stop(95.625,rgba(213,236,212,1) )stop(127.5,rgba(255,255,191,1) )stop(159.375,rgba(254,214,144,1) )stop(191.25,rgba(253,174,97,1) )stop(223.125,rgba(234,99,62,1) )stop(255,rgba(215,25,28,1) )}';

@@ -107,7 +107,7 @@ export default Ember.Component.extend({
         'user_name': 'prep-admin',
         'type': 'cartodb',
         'options': {
-            'sql': 'with xr as (SELECT the_geom_webmercator FROM \"prep-admin\".cb_2015_06_tract_500k_copy) select st_clip(the_raster_webmercator, the_geom_webmercator, true) the_raster_webmercator from \"prep-admin\".'+this.cartodbtable+', xr ',
+            'sql': 'with xr as (SELECT the_geom_webmercator FROM \"prep-admin\".cb_2015_06_tract_500k_copy) select ST_clip(the_raster_webmercator,1,the_geom_webmercator, 1) the_raster_webmercator from \"prep-admin\".'+this.cartodbtable+', xr  where st_intersects(the_geom_webmercator, the_raster_webmercator)',
             'cartocss': '#'+this.cartodbtable+this.cartocss,
           'cartocss_version': '2.3.0',
           'geom_column': 'the_raster_webmercator',

@@ -368,7 +368,7 @@ export default Ember.Component.extend({
         'user_name': 'prep-admin',
         'type': 'cartodb',
         'options': {
-            'sql': 'with xr as (SELECT the_geom_webmercator FROM \"prep-admin\".cb_2015_06_tract_500k_copy) select st_clip(the_raster_webmercator, the_geom_webmercator, true) the_raster_webmercator from \"prep-admin\".'+this.cartodbtable+', xr ',
+            'sql': 'with xr as (SELECT the_geom_webmercator FROM \"prep-admin\".cb_2015_06_tract_500k_copy) select ST_clip(the_raster_webmercator,1,the_geom_webmercator, 1) the_raster_webmercator from \"prep-admin\".'+this.cartodbtable+', xr  where st_intersects(the_geom_webmercator, the_raster_webmercator)',
             'cartocss': '#'+this.cartodbtable+this.cartocss,
           'cartocss_version': '2.3.0',
           'geom_column': 'the_raster_webmercator',
@@ -440,15 +440,18 @@ export default Ember.Component.extend({
   updateLayer(index){
     switch (index){
       case 0:
-        this.cartodbtable = 'o_1_tmx1981_2010jja_ave_hst';
+        this.cartodbtable = 'o_1_tmx1951_1980jja_ave_hst';
         break;
       case 1:
-        this.cartodbtable = 'o_1_tmx2010_2039jja_ave_ccsm4';
+        this.cartodbtable = 'o_1_tmx1981_2010jja_ave_hst';
         break;
       case 2:
-        this.cartodbtable = 'o_1_tmx2040_2069jja_ave_ccsm4';
+        this.cartodbtable = 'o_1_tmx2010_2039jja_ave_ccsm4';
         break;
       case 3:
+        this.cartodbtable = 'o_1_tmx2040_2069jja_ave_ccsm4';
+        break;
+      case 4:
         this.cartodbtable = 'o_1_tmx2070_2099jja_ave_ccsm4';
         break;
       default:
