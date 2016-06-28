@@ -8,36 +8,13 @@ export default Ember.Component.extend({
     "padding": {"top": 30,"left": 40,"bottom": 65,"right": 20},
     "data": [
       {
-        "name": "bar-1",
+        "name": "bars",
         "values": [],
-        "format": {"parse": {"x": "date"}},
         "transform": [
           {
             "type": "formula",
-            "field": "x1",
-            "expr": "datum.x - 5000000000"
-          },
-          {
-            "type": "formula",
-            "field": "x2",
-            "expr": "datum.x + 5000000000"
-          }
-        ]
-      },
-      {
-        "name": "bar-2",
-        "values": [],
-        "format": {"parse": {"x": "date"}},
-        "transform": [
-          {
-            "type": "formula",
-            "field": "x1",
-            "expr": "datum.x - 5000000000 + 12000000000"
-          },
-          {
-            "type": "formula",
-            "field": "x2",
-            "expr": "datum.x + 5000000000 + 12000000000"
+            "field": "label",
+            "expr": "(2001 + datum.x * 5) + '-' + (2005 + datum.x * 5)"
           }
         ]
       },
@@ -47,36 +24,33 @@ export default Ember.Component.extend({
       },
       {
         "name": "legend-1",
-        "values": [{"name": "Upper flow","color": "#ffc94e"}]
+        "values": [{"name": "Lower flow","color": "#1a3e62"}]
       },
       {
         "name": "legend-2",
-        "values": [{"name": "Lower flow","color": "#1a3e62"}]
+        "values": [{"name": "Upper flow","color": "#ffc94e"}]
       }
     ],
     "scales": [
       {
         "name": "x",
-        "type": "time",
+        "type": "ordinal",
         "range": "width",
-        "domain": {
-          "fields": [
-            {"data": "bar-1", "field": "x"},
-            {"data": "bar-2", "field": "x"}
-           ]
-        }
+        "padding": 0.2,
+        "domain": {"fields": [{"data": "bars","field": "x"}]}
       },
       {
         "name": "y",
         "type": "linear",
         "range": "height",
-        "domain": {
-          "fields": [
-            {"data": "bar-1", "field": "y"},
-            {"data": "bar-2", "field": "y"}
-           ]
-        },
+        "domain": {"fields": [{"data": "bars","field": "y"}]},
         "nice": true
+      },
+      {
+        "name": "color",
+        "type": "ordinal",
+        "domain": {"data": "bars","field": "position"},
+        "range": ["#1a3e62","#ffc94e"]
       }
     ],
     "axes": [
@@ -84,8 +58,6 @@ export default Ember.Component.extend({
         "name": "lbl",
         "type": "x",
         "scale": "x",
-        "ticks": 5,
-        "format": "%Y",
         "properties": {
           "ticks": {"strokeWidth": {"value": 0}},
           "axis": {
@@ -99,7 +71,9 @@ export default Ember.Component.extend({
             "fontWeight": {"value": 300},
             "fill": {"value": "#3B4F63"},
             "opacity": {"value": 0.5},
-            "dy": {"value": 5}
+            "dy": {"value": 5},
+            "angle": {"value": -30},
+            "text": {"value": ""}
           }
         }
       },
@@ -134,37 +108,80 @@ export default Ember.Component.extend({
     "marks": [
       {
         "type": "rect",
-        "from": {"data": "bar-1"},
         "properties": {
           "enter": {
-            "x": {"scale": "x","field": "x1"},
-            "x2": {"scale": "x","field": "x2"},
-            "y": {"scale": "y","field": "y"},
-            "y2": {"field": {"group": "height"}},
-            "fill": {"value": "#ffc94e"},
-            "strokeWidth": {"value": 0}
+            "x": {"scale": "x", "value": "0"},
+            "x2": {"scale": "x", "value": "2"},
+            "y": {"value": 0},
+            "height": {"field": {"group": "height"}},
+            "fill": {"value": "#001421"},
+            "opacity": {"value": 0.08}
           }
         }
       },
       {
-        "type": "rect",
-        "from": {"data": "bar-2"},
+        "type": "group",
+        "from": {
+          "data": "bars",
+          "transform": [{"type": "facet","groupby": ["x"]}]
+        },
         "properties": {
           "enter": {
-            "x": {
-              "scale": "x",
-              "field": "x1"
-            },
-            "x2": {
-              "scale": "x",
-              "field": "x2"
-            },
-            "y": {"scale": "y","field": "y"},
-            "y2": {"field": {"group": "height"}},
-            "fill": {"value": "#263e57"},
-            "strokeWidth": {"value": 0}
+            "x": {"scale": "x","field": "key"},
+            "width": {"scale": "x","band": true}
           }
-        }
+        },
+        "scales": [
+          {
+            "name": "pos",
+            "type": "ordinal",
+            "range": "width",
+            "domain": {"field": "position"}
+          }
+        ],
+        "marks": [
+          {
+            "name": "bars",
+            "type": "rect",
+            "properties": {
+              "enter": {
+                "x": {"scale": "pos","field": "position"},
+                "width": {"scale": "pos","band": true},
+                "y": {"scale": "y","field": "y"},
+                "y2": {"scale": "y","value": 0},
+                "fill": {"scale": "color","field": "position"}
+              }
+            }
+          },
+          {
+            "type": "text",
+            "from": {
+              "transform": [
+                {
+                  "type": "filter",
+                  "test": "datum.x % 2 == 0 && datum.position == 0"
+                }
+              ]
+            },
+            "properties": {
+              "enter": {
+                "x": {"scale": "pos","field": "position"},
+                "y": {"scale": "y","value": 0},
+                "text": {
+                  "template": "{{datum.label}}"
+                },
+                "dx": {"value": -42},
+                "dy": {"value": 20},
+                "angle": {"value": -30},
+                "fill": {"value": "#3B4F63"},
+                "opacity": {"value": 0.5},
+                "font": {"value": "\"Montserrat\", sans-serif"},
+                "fontSize": {"value": 10},
+                "fontWeight": {"value": 300}
+              }
+            }
+          }
+        ]
       },
       {
         "type": "text",
@@ -186,25 +203,6 @@ export default Ember.Component.extend({
         }
       },
       {
-        "type": "text",
-        "from": {"data": "axis"},
-        "properties": {
-          "enter": {
-            "x": 0,
-            "y": {"field": {"group": "height"},"mult": 1},
-            "text": {"template": "{{datum.x | upper}}"},
-            "dx": {"value": -25},
-            "dy": {"value": 22},
-            "font": {"value": "\"Montserrat\", sans-serif"},
-            "fontSize": {"value": 10},
-            "fontWeight": {"value": 700},
-            "fill": {"value": "#3B4F63"},
-            "opacity": {"value": 0.5},
-            "align": {"value": "left"}
-          }
-        }
-      },
-      {
         "type": "rect",
         "from": {"data": "legend-1"},
         "properties": {
@@ -213,13 +211,13 @@ export default Ember.Component.extend({
             "y": {
               "field": {"group": "height"},
               "mult": 1,
-              "offset": 44
+              "offset": 58
             },
             "width": {"value": 9},
             "y2": {
               "field": {"group": "height"},
               "mult": 1,
-              "offset": 47
+              "offset": 55
             },
             "fill": {"field": "color"}
           }
@@ -234,7 +232,7 @@ export default Ember.Component.extend({
             "y": {"field": {"group": "height"},"mult": 1},
             "text": {"template": "{{datum.name | upper}}"},
             "dx": {"value": -9},
-            "dy": {"value": 50},
+            "dy": {"value": 60},
             "font": {"value": "\"Montserrat\", sans-serif"},
             "fontSize": {"value": 10},
             "fontWeight": {"value": 700},
@@ -253,13 +251,13 @@ export default Ember.Component.extend({
             "y": {
               "field": {"group": "height"},
               "mult": 1,
-              "offset": 44
+              "offset": 55
             },
             "width": {"value": 9},
             "y2": {
               "field": {"group": "height"},
               "mult": 1,
-              "offset": 47
+              "offset": 58
             },
             "fill": {"field": "color"}
           }
@@ -274,7 +272,7 @@ export default Ember.Component.extend({
             "y": {"field": {"group": "height"},"mult": 1},
             "text": {"template": "{{datum.name | upper}}"},
             "dx": {"value": 115},
-            "dy": {"value": 50},
+            "dy": {"value": 60},
             "font": {"value": "\"Montserrat\", sans-serif"},
             "fontSize": {"value": 10},
             "fontWeight": {"value": 700},
@@ -291,8 +289,7 @@ export default Ember.Component.extend({
     this.$chart = this.$('#chart6-1');
     this.fetchData()
       .done(function(data){
-        this.vegaSpec.data[0].values = this._getParseData(data.rows,'lower');
-        this.vegaSpec.data[1].values = this._getParseData(data.rows,'upper');
+        this.vegaSpec.data[0].values = this._getParseData(data.rows);
         this.initChart();
       }.bind(this));
     this.setListeners();
@@ -305,12 +302,23 @@ export default Ember.Component.extend({
     return $.get('https://prep-admin.cartodb.com/api/v2/sql?q='+query);
   },
 
-  _getParseData: function(data,type) {
+  _getParseData: function(data) {
     var parseData = [];
-    data.forEach(function(item){
-      let y = item[type] || 0;
-      parseData.push({x: item.cat,y: y});
-    });
+
+    let dataIndex = 0;
+    for(let i = 0, j = Math.max.apply(null, data.map(row => row.cat)); i < j; i++) {
+      const x = i;
+
+      if(i === data[dataIndex].cat) {
+        parseData.push({ x, y: data[dataIndex].lower || 0, position: 0 });
+        parseData.push({ x, y: data[dataIndex].upper || 0, position: 1 });
+        dataIndex++;
+      } else {
+        parseData.push({ x, y: 0, position: 0 });
+        parseData.push({ x, y: 0, position: 1 });
+      }
+    }
+
     return parseData;
   },
 
