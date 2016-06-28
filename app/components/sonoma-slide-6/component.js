@@ -310,7 +310,8 @@ export default Ember.Component.extend({
     var parseData = [];
 
     let dataIndex = 0;
-    for(let i = 0, j = Math.max.apply(null, data.map(row => row.cat)); i < j; i++) {
+    const dataMaxIndex = Math.max.apply(null, data.map(row => row.cat));
+    for(let i = 0, j = dataMaxIndex + 1; i < j; i++) {
       const x = i;
 
       if(i === data[dataIndex].cat) {
