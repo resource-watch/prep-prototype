@@ -59,7 +59,11 @@ export default Ember.Component.extend({
         "type": "x",
         "scale": "x",
         "properties": {
-          "ticks": {"strokeWidth": {"value": 0}},
+          "ticks": {
+            "strokeWidth": {"value": 1},
+            "stroke": {"value": "#3B4F63"},
+            "opacity": {"value": 0.3}
+          },
           "axis": {
             "stroke": {"value": "#3B4F63"},
             "opacity": {"value": 0.5},
