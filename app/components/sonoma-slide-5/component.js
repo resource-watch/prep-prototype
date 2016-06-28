@@ -172,7 +172,7 @@ export default Ember.Component.extend({
   },
 
   fetchData: function() {
-    return $.get('https://prep-admin.cartodb.com/api/v2/sql?q=SELECT year AS x, precipitation_mm_yr AS y FROM "prep-admin".precipitation_ccsm4_rcp8 union all select year AS x, precipitation_mm_yr AS y FROM precipitation1920_2009 order by x asc');
+    return $.get('https://prep-admin.cartodb.com/api/v2/sql?q=SELECT year AS x, precipitation_mm_yr AS y FROM "prep-admin".precipitation_pcm_a2 union all select year AS x, precipitation_mm_yr AS y FROM precipitation1920_2009 order by x asc');
   },
 
   setListeners: function() {

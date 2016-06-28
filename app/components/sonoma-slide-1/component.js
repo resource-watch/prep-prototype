@@ -8,80 +8,17 @@ export default Ember.Component.extend({
   cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(143.152,#00009C) stop(153.226,#0046FF) stop(163.3,#00FFFF) stop(173.375,#0CFFCD) stop(183.449,#68FF8A) stop(193.523,#FEFF00) stop(203.597,#FF8F00) stop(213.672,#FF0000) stop(223.746,#800000) }',
 
   vegaSpec: {
-    "padding": {"top": 30,"left": 25,"bottom": 50,"right": 20},
+    "padding": {"top": 30,"left": 40,"bottom": 30,"right": 20},
     "data": [
       {
         "name": "line",
-        "values": [
-          {"x": "1990","y": 27},
-          {"x": "1991","y": 30},
-          {"x": "1992","y": 32},
-          {"x": "1993","y": 29},
-          {"x": "1994","y": 29},
-          {"x": "1995","y": 26},
-          {"x": "1996","y": 27},
-          {"x": "1997","y": 30},
-          {"x": "1998","y": 28},
-          {"x": "1999","y": 35},
-          {"x": "2000","y": 37},
-          {"x": "2001","y": 34},
-          {"x": "2002","y": 35},
-          {"x": "2003","y": 36},
-          {"x": "2004","y": 37},
-          {"x": "2005","y": 34},
-          {"x": "2006","y": 33},
-          {"x": "2007","y": 32},
-          {"x": "2008","y": 34},
-          {"x": "2009","y": 30},
-          {"x": "2010","y": 29},
-          {"x": "2011","y": 29}
-        ],
-        "format": {"parse": {"x": "date"}}
-      },
-      {
-        "name": "area",
-        "values": [
-          {"x": "1990","y": 22},
-          {"x": "1991","y": 28},
-          {"x": "1992","y": 29},
-          {"x": "1993","y": 27},
-          {"x": "1994","y": 25},
-          {"x": "1995","y": 24},
-          {"x": "1996","y": 23},
-          {"x": "1997","y": 24},
-          {"x": "1998","y": 26},
-          {"x": "1999","y": 30},
-          {"x": "2000","y": 37},
-          {"x": "2001","y": 36},
-          {"x": "2002","y": 37},
-          {"x": "2003","y": 34},
-          {"x": "2004","y": 32},
-          {"x": "2005","y": 29},
-          {"x": "2006","y": 28},
-          {"x": "2007","y": 28},
-          {"x": "2008","y": 29},
-          {"x": "2009","y": 28},
-          {"x": "2010","y": 27},
-          {"x": "2011","y": 26}
-        ],
+        "values": [],
         "format": {"parse": {"x": "date"}}
       },
       {
         "name": "axis",
         "values": [
-          {"x": "Year", "y": "Number of days exceeding"}
-        ]
-      },
-      {
-        "name": "legend-1",
-        "values": [
-          {"name": "Variability in precipitation", "color": "#fff"}
-        ]
-      },
-      {
-        "name": "legend-2",
-        "values": [
-          {"name": "Precipitation average", "color": "#F0C452"}
+          {"x": "Year", "y": "Precipitation in mm"}
         ]
       }
     ],
@@ -186,7 +123,7 @@ export default Ember.Component.extend({
             "x": 0,
             "y": 0,
             "text": { "template": "{{datum.y | upper}}" },
-            "dx": {"value": -25},
+            "dx": {"value": -40},
             "dy": {"value": -20},
             "font": {"value": "\"Montserrat\", sans-serif"},
             "fontSize": {"value": 10},
@@ -208,7 +145,7 @@ export default Ember.Component.extend({
               "mult": 1
             },
             "text": { "template": "{{datum.x | upper}}" },
-            "dx": {"value": -25},
+            "dx": {"value": -30},
             "dy": {"value": 22},
             "font": {"value": "\"Montserrat\", sans-serif"},
             "fontSize": {"value": 10},
@@ -219,108 +156,22 @@ export default Ember.Component.extend({
           }
         }
       },
-      {
-        "type": "rect",
-        "from": {"data": "legend-1"},
-        "properties": {
-          "enter": {
-            "x": {"value": -25},
-            "y": {
-              "field": {"group": "height"},
-              "mult": 1,
-              "offset": 44
-            },
-            "width": {"value": 9},
-            "y2": {
-              "field": {"group": "height"},
-              "mult": 1,
-              "offset": 47
-            },
-            "fill": {"field": "color"}
-          }
-        }
-      },
-      {
-        "type": "text",
-        "from": {"data": "legend-1"},
-        "properties": {
-          "enter": {
-            "x": 0,
-            "y": {
-              "field": {"group": "height"},
-              "mult": 1
-            },
-            "text": {"template": "{{datum.name | upper}}"},
-            "dx": {"value": -9},
-            "dy": {"value": 50},
-            "font": {"value": "\"Montserrat\", sans-serif"},
-            "fontSize": {"value": 10},
-            "fontWeight": {"value": 700},
-            "fill": {"value": "#3b4f63"},
-            "opacity": {"value": 0.7},
-            "align": {"value": "left"}
-          }
-        }
-      },
-      {
-        "type": "rect",
-        "from": {"data": "legend-2"},
-        "properties": {
-          "enter": {
-            "x": {
-              "field": {"group": "width"},
-              "mult": 0.5,
-              "offset": 0
-            },
-            "y": {
-              "field": {"group": "height"},
-              "mult": 1,
-              "offset": 44
-            },
-            "width": {"value": 9},
-            "y2": {
-              "field": {"group": "height"},
-              "mult": 1,
-              "offset": 47
-            },
-            "fill": {"field": "color"}
-          }
-        }
-      },
-      {
-        "type": "text",
-        "from": {"data": "legend-2"},
-        "properties": {
-          "enter": {
-            "x": {
-              "field": {"group": "width"},
-              "mult": 0.5,
-              "offset": 0
-            },
-            "y": {
-              "field": {"group": "height"},
-              "mult": 1
-            },
-            "text": {"template": "{{datum.name | upper}}"},
-            "dx": {"value": 16},
-            "dy": {"value": 50},
-            "font": {"value": "\"Montserrat\", sans-serif"},
-            "fontSize": {"value": 10},
-            "fontWeight": {"value": 700},
-            "fill": {"value": "#3b4f63"},
-            "opacity": {"value": 0.7},
-            "align": {"value": "left"}
-          }
-        }
-      }
     ]
   },
 
   didRender() {
     this.$chart = this.$('#chart1-1');
     this.slideMapEl = this.$('#map1-3');
-    this.initChart();
+    this.fetchData()
+      .done(function(data){
+        this.vegaSpec.data[0].values = data.rows;
+        this.initChart();
+      }.bind(this));
     this.setListeners();
+  },
+
+  fetchData: function() {
+    return $.get('https://prep-admin.cartodb.com/api/v2/sql?q=SELECT year AS x, precipitation_mm_yr AS y FROM "prep-admin".precipitation_pcm_a2 union all select year AS x, precipitation_mm_yr AS y FROM precipitation1920_2009 order by x asc');
   },
 
   setListeners: function() {

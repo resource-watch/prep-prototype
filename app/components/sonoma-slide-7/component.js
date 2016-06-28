@@ -5,7 +5,7 @@ export default Ember.Component.extend({
   tagName: 'section',
 
   cartodbtable: 'o_1_cwd1951_1980_ave_hst',
-  cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(250,rgba(215,25,28,1)) }',
+  cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(250,rgba(128, 0, 0, 1)) }',
 
   didRender() {
     this.slideMapEl = this.$('#map7-2');

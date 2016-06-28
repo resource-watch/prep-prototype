@@ -44,6 +44,7 @@ initMap(){
     L.control.zoom({ position: 'topright' }).addTo(this.slideMap);
     this.addRaster();
     this.addLabels();
+    // commented because of this raster is bigger and doesnt fit well
     // if (this.bounds){
     //   this.fitBounds();
     // } else {
@@ -60,8 +61,8 @@ initMap(){
 
 fitBounds: function(){
   this.slideMap.fitBounds(this.bounds);
-  this.slideMap.setMaxBounds(this.bounds);
-  this.slideMap.options.minZoom = this.slideMap.getZoom();
+  // this.slideMap.setMaxBounds(this.bounds);
+  // this.slideMap.options.minZoom = this.slideMap.getZoom();
 },
 
 setBounds: function(){
