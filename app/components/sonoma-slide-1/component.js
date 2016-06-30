@@ -8,7 +8,25 @@ export default Ember.Component.extend({
   cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(143.152,#00009C) stop(153.226,#0046FF) stop(163.3,#00FFFF) stop(173.375,#0CFFCD) stop(183.449,#68FF8A) stop(193.523,#FEFF00) stop(203.597,#FF8F00) stop(213.672,#FF0000) stop(223.746,#800000) }',
 
   vegaSpec: {
-    "padding": {"top": 30,"left": 40,"bottom": 30,"right": 20},
+    "padding": {"top": 40,"left": 40,"bottom": 50,"right": 20},
+    "signals": [
+      {
+        "name": "currentYear",
+        "init": "0",
+        "streams": [{
+          "type": "mousemove",
+          "expr": "utcyear(iscale('x', eventX()))"
+        }]
+      },
+      {
+        "name": "tooltip",
+        "init": {"x": 0, "y": 0},
+        "streams": [{
+          "type": "mousemove",
+          "expr": "{xLeft: +iscale('x', eventX()), xRight: +iscale('x', eventX() - 150)}"
+        }]
+      }
+    ],
     "data": [
       {
         "name": "line",
@@ -17,8 +35,26 @@ export default Ember.Component.extend({
       },
       {
         "name": "axis",
-        "values": [
-          {"x": "Year", "y": "Precipitation in mm"}
+        "values": [{"x": "Year","y": "Precipitation in inches"}]
+      },
+      {
+        "name": "tooltip",
+        "source": "line",
+        "transform": [
+          {
+            "type": "filter",
+            "test": "datum.x == utc(currentYear, 0, 1)"
+          },
+          {
+            "type": "formula",
+            "field": "xTooltip",
+            "expr": "datum.x > utc(2040, 0, 1) ? tooltip.xRight : tooltip.xLeft"
+          },
+          {
+            "type": "formula",
+            "field": "xData",
+            "expr": "tooltip.xLeft"
+          }
         ]
       }
     ],
@@ -42,7 +78,18 @@ export default Ember.Component.extend({
         "name": "lbl",
         "type": "x",
         "scale": "x",
-        "ticks": 5,
+        "values": [
+          -1577923200000,
+          -946771200000,
+          -315619200000,
+          315532800000,
+          946684800000,
+          1577836800000,
+          2208988800000,
+          2840140800000,
+          3471292800000
+        ],
+        "formatType": "utc",
         "format": "%Y",
         "properties": {
           "ticks": {"strokeWidth": {"value": 0}},
@@ -122,7 +169,7 @@ export default Ember.Component.extend({
           "enter": {
             "x": 0,
             "y": 0,
-            "text": { "template": "{{datum.y | upper}}" },
+            "text": {"template": "{{datum.y | upper}}"},
             "dx": {"value": -40},
             "dy": {"value": -20},
             "font": {"value": "\"Montserrat\", sans-serif"},
@@ -135,27 +182,176 @@ export default Ember.Component.extend({
         }
       },
       {
-        "type": "text",
-        "from": {"data": "axis"},
+        "type": "rule",
         "properties": {
           "enter": {
-            "x": 0,
+            "x": { "value": 0},
+            "x2": {"field": {"group": "width"}},
+            "y": { "scale": "y", "value": 56.4},
+            "stroke": {"value": "#263e57"},
+            "strokeWidth": {"value": 1.5}
+          }
+        }
+      },
+      {
+        "type": "rule",
+        "properties": {
+          "enter": {
+            "x": { "value": 0},
+            "x2": {"field": {"group": "width"}},
+            "y": { "scale": "y", "value": 27.1},
+            "stroke": {"value": "#3B4F63"},
+            "strokeWidth": {"value": 1.5},
+            "opacity": {"value": 0.5}
+          }
+        }
+      },
+      {
+        "type": "group",
+        "from": {"data": "tooltip"},
+        "properties": {
+          "update": {
+            "x": {"scale": "x", "field": "xTooltip"},
+            "y": {"scale": "y", "field": "y", "offset": -55},
+            "width": {"value": 150},
+            "height": {"value": 45},
+            "fill": {"value": "#fff"},
+            "fillOpacity": {"value": 0.85}
+          }
+        },
+
+        "marks": [
+          {
+            "type": "text",
+            "properties": {
+              "update": {
+                "x": {"value": 10},
+                "y": {"value": 17},
+                "text": {"template": "{{currentYear}}"},
+                "font": {"value": "\"Montserrat\", sans-serif"},
+            "fontSize": {"value": 11},
+                "fill": {"value": "#3B4F63"},
+                "opacity": {"value": 0.8},
+                "fontWeight": {"value": "bold"}
+              }
+            }
+          },
+          {
+            "type": "text",
+            "properties": {
+              "update": {
+                "x": {"value": 11},
+                "y": {"value": 35},
+                "text": {"template": "{{parent.y|number:'.2f'}} in"},
+                "font": {"value": "\"Montserrat\", sans-serif"},
+                "fontSize": {"value": 11},
+                "fill": {"value": "#3B4F63"},
+                "opacity": {"value": 0.8}
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "symbol",
+        "from": {"data": "tooltip"},
+        "size": 4,
+        "properties": {
+          "update": {
+            "x": {"scale": "x", "field": "xData"},
+            "y": {"scale": "y", "field": "y"},
+            "font": {"value": "\"Montserrat\", sans-serif"},
+            "fontSize": {"value": 12},
+            "fill": {"value": "#fff"},
+            "stroke": {"value": "#ffc94e"},
+            "strokeWidth": {"value": 2}
+          }
+        }
+      },
+      {
+      "type": "rect",
+        "properties": {
+          "enter": {
+            "x": {"value": -25},
             "y": {
               "field": {"group": "height"},
-              "mult": 1
+              "mult": 1,
+              "offset": 45
             },
-            "text": { "template": "{{datum.x | upper}}" },
-            "dx": {"value": -30},
-            "dy": {"value": 22},
+            "width": {"value": 9},
+            "y2": {
+              "field": {"group": "height"},
+              "mult": 1,
+              "offset": 48
+            },
+            "fill": {"value": "#3B4F63"},
+            "opacity": {"value": 0.5}
+          }
+        }
+      },
+      {
+        "type": "text",
+        "properties": {
+          "enter": {
+            "x": {"value": 0},
+            "y": {"field": {"group": "height"},"mult": 1},
+            "text": {"value": "10TH PERCENTILE (27.1 IN/YR)"},
+            "dx": {"value": -9},
+            "dy": {"value": 50},
             "font": {"value": "\"Montserrat\", sans-serif"},
             "fontSize": {"value": 10},
             "fontWeight": {"value": 700},
-            "fill": {"value": "#3B4F63"},
-            "opacity": {"value": 0.5},
+            "fill": {"value": "#3b4f63"},
+            "opacity": {"value": 0.7},
             "align": {"value": "left"}
           }
         }
       },
+      {
+        "type": "rect",
+        "properties": {
+          "enter": {
+            "x": {
+              "field": {"group": "width"},
+              "mult": 0.5,
+              "offset": -25
+            },
+            "y": {
+              "field": {"group": "height"},
+              "mult": 1,
+              "offset": 45
+            },
+            "width": {"value": 9},
+            "y2": {
+              "field": {"group": "height"},
+              "mult": 1,
+              "offset": 48
+            },
+            "fill": {"value": "#263e57"}
+          }
+        }
+      },
+      {
+        "type": "text",
+        "properties": {
+          "enter": {
+            "x": {
+              "field": {"group": "width"},
+              "mult": 0.5
+            },
+            "y": {"field": {"group": "height"},"mult": 1},
+            "text": {"value": "90TH PERCENTILE (56.4 IN/YR)"},
+            "dx": {"value": -9},
+            "dy": {"value": 50},
+            "font": {"value": "\"Montserrat\", sans-serif"},
+            "fontSize": {"value": 10},
+            "fontWeight": {"value": 700},
+            "fill": {"value": "#3b4f63"},
+            "opacity": {"value": 0.7},
+            "align": {"value": "left"}
+          }
+        }
+      }
     ]
   },
 
@@ -171,7 +367,7 @@ export default Ember.Component.extend({
   },
 
   fetchData: function() {
-    return $.get('https://prep-admin.cartodb.com/api/v2/sql?q=SELECT year AS x, precipitation_mm_yr AS y FROM "prep-admin".precipitation_pcm_a2 union all select year AS x, precipitation_mm_yr AS y FROM precipitation1920_2009 order by x asc');
+    return $.get('https://prep-admin.cartodb.com/api/v2/sql?q=SELECT year AS x, precipitation_in_yr AS y FROM "prep-admin". precipitation_pcm_a2 union all select year AS x, precipitation_in_yr AS y FROM precipitation1920_2009 order by x asc');
   },
 
   setListeners: function() {
