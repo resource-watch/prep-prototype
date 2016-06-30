@@ -76,8 +76,8 @@ addLabels(){
       'user_name': 'prep-admin',
       'type': 'cartodb',
       'options': {
-          'sql': 'SELECT the_geom_webmercator, initcap(name) as name FROM \"prep-admin\".ci08au12',
-          'cartocss': '#ci08au12::labels {text-name: [name];text-face-name: \'Lato Regular\';text-size: 10;text-label-position-tolerance: 10;text-fill: #a3a1a0 ;text-halo-fill: #FFF;text-halo-radius: 0.2;text-dy: -10;text-allow-overlap: false;text-placement: point;text-placement-type: simple;}',
+          'sql': 'SELECT * FROM \"prep-admin\".rrcounties',
+          'cartocss': '#rrcounties{polygon-fill:transparent;line-color: #cccac9;line-width: 1;line-opacity: 0.8;} #ci08au12::labels {text-name: [name];text-face-name: \'Lato Regular\';text-size: 10;text-label-position-tolerance: 10;text-fill: #a3a1a0;text-halo-fill: #FFF;text-halo-radius: 0.2;text-dy: -10;text-allow-overlap: false;text-placement: point;text-placement-type: simple;}',
         'cartocss_version': '2.3.0',
       }
     }]

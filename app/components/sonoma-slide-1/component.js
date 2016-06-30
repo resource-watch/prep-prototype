@@ -4,7 +4,7 @@ export default Ember.Component.extend({
 
   tagName: 'section',
 
-  cartodbtable: 'o_1_tmx1951_1980jja_ave_hst',
+  cartodbtable: 'o_1_tmx1951_1980_ave_hst',
   cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(143.152,#00009C) stop(153.226,#0046FF) stop(163.3,#00FFFF) stop(173.375,#0CFFCD) stop(183.449,#68FF8A) stop(193.523,#FEFF00) stop(203.597,#FF8F00) stop(213.672,#FF0000) stop(223.746,#800000) }',
 
   vegaSpec: {
@@ -274,8 +274,8 @@ export default Ember.Component.extend({
         'user_name': 'prep-admin',
         'type': 'cartodb',
         'options': {
-            'sql': 'SELECT the_geom_webmercator, initcap(name) as name FROM \"prep-admin\".ci08au12',
-            'cartocss': '#ci08au12::labels {text-name: [name];text-face-name: \'Lato Regular\';text-size: 10;text-label-position-tolerance: 10;text-fill: #a3a1a0 ;text-halo-fill: #FFF;text-halo-radius: 0.2;text-dy: -10;text-allow-overlap: false;text-placement: point;text-placement-type: simple;}',
+            'sql': 'SELECT * FROM \"prep-admin\".rrcounties',
+            'cartocss': '#rrcounties{polygon-fill:transparent;line-color: #cccac9;line-width: 1;line-opacity: 0.8;} #ci08au12::labels {text-name: [name];text-face-name: \'Lato Regular\';text-size: 10;text-label-position-tolerance: 10;text-fill: #a3a1a0;text-halo-fill: #FFF;text-halo-radius: 0.2;text-dy: -10;text-allow-overlap: false;text-placement: point;text-placement-type: simple;}',
           'cartocss_version': '2.3.0',
         }
       }]
@@ -380,22 +380,22 @@ export default Ember.Component.extend({
   updateLayer(index){
     switch (index){
       case 0:
-        this.cartodbtable = 'o_1_tmx1951_1980jja_ave_hst';
+        this.cartodbtable = 'o_1_tmx1951_1980_ave_hst';
         break;
       case 1:
-        this.cartodbtable = 'o_1_tmx1981_2010jja_ave_hst';
+        this.cartodbtable = 'o_1_tmx1981_2010_ave_hst';
         break;
       case 2:
-        this.cartodbtable = 'o_1_tmx2010_2039jja_ave_ccsm4';
+        this.cartodbtable = 'o_1_tmx2010_2039_ave_ccsm4';
         break;
       case 3:
-        this.cartodbtable = 'o_1_tmx2040_2069jja_ave_ccsm4';
+        this.cartodbtable = 'o_1_tmx2040_2069_ave_ccsm4';
         break;
       case 4:
-        this.cartodbtable = 'o_1_tmx2070_2099jja_ave_ccsm4';
+        this.cartodbtable = 'o_1_tmx2070_2099_ave_ccsm4';
         break;
       default:
-        this.cartodbtable = 'o_1_tmx1951_1980jja_ave_hst';
+        this.cartodbtable = 'o_1_tmx1951_1980_ave_hst';
     }
     this.addRaster();
   },
