@@ -7,12 +7,12 @@ $navigation-btn-bg-disable: #fff;
 $navigation-btn-bg-border: #f6f7f7;
 $navigation-btn-color: #000;
 
-html,
-body {
-  width: auto !important;
-  height: auto !important;
-  overflow: auto !important;
-}
+// html,
+// body {
+//   width: auto !important;
+//   height: auto !important;
+//   overflow: auto !important;
+// }
 
 .reveal-container {
   height: calc(100vh - 102px);
@@ -29,6 +29,7 @@ body {
     top: 0 !important;
     bottom: 0 !important;
     right: 0 !important;
+    zoom: 1 !important;
     transform: translate(0, 0) scale(1) !important;
     section {
       top:0!important;
