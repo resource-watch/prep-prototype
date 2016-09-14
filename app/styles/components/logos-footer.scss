@@ -1,0 +1,15 @@
+
+.c-logos {
+  display: flex !important;
+  justify-content: space-between;
+  width: 100%;
+  max-height: 90px;
+
+  & .logo {
+    height: 90px;
+    padding-top: 10px;
+    padding-right: 10px;
+
+    &:last-child { padding-right: 0; }
+  }
+}
