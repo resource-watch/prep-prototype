@@ -1,20 +1,19 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-
   tagName: 'section',
 
-  cartodbtable: 'o_1_cwd1951_1980_ave_hst',
-  cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(250,rgba(128, 0, 0, 1)) }',
+  cartodbtable: 'o_1_tmx1951_1980jja_ave_hst',
+  cartocss: '{raster-opacity:1; raster-colorizer-default-mode: linear; raster-colorizer-default-color: transparent; raster-colorizer-epsilon: 0.01; raster-colorizer-stops: stop(250,#800000) }',
 
   didRender() {
-    this.slideMapEl = this.$('#map7-2');
+    this.slideMapEl = this.$('#map8-1');
     this.setListeners();
   },
 
   setListeners: function() {
     Reveal.addEventListener('slidechanged', function( event ) {
-      if (event.currentSlide.classList.contains('slide-map-7-2')) {
+      if (event.currentSlide.classList.contains('slide-map-8-1')) {
         this.initMap();
         this.initLegend();
       } else if (this.slideMap) {
@@ -39,7 +38,7 @@ export default Ember.Component.extend({
     };
 
     if (!this.slideMap){
-      this.slideMap = L.map('map7-2', mapOptions);
+      this.slideMap = L.map('map8-1', mapOptions);
       L.tileLayer(mapOptions.basemapSpec.url, mapOptions.basemapSpec.options).addTo(this.slideMap);
       L.control.zoom({ position: 'topright' }).addTo(this.slideMap);
       this.addRaster();
@@ -60,8 +59,8 @@ export default Ember.Component.extend({
 
   fitBounds: function(){
     this.slideMap.fitBounds(this.bounds);
-    this.slideMap.setMaxBounds(this.bounds);
-    this.slideMap.options.minZoom = this.slideMap.getZoom();
+    // this.slideMap.setMaxBounds(this.bounds);
+    // this.slideMap.options.minZoom = this.slideMap.getZoom();
   },
 
   setBounds: function(){
@@ -111,7 +110,7 @@ export default Ember.Component.extend({
         'type': 'cartodb',
         'options': {
             'sql': 'with xr as (SELECT the_geom_webmercator FROM \"prep-admin\".cb_2015_06_tract_500k_copy) select ST_clip(the_raster_webmercator,1,the_geom_webmercator, 1) the_raster_webmercator from \"prep-admin\".'+this.cartodbtable+', xr  where st_intersects(the_geom_webmercator, the_raster_webmercator)',
-            'cartocss': '#'+this.cartodbtable+' '+this.cartocss,
+            'cartocss': '#'+this.cartodbtable+this.cartocss,
           'cartocss_version': '2.3.0',
           'geom_column': 'the_raster_webmercator',
           'geom_type': 'raster',
@@ -150,7 +149,7 @@ export default Ember.Component.extend({
     const steps = this.$('.years span');
 
     /* We create the slider instance */
-    this.slider = document.getElementById('timelineSlider7-2');
+    this.slider = document.getElementById('timelineSlider8-1');
     noUiSlider.create(this.slider, {
       start: [ 0 ],
       step: 1,
@@ -182,29 +181,29 @@ export default Ember.Component.extend({
   updateLayer(index){
     switch (index){
       case 0:
-        this.cartodbtable = 'o_1_cwd1951_1980_ave_hst';
+        this.cartodbtable = 'o_1_tmx1951_1980jja_ave_hst';
         break;
       case 1:
-        this.cartodbtable = 'o_1_cwd1981_2010_ave_hst';
+        this.cartodbtable = 'o_1_tmx1981_2010jja_ave_hst';
         break;
       case 2:
-        this.cartodbtable = 'o_1_cwd2010_2039_ave_ccsm4';
+        this.cartodbtable = 'o_1_tmx2010_2039jja_ave_ccsm4';
         break;
       case 3:
-        this.cartodbtable = 'o_1_cwd2040_2069_ave_ccsm4';
+        this.cartodbtable = 'o_1_tmx2040_2069jja_ave_ccsm4';
         break;
       case 4:
-        this.cartodbtable = 'o_1_cwd2070_2099_ave_ccsm4';
+        this.cartodbtable = 'o_1_tmx2070_2099jja_ave_ccsm4';
         break;
       default:
-        this.cartodbtable = 'o_1_cwd1951_1980_ave_hst';
+        this.cartodbtable = 'o_1_tmx1951_1980jja_ave_hst';
     }
+    this.addRaster();
   },
 
   removeMap(){
     this.slideMap.remove();
     this.slideMap = null;
   }
-
 
 });

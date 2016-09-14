@@ -1,5 +1,20 @@
 .c-image {
-	width: 95%;
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
 
-	&.-small { height: 20%; }
+  &.-center { justify-content: center; }
+
+  &.-column {
+    flex-flow: column;
+    align-items: space-between;
+
+    & > * { 
+      margin-bottom: 15px;
+
+      &:last-child { margin-bottom: 0; }
+    }
+  }
+
+  &.-small { height: 20%; }
 }
