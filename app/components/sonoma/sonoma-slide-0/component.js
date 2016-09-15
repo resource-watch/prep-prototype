@@ -14,10 +14,8 @@ export default Ember.Component.extend({
 
   setListeners: function() {
     Reveal.addEventListener('slidechanged', function( event ) {
-      if (event.currentSlide.classList.contains('slide-1-intro')) {
-      	this.set('data-background-image', 'img/sonoma/sonoma-1/landscape.jpg')
-      } else {
-      	this.set('data-background-image', '')
+      if (!event.currentSlide.classList.contains('slide-1-intro')) {
+        event.currentSlide.style.background = 'white';
       }
     }.bind(this));
   },

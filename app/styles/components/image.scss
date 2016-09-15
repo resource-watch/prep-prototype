@@ -1,8 +1,9 @@
-.c-image {
+.c-images {
   width: 95%;
   display: flex;
   justify-content: space-between;
-
+  
+  &.-mid-height { height: 300px; }
   &.-center { justify-content: center; }
 
   &.-column {
@@ -16,5 +17,21 @@
     }
   }
 
-  &.-small { height: 20%; }
+  &.-small { width: 150px; }
+}
+
+.c-image {
+  width: 95%;
+
+  &.-small { 
+    width: 100px;
+  }
+
+  &.-medium { 
+    width: 180px;
+  }
+
+  &.padd-right { padding-right: 15px; }
+
+  &.-mid-height { height: 180px; }
 }

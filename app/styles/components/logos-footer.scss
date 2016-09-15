@@ -6,8 +6,8 @@
   max-height: 90px;
 
   & .logo {
-    height: 90px;
-    padding-top: 10px;
+    flex-grow: 1;
+    min-width: 80px;
     padding-right: 10px;
 
     &:last-child { padding-right: 0; }
