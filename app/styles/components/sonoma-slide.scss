@@ -205,6 +205,10 @@ $slider-highlight-color: #ffc94e;
   	color: #ffffff;
     max-width: 860px;
     margin: 2.5rem auto;
+
+    &.-center {
+      text-align: center;
+    }
   }
 
   .author {
