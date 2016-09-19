@@ -31,6 +31,10 @@
     width: 180px;
   }
 
+  &.-full {
+    width: 100%;
+  }
+
   &.padd-right { padding-right: 15px; }
 
   &.-mid-height { height: 180px; }

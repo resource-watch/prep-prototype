@@ -2,7 +2,7 @@ $slider-title-color: #fff;
 $slider-title-bg: #1A3E62;
 $slider-title-size: 30px;
 
-$slider-highlight-color: #ffc94e;
+$slider-highlight-color: #25b5cd;
 
 .sonoma-slide {
   .wrapper > .content {
@@ -25,6 +25,8 @@ $slider-highlight-color: #ffc94e;
     border: 0;
     padding: 25px;
     &:hover { box-shadow: none; }
+
+    &.-bg-grey { background-color: #eaeaea; }
 
     > h2 {
       font-size: 12px;
@@ -230,7 +232,7 @@ $slider-highlight-color: #ffc94e;
 
 .sonoma-tooltip {
   padding: 8px 35px;
-  background: #ffde90;
+  background: #25b5cd;
   border-radius: 100px;
   font-family: "Open Sans", sans-serif;
   font-size: 12px;
@@ -269,7 +271,7 @@ $slider-highlight-color: #ffc94e;
     >.links{
       margin-top: 5px;
       > a{
-        color: rgba(#263e57,0.5);
+        color: rgba(#25b5cd, 0.5);
         height: 20px;
         padding-left: 6px;
         padding-right: 6px;
