@@ -1,9 +1,0 @@
-<div class="container">
-  <div class="row">
-  {{#each session.indicator_sections as |section|}}
-    <h2>{{section.title}}</h2>
-    <hr>
-    {{grid-layout cards=section.indicators}}    
-  {{/each}}
-  </div>
-</div>
