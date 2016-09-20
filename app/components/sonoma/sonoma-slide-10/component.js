@@ -353,6 +353,7 @@ export default Ember.Component.extend({
   },
 
   didRender() {
+    this.cache();
     this.$chart = this.$('#chart10-1');
     this.fetchData()
       .done(function(data){
@@ -360,6 +361,15 @@ export default Ember.Component.extend({
         this.initChart();
       }.bind(this));
     this.setListeners();
+    this.renderImages();
+  },
+
+  cache: function() {
+    this.img1 = $('.img10-1');
+  },
+
+  renderImages: function() {
+    this.img1.attr('style', 'background-image: url(../img/sonoma/sonoma-10/wildRiver.jpeg)');
   },
 
   fetchData: function() {

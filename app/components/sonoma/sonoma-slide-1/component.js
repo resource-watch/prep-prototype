@@ -9,7 +9,9 @@ export default Ember.Component.extend({
   "data-background-size": "cover",
 
   didRender() {
+    this.cache();
   	this.setListeners();
+    this.renderImages();
   },
 
   setListeners: function() {
@@ -22,4 +24,18 @@ export default Ember.Component.extend({
       // Reveal.configure({ slideNumber: 'h' });
     }.bind(this));
   },
+
+  cache: function() {
+    this.img1 = $('.img1-1');
+    this.img2 = $('.img1-2');
+    this.img3 = $('.img1-3');
+    this.img4 = $('.img1-4');
+  },
+
+  renderImages: function() {
+    this.img1.attr('style', 'background-image: url(../img/sonoma/sonoma-1/road.jpg)');
+    this.img2.attr('style', 'background-image: url(../img/sonoma/sonoma-1/people.jpg)');
+    this.img3.attr('style', 'background-image: url(../img/sonoma/sonoma-1/community.jpg)');
+    this.img4.attr('style', 'background-image: url(../img/sonoma/sonoma-1/collector.jpg)');
+  }
 });
