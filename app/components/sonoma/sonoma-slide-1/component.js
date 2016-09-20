@@ -16,12 +16,14 @@ export default Ember.Component.extend({
 
   setListeners: function() {
     Reveal.addEventListener('slidechanged', function( event ) {
+      setTimeout(this.setSliderNumber, 100).bind(this);
       if (!event.currentSlide.classList.contains('slide-1-intro')) {
         event.currentSlide.style.background = 'white';
       }
     }.bind(this));
     Reveal.addEventListener('ready', function() {
-      // Reveal.configure({ slideNumber: 'h' });
+      Reveal.configure({ slideNumber: 'h' });
+      this.setSliderNumber();
     }.bind(this));
   },
 
@@ -37,5 +39,16 @@ export default Ember.Component.extend({
     this.img2.attr('style', 'background-image: url(../img/sonoma/sonoma-1/people.jpg)');
     this.img3.attr('style', 'background-image: url(../img/sonoma/sonoma-1/community.jpg)');
     this.img4.attr('style', 'background-image: url(../img/sonoma/sonoma-1/collector.jpg)');
+  },
+
+  setSliderNumber: function() {
+    const h = $('.slide-number-a');
+    const v = $('.slide-number-b');
+    const delimiter = $('.slide-number-delimiter');
+    const current = h.text() + '.' + v.text();
+
+    h.text(current);
+    delimiter.text('/');
+    v.text('18');
   }
 });

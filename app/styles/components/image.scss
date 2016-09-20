@@ -18,6 +18,8 @@
   }
 
   &.-small { width: 150px; }
+
+  & > *.padd-right { padding-right: 15px; }
 }
 
 .c-image {
