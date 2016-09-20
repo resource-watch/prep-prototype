@@ -16,7 +16,7 @@ export default Ember.Component.extend({
 
   setListeners: function() {
     Reveal.addEventListener('slidechanged', function( event ) {
-      setTimeout(this.setSliderNumber, 100).bind(this);
+      setTimeout(this.setSliderNumber, 100);
       if (!event.currentSlide.classList.contains('slide-1-intro')) {
         event.currentSlide.style.background = 'white';
       }

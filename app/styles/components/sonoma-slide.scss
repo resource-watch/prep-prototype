@@ -16,6 +16,11 @@ $slider-highlight-color: #25b5cd;
   }
   .map-card{
     height: 460px;
+
+    & iframe {
+      width: 100%;
+      border: none;
+    }
   }
   /* The yellow card with the chart inside */
   .chart-card {
@@ -27,6 +32,8 @@ $slider-highlight-color: #25b5cd;
     &:hover { box-shadow: none; }
 
     &.-bg-grey { background-color: #eaeaea; }
+    &.-bg-white { background-color: white; }
+    &.-bg-yellow { background-color: #ffc94e; }
 
     > h2 {
       font-size: 12px;
