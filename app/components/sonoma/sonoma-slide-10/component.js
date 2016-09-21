@@ -3,7 +3,7 @@ import Ember from 'ember';
 export default Ember.Component.extend({
 
   tagName: 'section',
-  widgetId: '1e55087a-f450-4fd7-b571-d84b967584a5',
+  widgetId: 'ec40fa88-2f75-4681-abd4-0161db504ee6',
   
   didRender() {
     this.cache();
@@ -14,7 +14,7 @@ export default Ember.Component.extend({
         this.widget = widget.data.attributes;
         this.vegaSpec = this.widget.widgetConfig;
 
-        this.fetchData('http://api.resourcewatch.org/' + this.widget.queryUrl)
+        this.fetchData(this.widget.queryUrl)
           .done(function(data){
             this.vegaSpec.data[0].values = data.rows;
             this.initChart();
