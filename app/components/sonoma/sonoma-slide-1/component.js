@@ -42,13 +42,13 @@ export default Ember.Component.extend({
   },
 
   setSliderNumber: function() {
+    const nums = $('.slide-number');
     const h = $('.slide-number-a');
     const v = $('.slide-number-b');
     const delimiter = $('.slide-number-delimiter');
-    const current = h.text() + '.' + v.text();
+    const current = h.text() + '.' + v.text() + ' / 18';
 
-    h.text(current);
-    delimiter.text('/');
-    v.text('18');
+    $('.slide-number-total').text('');
+    nums.append('<span class="slide-number-total">' + current + '</span>');
   }
 });

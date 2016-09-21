@@ -213,7 +213,14 @@ $navigation-btn-color: #000;
       font-size: $reveal-actions-font-size;
       text-transform: uppercase;
       font-weight: bold;
+      
+      &.slide-number-a,
+      &.slide-number-b, 
+      &.slide-number-delimiter {
+        display: none;
+      }
     }
+
   }
 }
 
