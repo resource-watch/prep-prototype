@@ -84,6 +84,10 @@ $slider-highlight-color: #25b5cd;
       box-shadow: 0 7px 15px 0 rgba(0, 0, 0, .15);
       min-height: 400px;
 
+      &:last-child {
+        padding: 30px 50px 30px 70px;
+      }
+
       .title {
         font-family: "PT Serif", serif;
         font-size: 35px;
