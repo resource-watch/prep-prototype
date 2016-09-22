@@ -8,6 +8,11 @@ $slider-highlight-color: #25b5cd;
   .container {
     padding-left: 35px;
     padding-right: 35px;
+
+    @media screen and (min-width: 1250px) {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
   }
   .wrapper > .content {
     max-width: 430px;
@@ -34,7 +39,7 @@ $slider-highlight-color: #25b5cd;
     border: 0;
     padding: 25px;
     
-    &.-max-height { max-height: 550px; }
+    &.-max-height { max-height: 540px; }
 
     &:hover { box-shadow: none; }
 
