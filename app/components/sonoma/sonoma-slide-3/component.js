@@ -31,9 +31,9 @@ export default Ember.Component.extend({
   getSize: function() {
     const vegaSpec = this.vegaSpec;
     const widthSpace = vegaSpec.padding ?
-      vegaSpec.padding.left + vegaSpec.padding.right : 0;
+      vegaSpec.padding.left + vegaSpec.padding.right : (arguments[0] ? 45 : 0 );
     const heightSpace = vegaSpec.padding ?
-      vegaSpec.padding.top + vegaSpec.padding.bottom : 0;
+      vegaSpec.padding.top + vegaSpec.padding.bottom : (arguments[0] ? 45 : 0 );
 
     const containerSize = this.$chart[0].getBoundingClientRect();
 
@@ -44,7 +44,7 @@ export default Ember.Component.extend({
   },
 
   getVegaSpec: function() {
-    var size = this.getSize();
+    var size = this.getSize(true);
     this.vegaSpec.width = size.width;
     this.vegaSpec.height = size.height;
     return this.vegaSpec;

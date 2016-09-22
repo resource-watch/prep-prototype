@@ -5,6 +5,10 @@ $slider-title-size: 30px;
 $slider-highlight-color: #25b5cd;
 
 .sonoma-slide {
+  .container {
+    padding-left: 35px;
+    padding-right: 35px;
+  }
   .wrapper > .content {
     max-width: 430px;
     margin-bottom: 20px;
@@ -30,7 +34,7 @@ $slider-highlight-color: #25b5cd;
     border: 0;
     padding: 25px;
     
-    &.-max-height { max-height: 650px; }
+    &.-max-height { max-height: 550px; }
 
     &:hover { box-shadow: none; }
 
