@@ -4,6 +4,7 @@
   justify-content: space-between;
   
   &.-mid-height { height: 300px; }
+
   &.-center { justify-content: center; }
 
   &.-column {
@@ -37,7 +38,18 @@
     width: 100%;
   }
 
+  &.-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   &.padd-right { padding-right: 15px; }
 
   &.-mid-height { height: 180px; }
+  &.-half-height { 
+    height: 250px; 
+    widows: auto;
+  }
+
 }
