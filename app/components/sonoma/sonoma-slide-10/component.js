@@ -4,19 +4,19 @@ export default Ember.Component.extend({
 
   tagName: 'section',
   widgetId: 'ec40fa88-2f75-4681-abd4-0161db504ee6',
-  
+
   didRender() {
     this.cache();
     this.$chart = this.$('#chart10-1');
 
-    this.fetchData('http://api.resourcewatch.org/widgets/' + this.widgetId)
+    this.fetchData('https://api.resourcewatch.org/v1/widget/' + this.widgetId)
       .done(function(widget) {
         this.widget = widget.data.attributes;
         this.vegaSpec = this.widget.widgetConfig;
 
-        this.fetchData(this.widget.queryUrl)
+        this.fetchData('https://api.resourcewatch.org/v1/' + this.widget.queryUrl)
           .done(function(data){
-            this.vegaSpec.data[0].values = data.rows;
+            this.vegaSpec.data[0].values = data.data;
             this.initChart();
           }.bind(this));
     }.bind(this));

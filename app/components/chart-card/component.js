@@ -3,10 +3,10 @@ import ajax from 'ic-ajax';
 
 export default Ember.Component.extend({
   classNames: [''],
-  
+
   didInsertElement() {
     const settings = this.get('settings');
-    console.log(settings);
+    // console.log(settings);
 
     if (!settings) {
       return;
@@ -22,8 +22,8 @@ export default Ember.Component.extend({
       chart = new Cedar({type: 'http://localhost:4200/time-hist-high-low.json'});
     } else {
       chart = new Cedar({type: settings.chart_type });
-    }    
-    
+    }
+
     if (settings.tooltip) {
       chart.tooltip = settings.tooltip;
     }
@@ -52,7 +52,7 @@ export default Ember.Component.extend({
   _showChart(chart, data) {
 
     if (data) {
-      chart.dataset.data = data; 
+      chart.dataset.data = data;
     }
 
     const settings = this.get('settings');
@@ -67,7 +67,7 @@ export default Ember.Component.extend({
     }
 
     // window.onresize = this.updateChart.bind(this);
-    
+
     this.set('chart', chart);
 
   },

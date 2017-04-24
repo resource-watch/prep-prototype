@@ -5,31 +5,33 @@ export default Ember.Component.extend({
   tagName: 'section',
   widgetId: 'f2fbd06e-8e2e-4b06-a883-0e4c1146c79c',
   widgetId2: 'ec40fa88-2f75-4681-abd4-0161db504ee6',
-  
+
   didRender() {
     this.$chart = this.$('.chart2');
     this.$chart2 = this.$('.chart2a');
 
-    this.fetchData('http://api.resourcewatch.org/widgets/' + this.widgetId)
+    this.fetchData('https://api.resourcewatch.org/v1/widget/' + this.widgetId)
       .done(function(widget) {
         this.widget = widget.data.attributes;
         this.vegaSpec = this.widget.widgetConfig;
 
-        this.fetchData('http://api.resourcewatch.org/' + this.widget.queryUrl)
+        console.log(this.widget);
+
+        this.fetchData('https://api.resourcewatch.org/v1/' + this.widget.queryUrl)
           .done(function(data){
-            this.vegaSpec.data[0].values = data.rows;
+            this.vegaSpec.data[0].values = data.data;
             this.initChart(this.vegaSpec, this.$chart);
           }.bind(this));
     }.bind(this));
 
-    this.fetchData('http://api.resourcewatch.org/widgets/' + this.widgetId2)
+    this.fetchData('https://api.resourcewatch.org/v1/widget/' + this.widgetId2)
       .done(function(widget) {
         this.widget2 = widget.data.attributes;
         this.vegaSpec2 = this.widget2.widgetConfig;
 
-        this.fetchData(this.widget2.queryUrl)
+        this.fetchData('https://api.resourcewatch.org/v1/' + this.widget2.queryUrl)
           .done(function(data){
-            this.vegaSpec2.data[0].values = data.rows;
+            this.vegaSpec2.data[0].values = data.data;
             this.initChart(this.vegaSpec2, this.$chart2);
           }.bind(this));
     }.bind(this));
