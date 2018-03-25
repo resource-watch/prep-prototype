@@ -10,31 +10,32 @@ export default Ember.Component.extend({
     this.$chart = this.$('.chart2');
     this.$chart2 = this.$('.chart2a');
 
-    this.fetchData('https://api.resourcewatch.org/v1/widget/' + this.widgetId)
-      .done(function(widget) {
-        this.widget = widget.data.attributes;
-        this.vegaSpec = this.widget.widgetConfig;
+    this.renderChart(this.$chart, this.widgetId);
+    this.renderChart(this.$chart2, this.widgetId2);
 
-        console.log(this.widget);
+    // this.fetchData('https://api.resourcewatch.org/v1/widget/' + this.widgetId)
+    //   .done(function(widget) {
+    //     this.widget = widget.data.attributes;
+    //     this.vegaSpec = this.widget.widgetConfig;
 
-        this.fetchData('https://api.resourcewatch.org/v1/' + this.widget.queryUrl)
-          .done(function(data){
-            this.vegaSpec.data[0].values = data.data;
-            this.initChart(this.vegaSpec, this.$chart);
-          }.bind(this));
-    }.bind(this));
+    //     this.fetchData('https://api.resourcewatch.org/v1/' + this.widget.queryUrl)
+    //       .done(function(data){
+    //         this.vegaSpec.data[0].values = data.data;
+    //         this.initChart(this.vegaSpec, this.$chart);
+    //       }.bind(this));
+    // }.bind(this));
 
-    this.fetchData('https://api.resourcewatch.org/v1/widget/' + this.widgetId2)
-      .done(function(widget) {
-        this.widget2 = widget.data.attributes;
-        this.vegaSpec2 = this.widget2.widgetConfig;
+    // this.fetchData('https://api.resourcewatch.org/v1/widget/' + this.widgetId2)
+    //   .done(function(widget) {
+    //     this.widget2 = widget.data.attributes;
+    //     this.vegaSpec2 = this.widget2.widgetConfig;
 
-        this.fetchData('https://api.resourcewatch.org/v1/' + this.widget2.queryUrl)
-          .done(function(data){
-            this.vegaSpec2.data[0].values = data.data;
-            this.initChart(this.vegaSpec2, this.$chart2);
-          }.bind(this));
-    }.bind(this));
+    //     this.fetchData('https://api.resourcewatch.org/v1/' + this.widget2.queryUrl)
+    //       .done(function(data){
+    //         this.vegaSpec2.data[0].values = data.data;
+    //         this.initChart(this.vegaSpec2, this.$chart2);
+    //       }.bind(this));
+    // }.bind(this));
   },
 
   fetchData: function(url) {
@@ -47,8 +48,11 @@ export default Ember.Component.extend({
       this.$chart2.destroy();
       this.$chart = null;
       this.$chart2 = null;
-      this.initChart(this.vegaSpec, this.$chart);
-      this.initChart(this.vegaSpec2, this.$chart2);
+      // this.initChart(this.vegaSpec, this.$chart);
+      // this.initChart(this.vegaSpec2, this.$chart2);
+
+      this.renderChart(this.$chart, this.widgetId);
+      this.renderChart(this.$chart2, this.widgetId2);
     }
   },
 
@@ -75,9 +79,12 @@ export default Ember.Component.extend({
 
   initChart: function(vegaSpec, chartSelected) {
     var vegaSpecCompleted = this.getVegaSpec(vegaSpec);
-
     vg.parse.spec(vegaSpecCompleted, chart => chart({ el: chartSelected[0] }).update());
     vg.parse.spec(vegaSpecCompleted, chart => chart({ el: chartSelected[1] }).update());
+  },
+
+  renderChart: function(el, widgetID) {
+    el[0].innerHTML = '<iframe src="https://prepdata.org/embed/widget/' + widgetID + '" frameborder="0" width="350" height="280"></iframe>';
   }
 
 });

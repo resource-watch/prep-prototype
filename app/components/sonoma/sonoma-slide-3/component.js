@@ -11,17 +11,19 @@ export default Ember.Component.extend({
   didRender() {
     this.$chart = this.$('.chart3-1');
 
-    this.fetchData('https://api.resourcewatch.org/v1/widget/' + this.widgetId)
-      .done(function(widget) {
-        this.widget = widget.data.attributes;
-        this.vegaSpec = this.widget.widgetConfig;
+    this.renderChart(this.$chart, this.widgetId);
 
-        this.fetchData('https://api.resourcewatch.org/v1/' + this.widget.queryUrl)
-          .done(function(data){
-            this.vegaSpec.data[0].values = data.data;
-            this.initChart();
-        }.bind(this));
-    }.bind(this));
+    // this.fetchData('https://api.resourcewatch.org/v1/widget/' + this.widgetId)
+    //   .done(function(widget) {
+    //     this.widget = widget.data.attributes;
+    //     this.vegaSpec = this.widget.widgetConfig;
+
+    //     this.fetchData('https://api.resourcewatch.org/v1/' + this.widget.queryUrl)
+    //       .done(function(data){
+    //         this.vegaSpec.data[0].values = data.data;
+    //         this.initChart();
+    //     }.bind(this));
+    // }.bind(this));
   },
 
   fetchData: function(url) {
@@ -50,10 +52,21 @@ export default Ember.Component.extend({
     return this.vegaSpec;
   },
 
+  renderChart: function(el, widgetID) {
+    el[0].innerHTML = '<iframe src="https://prepdata.org/embed/widget/' + widgetID + '" frameborder="0" width="350" height="280"></iframe>';
+  },
+
   initChart: function() {
-    var vegaSpec = this.getVegaSpec();
-    vg.parse.spec(vegaSpec, chart => chart({ el: this.$chart[0] }).update());
-    vg.parse.spec(vegaSpec, chart => chart({ el: this.$chart[1] }).update());
+    // var runtime = vega.parse(this.getVegaSpec());
+
+    // new vega.View(runtime) // eslint-disable-line no-new
+    //   .logLevel(vega.Warn)
+    //   .initialize(this.$chart[0])
+    //   .renderer('svg')
+    //   .run();
+    // var vegaSpec = this.getVegaSpec();
+    // vg.parse.spec(vegaSpec, chart => chart({ el: this.$chart[0] }).update());
+    // vg.parse.spec(vegaSpec, chart => chart({ el: this.$chart[1] }).update());
   }
 
 });
