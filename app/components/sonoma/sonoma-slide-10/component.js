@@ -9,17 +9,19 @@ export default Ember.Component.extend({
     this.cache();
     this.$chart = this.$('#chart10-1');
 
-    this.fetchData('https://api.resourcewatch.org/v1/widget/' + this.widgetId)
-      .done(function(widget) {
-        this.widget = widget.data.attributes;
-        this.vegaSpec = this.widget.widgetConfig;
+    // this.fetchData('https://api.resourcewatch.org/v1/widget/' + this.widgetId)
+    //   .done(function(widget) {
+    //     this.widget = widget.data.attributes;
+    //     this.vegaSpec = this.widget.widgetConfig;
 
-        this.fetchData('https://api.resourcewatch.org/v1/' + this.widget.queryUrl)
-          .done(function(data){
-            this.vegaSpec.data[0].values = data.data;
-            this.initChart();
-          }.bind(this));
-    }.bind(this));
+    //     this.fetchData('https://api.resourcewatch.org/v1/' + this.widget.queryUrl)
+    //       .done(function(data){
+    //         this.vegaSpec.data[0].values = data.data;
+    //         this.initChart();
+    //       }.bind(this));
+    // }.bind(this));
+
+    this.renderChart(this.$chart, this.widgetId);
 
     this.setListeners();
     this.renderImages();
@@ -72,9 +74,13 @@ export default Ember.Component.extend({
     return this.vegaSpec;
   },
 
-  initChart: function() {
-    var vegaSpec = this.getVegaSpec();
-    vg.parse.spec(vegaSpec, chart => chart({ el: this.$chart[0] }).update());
+  // initChart: function(el, widgetId) {
+  //   var vegaSpec = this.getVegaSpec();
+  //   vg.parse.spec(vegaSpec, chart => chart({ el: this.$chart[0] }).update());
+  // }
+
+  renderChart: function(el, widgetId) {
+    el[0].innerHTML = '<iframe src="https://prepdata.org/embed/widget/' + widgetId + '" frameborder="0" width="350" height="320"></iframe>';
   }
 
 

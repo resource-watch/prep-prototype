@@ -19,6 +19,10 @@ module.exports = function(defaults) {
         'esri','dojo','dojox','dijit',
         'put-selector','xstyle','dbind','dgrid'
       ]
+    },
+    fingerprint: {
+      prepend: 'https://resource-watch.github.io/insights/sonoma-prototype-v2/',
+      extensions: ['js', 'css', 'png', 'jpg', 'jpeg', 'gif', 'map']
     }
   });
 

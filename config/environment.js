@@ -59,7 +59,7 @@ module.exports = function(environment) {
 
   if (environment === 'production') {
     ENV.locationType = 'hash';
-    ENV.baseURL = '/prep-prototype/';
+    ENV.baseURL = '/sonoma-prototype-v2/';
 
     // add heroku host;
     ENV.prepApiHost = 'https://prep-api.herokuapp.com/';
