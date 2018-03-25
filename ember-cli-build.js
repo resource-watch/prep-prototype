@@ -40,7 +40,6 @@ module.exports = function(defaults) {
   app.import('./bower_components/reveal.js/js/reveal.js');
   app.import('./bower_components/leaflet/dist/leaflet.js');
   app.import('./bower_components/leaflet/dist/leaflet.css');
-  app.import('./bower_components/vega/vega.js');
   app.import('./bower_components/nouislider/distribute/nouislider.min.js');
   app.import('./bower_components/nouislider/distribute/nouislider.min.css');
 

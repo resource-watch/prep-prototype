@@ -2,7 +2,7 @@ $reveal-actions-bg: #f5f6f6;
 $reveal-actions-font-color: #1a3e62;
 $reveal-actions-font-size: 12px;
 
-$navigation-btn-bg: #ffc94e;
+$navigation-btn-bg: #25b5cd;
 $navigation-btn-bg-disable: #fff;
 $navigation-btn-bg-border: #f6f7f7;
 $navigation-btn-color: #000;
@@ -15,7 +15,7 @@ $navigation-btn-color: #000;
 // }
 
 .reveal-container {
-  height: calc(100vh - 102px);
+  height: 100vh;
 }
 
 .reveal {
@@ -77,7 +77,8 @@ $navigation-btn-color: #000;
 
       &.download {
         padding-left: 15px;
-        background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMCAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+R3JvdXAgMTQ8L3RpdGxlPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHBhdGggZmlsbD0iI0VGQTYwMCIgZD0iTTQgMGgydjdINHpNMCAxMGgxMHYySDB6Ii8+PHBhdGggZD0iTTQuMjQzIDguMTkybC43MDcuNzA3TDkuOSAzLjk1IDguNDg0IDIuNTM3IDQuOTUgNi4wNyAxLjQxNCAyLjUzNiAwIDMuOTVsNC4yNDMgNC4yNDJ6IiBmaWxsPSIjRjBBNzAwIi8+PC9nPjwvc3ZnPg==') no-repeat left center;
+        // background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMCAxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48dGl0bGU+R3JvdXAgMTQ8L3RpdGxlPjxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+PHBhdGggZmlsbD0iI0VGQTYwMCIgZD0iTTQgMGgydjdINHpNMCAxMGgxMHYySDB6Ii8+PHBhdGggZD0iTTQuMjQzIDguMTkybC43MDcuNzA3TDkuOSAzLjk1IDguNDg0IDIuNTM3IDQuOTUgNi4wNyAxLjQxNCAyLjUzNiAwIDMuOTVsNC4yNDMgNC4yNDJ6IiBmaWxsPSIjRjBBNzAwIi8+PC9nPjwvc3ZnPg==') no-repeat left center;
+        color: #25b5cd;
       }
 
       &.share {
@@ -150,7 +151,8 @@ $navigation-btn-color: #000;
         height: 40px;
         line-height: 40px;
         border-radius: 50%;
-        border: 1px solid $navigation-btn-bg-border;
+        outline: none;
+        // border: 1px solid $navigation-btn-bg-border;
         background-color: $navigation-btn-bg-disable;
         cursor: default;
 
@@ -207,11 +209,18 @@ $navigation-btn-color: #000;
 
     > span{
       margin-top: 1px;
-      color:$reveal-actions-font-color;
+      color: #25b5cd;
       font-size: $reveal-actions-font-size;
       text-transform: uppercase;
       font-weight: bold;
+      
+      &.slide-number-a,
+      &.slide-number-b, 
+      &.slide-number-delimiter {
+        display: none;
+      }
     }
+
   }
 }
 

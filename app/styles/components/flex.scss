@@ -1,0 +1,21 @@
+.flex {
+  display: flex;
+
+  &.-column { 
+  	flex-flow: column;
+  	
+  	& > * {
+  		margin-bottom: 15px;
+
+      &:last-child { margin-bottom: 0; }
+  	}
+  }
+
+  &.full-height { height: 100%; }
+
+  &.-align-center { align-items: center; }
+  &.-justify-center { justify-content: center; }
+  &.-align-space-between { align-items: space-between; }
+  &.-justify-space-between { justify-content: space-between; }
+
+}

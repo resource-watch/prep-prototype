@@ -7,6 +7,15 @@
   position: relative;
   margin: 0;
   margin-bottom: 42px;
+
+  &.-white {
+    color: white;
+  }
+
+  &.-line-center:after {
+    left: 50%;
+    transform: translateX(-50%);
+  } 
 }
 @media screen and (max-width: 724px) {
   .content-section .wrapper > .header > .title {
@@ -21,7 +30,9 @@
   bottom: -23px;
   width: 120px;
   height: 3px;
-  background-color: #ffc94e;
+  background-color: #25b5cd;
+
+  
 }
 .content-section .wrapper > .header > .title.-main {
   font-family: "Open Sans", sans-serif;
@@ -46,7 +57,7 @@
   display: inline;
   position: static;
   background-color: transparent;
-  color: #ffc94e;
+  color: #25b5cd;
 }
 .content-section .wrapper > .header > .title.-small {
   font-size: 40px;
@@ -103,7 +114,7 @@
 }
 .general-button {
   padding: 2px 20px;
-  background-color: #ffc94e;
+  background-color: #25b5cd;
   color: #263e57;
   text-transform: uppercase;
   font-family: "Open Sans", sans-serif;
@@ -120,7 +131,7 @@
 }
 .general-button.-outline {
   background-color: transparent;
-  border: 1px solid #ffc94e
+  border: 1px solid #25b5cd
 }
 .l-header {
   /*height: 775px;*/

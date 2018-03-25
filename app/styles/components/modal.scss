@@ -7,6 +7,7 @@ $modal-title-color: #263e57;
 $modal-text-font-family: "Open Sans", sans-serif;
 $modal-text-font-size: 16px;
 $modal-text-color: #263e57;
+$modal-theme-color: #25b5cd;
 
 .ember-modal-overlay{
   background-color: $modal-bg-color;
@@ -14,7 +15,7 @@ $modal-text-color: #263e57;
 
 .ember-modal-dialog{
   position: relative;
-
+  overflow-y: auto;
   padding: 50px 100px;
   width: 100%;
   height: 100%;
@@ -40,7 +41,7 @@ $modal-text-color: #263e57;
       bottom: -23px;
       width: 120px;
       height: 3px;
-      background-color: #ffc94e;
+      background-color: $modal-theme-color;
     }
     &.-has-action{
       cursor: pointer;
@@ -61,7 +62,7 @@ $modal-text-color: #263e57;
         left: 0;
         width: 7px;
         height: 7px;
-        background-color: $modal-title-color;
+        background-color: $modal-theme-color;
       }
       > a {
         position: relative;
@@ -69,6 +70,7 @@ $modal-text-color: #263e57;
         font-size: 16px;
         letter-spacing: .3px;
         color: $modal-text-color;
+        font-weight: 700;
         text-decoration: none;
       }
       &.-active{
@@ -83,7 +85,7 @@ $modal-text-color: #263e57;
             bottom: -7.5px;
             width: 200%;
             height: 3px;
-            background-color: #ffc94e;
+            background-color: $modal-theme-color;
           }
         }
       }
@@ -95,8 +97,14 @@ $modal-text-color: #263e57;
         &:after{
           border-radius: 50%;
           opacity:0.3;
+
         }
       }
+    }
+
+    & .no-bullet li {
+      &:after { display: none; }
+      & a { font-weight: 400; }
     }
   }
 

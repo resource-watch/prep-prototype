@@ -2,9 +2,18 @@ $slider-title-color: #fff;
 $slider-title-bg: #1A3E62;
 $slider-title-size: 30px;
 
-$slider-highlight-color: #ffc94e;
+$slider-highlight-color: #25b5cd;
 
 .sonoma-slide {
+  .container {
+    padding-left: 35px;
+    padding-right: 35px;
+
+    @media screen and (min-width: 1250px) {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }
   .wrapper > .content {
     max-width: 430px;
     margin-bottom: 20px;
@@ -16,6 +25,12 @@ $slider-highlight-color: #ffc94e;
   }
   .map-card{
     height: 460px;
+
+    & iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
   }
   /* The yellow card with the chart inside */
   .chart-card {
@@ -24,7 +39,14 @@ $slider-highlight-color: #ffc94e;
     background-color: $slider-highlight-color;
     border: 0;
     padding: 25px;
+    
+    &.-max-height { max-height: 540px; }
+
     &:hover { box-shadow: none; }
+
+    &.-bg-grey { background-color: #eaeaea; }
+    &.-bg-white { background-color: white; }
+    &.-bg-yellow { background-color: #ffc94e; }
 
     > h2 {
       font-size: 12px;
@@ -74,6 +96,39 @@ $slider-highlight-color: #ffc94e;
       line-height: 28px;
       box-shadow: 0 7px 15px 0 rgba(0, 0, 0, .15);
       min-height: 400px;
+
+      &:last-child {
+        padding: 30px 50px 30px 70px;
+      }
+
+      .title {
+        font-family: "PT Serif", serif;
+        font-size: 35px;
+        color: #263e57;
+        font-weight: 700;
+        position: relative;
+        margin: 0;
+        margin-bottom: 42px;
+
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+          bottom: -23px;
+          width: 120px;
+          height: 3px;
+          background-color: #25b5cd;
+        }
+
+        &.-ln-white:after {
+          background-color: white;
+        }
+      }
+
+      &.img {
+        background-size: cover;
+      }
 
       &:first-of-type {
         background-color: #25b5cd;
@@ -205,6 +260,10 @@ $slider-highlight-color: #ffc94e;
   	color: #ffffff;
     max-width: 860px;
     margin: 2.5rem auto;
+
+    &.-center {
+      text-align: center;
+    }
   }
 
   .author {
@@ -226,7 +285,7 @@ $slider-highlight-color: #ffc94e;
 
 .sonoma-tooltip {
   padding: 8px 35px;
-  background: #ffde90;
+  background: #25b5cd;
   border-radius: 100px;
   font-family: "Open Sans", sans-serif;
   font-size: 12px;
@@ -265,7 +324,7 @@ $slider-highlight-color: #ffc94e;
     >.links{
       margin-top: 5px;
       > a{
-        color: rgba(#263e57,0.5);
+        color: rgba(#25b5cd, 0.5);
         height: 20px;
         padding-left: 6px;
         padding-right: 6px;
