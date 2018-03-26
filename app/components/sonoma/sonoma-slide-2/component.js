@@ -84,7 +84,9 @@ export default Ember.Component.extend({
   },
 
   renderChart: function(el, widgetID) {
-    el[0].innerHTML = '<iframe src="https://prepdata.org/embed/widget/' + widgetID + '" frameborder="0" width="350" height="280"></iframe>';
+    for (var i = el.length - 1; i >= 0; i--) {
+      el[i].innerHTML = '<iframe src="https://prepdata.org/embed/widget/' + widgetID + '" frameborder="0" width="420" height="300"></iframe>';
+    }
   }
 
 });

@@ -80,7 +80,7 @@ export default Ember.Component.extend({
   // }
 
   renderChart: function(el, widgetId) {
-    el[0].innerHTML = '<iframe src="https://prepdata.org/embed/widget/' + widgetId + '" frameborder="0" width="350" height="320"></iframe>';
+    el[0].innerHTML = '<iframe src="https://prepdata.org/embed/widget/' + widgetId + '" frameborder="0" width="420" height="300"></iframe>';
   }
 
 
