@@ -514,11 +514,11 @@ export default Ember.Component.extend({
 
   didRender() {
     this.$chart = this.$('.chart16-1');
-    this.fetchData()
-      .done(function(data) {
-        this.vegaSpec.data[0].values = data.rows;
-        this.initChart();
-      }.bind(this));
+    // this.fetchData()
+    //   .done(function(data) {
+    //     this.vegaSpec.data[0].values = data.rows;
+    //     this.initChart();
+    //   }.bind(this));
   },
 
   fetchData: function() {
